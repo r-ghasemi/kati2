@@ -1,1 +1,0 @@
-gcc kati2.c -o kati2.o -lm
