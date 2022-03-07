@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{listings}
+\begin{document}
+\section{grammer}
+\begin{itemize}
+\item
+stmt: stmt;
+\item
+stmt: \{ stmt; ...  \}
+\item
+end;
+\item
+let expr;
+\item
+print expr;
+\item
+read expr;
+\item
+data raw\_input;
+\item
+goto label;
+\item
+label:
+\item
+if (expr) stmt;
+\item
+if (expr) stmt; else stmt;
+\item
+while (expr) stmt;
+\item
+for( expr; expr; expr) stmt;
+\item
+do \{ stmt; \} while (expr);
+\end{itemize}
+
+
+\section{if command}
+\begin{enumerate}
+\item
+if (---) [.1] ---; [.2][.3]
+\item
+if (---) \{[.1]
+	--run parser again
+\}[.2][.3]
+\item
+if (---) [.1]---; else \{
+	[.2] 	---; 
+\}[.3]
+\item
+if (---) \{[.1]
+	--run parser again
+\} else [.2] ---; [.3]
+\item
+if (---) \{[.1]
+	--run parser  again
+\} else \{[.2]
+	--run parser  again
+\}[.3]
+\end{enumerate}
+
+\subsection{if-else representation}
+\begin{lstlisting}
+[.n1] if !(---) goto [.n2]
+	  if body
+[.g1] goto [.n3]
+else
+[.n2] 
+	else body
+[.n3]
+\end{lstlisting}
+
+\section{while command}
+\begin{enumerate}
+\item
+[.1]while (---) [.2] ---; 
+[.3]
+[.4]
+\item
+[.1]while (---) \{
+	[.2]
+	--run parser again
+\}
+[.3][.4]
+\item
+[.1]while (---) [.2]---; else \{
+	[.3] 	---; 
+\}[.4]
+\item
+[.1]while (---) \{[.2]
+	--run parser again
+\} else [.3] ---; 
+[.4]
+\item
+[.1]while (---) \{[.2]
+	--run parser  again
+\} else \{[.3]
+	--run parser  again
+\}
+[.4]
+\end{enumerate}
+
+\subsection{while representation}
+\begin{lstlisting}
+[.n1] if !(---) goto [.n3]
+[.n2] while body
+[.f1] if !(---) goto [.n4]
+[.g2] goto [.n2]
+else  [.n3] { else body   };
+[.n4]
+\end{lstlisting}
+
+[SOLVED] how to find ) after if.
+
+
+\begin{lstlisting}
+repeat x times {
+	body
+}
+==>
+s1: rep=1;
+n1: while rep <= x { -->n3
+n2:     body
+s2:     rep++;
+g2: goto n1
+}
+n3:
+\end{lstlisting}
+
+
+
+\section{function command}
+\begin{enumerate}
+\item
+function (x , y  , z) \{[.1]
+	--run parser again
+\}[.2][.3]
+\end{enumerate}
+
+
+
+\end{document}
