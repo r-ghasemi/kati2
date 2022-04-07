@@ -214,30 +214,30 @@ long double  eval(int _BP) {
 					result= v1->u.ld -1.0L;
 					push2_vp(LDOUBLE,(void *)&result);
 					break;*/
-				case '@':	
+				case '@':	// نصف
 					v1=pop2();					
 					result= v1->u.ld / 2;
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
-				case DIV3:
+				case DIV3: //ثلث
 					v1=pop2();
 					
 					result= v1->u.ld / 3;
 					push2_vp(LDOUBLE,(void *)&result);	
 				break;
-				case DIV4:
+				case DIV4: // ربع
 					v1=pop2();
 					
 					result= v1->u.ld / 4;
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
-				case DIV5:
+				case DIV5: // خمس
 					v1=pop2();
 					
 					result= v1->u.ld / 5;
 					push2_vp(LDOUBLE,(void *)&result);	
 				break;
-				case DIVN:
+				case DIVN: // معکوس
 					v1=pop2();
 					
 					if (v1->u.ld != 0.0 )  
@@ -246,7 +246,7 @@ long double  eval(int _BP) {
 					push2_vp(LDOUBLE,(void *)&result);	
 					// 	
 				break;
-				case MIRROR:
+				case MIRROR: // قرینه
 					v1 =pop2();
 					
 					result =  - v1->u.ld;
@@ -254,7 +254,7 @@ long double  eval(int _BP) {
 					 //		
 				break;
 				
-				case SQR2:  // x^2
+				case SQR2:  // x^2 مربع
 					v1 =pop2();
 				
 					result=(v1->u.ld * v1->u.ld);
@@ -263,7 +263,7 @@ long double  eval(int _BP) {
 					 //	
 				break;
 				
-				case SQR3:  // x^3
+				case SQR3:  // x^3 مکعب
 					v1 =pop2();
 				
 					result=(v1->u.ld * v1->u.ld * v1->u.ld);
@@ -272,7 +272,7 @@ long double  eval(int _BP) {
 					 //	
 				break;				
 				
-				case SQRT:
+				case SQRT: // جذر
 					v1 =pop2();
 				
 					if (v1->u.ld >= 0.0) 
@@ -281,30 +281,44 @@ long double  eval(int _BP) {
 					push2_vp(LDOUBLE,(void *)&result); 
 					 //	
 				break;
-				case ADD:
+				case AND: //هم  در ترکیب عطفی
 					v1=pop2();				
-					v2=pop2();
+					v2=pop2();				
 					
+					result= (v1->u.ld!=0.0L && v2->u.ld!=0.0L);
+					push2_vp(LDOUBLE,(void *)&result);
+				break;
+			
+				case OR: //هم  در ترکیب عطفی
+					v1=pop2();				
+					v2=pop2();				
+					
+					result= (v1->u.ld!=0.0L || v2->u.ld!=0.0L);
+					push2_vp(LDOUBLE,(void *)&result);
+				break;		
+				case ADD: //جمع
+					v1=pop2();				
+					v2=pop2();				
 					
 					result= v1->u.ld + v2->u.ld;
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
 
-				case MULT:
+				case MULT: // ضرب
 					v1=pop2();
 					v2=pop2();
 					
 					result= v1->u.ld * v2->u.ld;
 					push2_vp(LDOUBLE,(void *)&result);	
 				break;
-				case SUB:
+				case SUB: // تفریث
 					v1=pop2();
 					v2=pop2();
 					
 					result= v2->u.ld - v1->u.ld;
 					push2_vp(LDOUBLE,(void *)&result);					 	
 				break;
-				case DIV:					
+				case DIV:	//	تقسیم			
 					
 					v1=pop2();
 					v2=pop2();
@@ -326,7 +340,7 @@ long double  eval(int _BP) {
 							 	
 				break;
 
-				case MOD:
+				case MOD: // باقیمانده
 					v1=pop2();
 					v2=pop2();
 					
@@ -338,6 +352,7 @@ long double  eval(int _BP) {
 					else runtime(1,"خطای تقسیم بر صفر در محاسبه باقیمانده");
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
+				
 				case EQ:
 					v1=pop2();
 					v2=pop2();
@@ -462,7 +477,7 @@ long double  eval(int _BP) {
 					neg=1;
 				break;
 
-				case NOT2:
+				case NOT2: // نقیض
 					v1 =pop2();
 				
 					result=!(v1->u.ld);
@@ -470,13 +485,13 @@ long double  eval(int _BP) {
 					push2_vp(LDOUBLE,(void *)&result); 
 				break;
 
-				case CORRECT:
+				case CORRECT: // صحیح مثلا تقسیم صحیح
 					//printf("\n\FFFFFFFFF");
 					//fflush(stdout);
 					fix=1;
 				  	//if (stack[top-1].u.op=='/') stack[top-1].u.op= '\\';
 				break;
-				case FARMAN: {
+				case FARMAN: { // اجرای دستورات خارجی
 					v1=pop2();	
 					// call external function
 					external_functions[(int )v1->u.ld].func();

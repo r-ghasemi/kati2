@@ -485,7 +485,9 @@ void  check_kati_keywords() {
 	/*37*/check("فراخوان");
 	/*38*/check("فرمان");
 	/*39*/check("ریشه");	
-	/*40*/check("توان");				
+	/*40*/check("توان");
+	/*41*/check("هم");
+	/*42*/check("یا");				
 }
 void init() {
 	//initialize heap_pointer
