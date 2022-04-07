@@ -285,6 +285,7 @@ long double  eval(int _BP) {
 					v1=pop2();				
 					v2=pop2();
 					
+					
 					result= v1->u.ld + v2->u.ld;
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
@@ -341,11 +342,16 @@ long double  eval(int _BP) {
 					v1=pop2();
 					v2=pop2();
 					
-					if (debug==20) 
-					printf("\n--EQ--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
-
-					if (v1->u.ld == v2->u.ld) result=1.0; 
-						else result=0.0;
+					if (debug==20) 	printf("\n--EQ--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
+					
+					result=0.0L;					
+					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
+						 if (strcmp(v1->u.st,v2->u.st)==0) result=1.0L;
+					} else {
+					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
+						 if (v1->u.ld == v2->u.ld) result = 1.0L;
+					  } else _error(1,"عدم انطباق عملونده در تست برابراست");
+					}
 					//check negative flag
 					if (neg) { result=1-result; neg=0; }
 
@@ -355,11 +361,21 @@ long double  eval(int _BP) {
 					v1=pop2();
 					v2=pop2();
 					
-			if (debug==20) printf("\n--LT--%Lf < %Lf\n",v1->u.ld,v2->u.ld);
-					if (v1->u.ld < v2->u.ld) result=1.0L; 
-						else result=0.0L;	
+					if (debug==20) printf("\n--LT--%Lf < %Lf\n",v1->u.ld,v2->u.ld);
+					//if (v1->u.ld < v2->u.ld) result=1.0L; 
+					//	else result=0.0L;	
+						
+					result=0.0L;					
+					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
+						 if (strcmp(v1->u.st,v2->u.st) < 0) result=1.0L;
+					} else {
+					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
+						 if (v1->u.ld < v2->u.ld) result = 1.0L;
+					  } else _error(1,"عدم انطباق عملونده در مقایسه کمتراست");
+					}						
 					//check negative flag
 					if (neg) { result=1-result; neg=0; }
+					
 			 		push2_vp(LDOUBLE,(void *)&result);
 				break;
 				case GT:					
@@ -368,8 +384,17 @@ long double  eval(int _BP) {
 					
 			if (debug==2) printf("\n--GT--%Lf > %Lf\n",v1->u.ld,v2->u.ld);
 					//printf("\n--EQ--%f == %f\n",v1,v2);
-					if (v1->u.ld > v2->u.ld) result=1.0L;
-						else result=0.0L;
+					//if (v1->u.ld > v2->u.ld) result=1.0L;
+					//	else result=0.0L;
+						
+					result=0.0L;					
+					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
+						 if (strcmp(v1->u.st,v2->u.st) > 0) result=1.0L;
+					} else {
+					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
+						 if (v1->u.ld > v2->u.ld) result = 1.0L;
+					  } else _error(1,"عدم انطباق عملونده در مقایسه بیشتراست");
+					}							
 					//check negative flag
 					if (neg) { result=1-result; neg=0; }
 
@@ -378,11 +403,19 @@ long double  eval(int _BP) {
 				case LTE:
 					v1=pop2();
 					v2=pop2();
-			if (debug==20) printf("\n--LTE--%Lf <= %Lf\n",v1->u.ld,v2->u.ld);
+					if (debug==20) printf("\n--LTE--%Lf <= %Lf\n",v1->u.ld,v2->u.ld);
 					
 	//				printf("\n--LTE--%f == %f\n",v1,v2);
-					if (v1->u.ld <= v2->u.ld) result=1.0L; 
-					else result=0.0L;			
+					//if (v1->u.ld <= v2->u.ld) result=1.0L; 
+					//else result=0.0L;	
+					result=0.0L;					
+					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
+						 if (strcmp(v1->u.st,v2->u.st) <= 0) result=1.0L;
+					} else {
+					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
+						 if (v1->u.ld <= v2->u.ld) result = 1.0L;
+					  } else _error(1,"عدم انطباق عملونده در مقایسه کمترمساوی");
+					}								
 					//check negative flag
 					if (neg) { result=1-result; neg=0; }
 		 			push2_vp(LDOUBLE,(void *)&result); 	
@@ -393,8 +426,17 @@ long double  eval(int _BP) {
 			if (debug==20) printf("\n--GTE--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
 					
 					//printf("\n--EQ--%f == %f\n",v1,v2);
-					if (v1->u.ld >= v2->u.ld) result=1.0L; 
-							else result=0.0L;
+					//if (v1->u.ld >= v2->u.ld) result=1.0L; 
+					//		else result=0.0L;
+							
+					result=0.0L;					
+					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
+						 if (strcmp(v1->u.st,v2->u.st) >= 0) result=1.0L;
+					} else {
+					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
+						 if (v1->u.ld >= v2->u.ld) result = 1.0L;
+					  } else _error(1,"عدم انطباق عملونده در مقایسه بیشترمساوی");
+					}							
 					//check negative flag
 					if (neg) { result=1-result; neg=0; }
 
