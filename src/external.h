@@ -34,11 +34,11 @@ char *strrev(char *str) {
 }
 
 void   ex_kati() {
-	printf("\n\ 
+	/*printf("\n\ 
 	\n*******************************************************\ 
         \n*                  سلام من کاتی %4.2f هستم             *\n \ 
 	\n*******************************************************\n\n",
-		KATI_VERSION);
+		KATI_VERSION);*/
 	long double result= KATI_VERSION;
 	//printf("\n This is strlen %s =%Lf\n", v->u.st, result);
 	push2_vp(LDOUBLE,(void *)&result);	
@@ -70,15 +70,34 @@ void   ex_strrev() {
 	strrev(v->u.st);
 }
 
+void   ex_strcat() {
+	stack_item *v1;
+	stack_item *v2;	
+
+	v1= pop2();
+	v2= &stack2[top2];	
+	//todo: check for TEXT here
+	if (v1->dt!=TEXT) {
+		runtime(1,"اینجا یک رشته برای محاسبه الحاق رشته لازم است 1");
+	}		
+	if (v2->dt!=TEXT) {
+		runtime(1,"اینجا یک رشته برای محاسبه الحاق رشته لازم است 2");
+	}		
+	
+	strcat(v2->u.st, v1->u.st);
+}
+
 
 external_function  external_functions[MAXFUNCTIONS]= {
 	{"نسخه کاتی",   ex_kati}
 	,{"طول رشته", ex_strlen }
 	,{"معکوس رشته", ex_strrev }
+	,{"الحاق رشته", ex_strcat }
 	,{0,0} // EOL
 };
 
 
+//todo: search optimization to check external function in compile time!?
 int  check_external(char *s) {
  for (int i=0;  external_functions[i].name[0]  ; i++ ) {
    if (!strcmp(s,external_functions[i].name)) 

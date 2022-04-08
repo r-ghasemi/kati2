@@ -65,7 +65,7 @@
 #define	K_POWER		40/* "توان" */
 #define HAM			41/*هم*/
 #define YA			42/*یا*/
-#define MAXKEYS     43
+#define MAXKEYS     42
 
 char msg[256];
 
