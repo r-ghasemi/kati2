@@ -65,7 +65,7 @@
 #define	K_POWER		40/* "توان" */
 #define HAM			41/*هم*/
 #define YA			42/*یا*/
-#define MAXKEYS     42
+#define MAXKEYS     42 // = last value in kewords
 
 char msg[256];
 
