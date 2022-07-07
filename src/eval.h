@@ -5,12 +5,35 @@
 
 #define STACKSIZE	50000
 
-struct 	token 	*stack[STACKSIZE];
-int 		top=-1;
+//int 		top=-1;
+//struct 	token 	*stack[STACKSIZE];
 
 int 	    top2=-1;
 stack_item  stack2[STACKSIZE];
 float	    _format[STACKSIZE]={0.0};
+
+
+// stack for operators in parser to convert infix to postfix
+int			top3=-1; 
+struct token stack3[STACKSIZE];
+
+void push_op(struct token tok) {
+  if (top3==STACKSIZE) runtime(1, "stack overflow(3)");
+  //printf("Added %c=%d\n", tok.u.op, tok.u.op);
+  top3++;
+  stack3[top3]= tok;
+}
+
+struct token pop_op() {
+  if (top3==-1) runtime(1,"خطای تبدیل در جمله محاسباتی");
+  struct token temp=stack3[top3];
+  top3--;
+  return temp;
+}
+unsigned int top_op() {
+	if (top3==-1) return 0;
+	return stack3[top3].u.op;
+}
 
 void print_item(stack_item si, int format) {
 	char fmt[20];
@@ -21,7 +44,7 @@ void print_item(stack_item si, int format) {
 		print_string(si.u.st);
 }
 
-void push(struct token *tok) {
+/*void push(struct token *tok) {
   if (top==STACKSIZE) runtime(1, "stack overflow(1)");
   top++;
   stack[top]=tok;
@@ -32,7 +55,7 @@ struct token *pop() {
   struct token *temp=stack[top];
   top--;
   return temp;
-}
+}*/
 
 
 void push2_item(stack_item item) {
@@ -91,14 +114,17 @@ stack_item * pop2() {
 
 variant * getVarLocal(int  ix ) {
 	variant * v;
+	return NULL;
 }
 
 long double  eval(int _BP) {
 //	head=nodes[_ip].start;
-	struct token * token= nodes[_ip].start;
+	struct token * token = nodes[_ip].start;
+	struct token * first_var= token->next;
+	struct token * last_var;
 	struct token * last_token;
 	_flag=0;
-	int  _top2=top2+1,  _top=top+1;
+	int  _top2=top2+1;/*,  _top=top+1*/;
 
 //	printf("\n eval, varc=%d inFunction=%d", var_counter, inFunction);
 	if (debug==4) printf("\n++++++++ TOP2=%d\n", top2);
@@ -126,7 +152,7 @@ long double  eval(int _BP) {
 		getchar();
 	}
 
-	while (1) {
+	/*while (0) {
 	    //printf("\n%s\n",code+head);
 	    token=token->next;	
 	    if (token->type==OP) {
@@ -149,7 +175,7 @@ long double  eval(int _BP) {
 			} else
 			if (token->u.op==DECR) {
 				token=token->next; //only variable to inc 	
-				//todo: INCR is not for functions or constants
+				//todo: DECR is not for functions or constants
 				long double temp;
 				if (token->tok_ix > 0) {
 					temp= --(stack2[_BP+token->tok_ix].u.ld);
@@ -170,6 +196,7 @@ long double  eval(int _BP) {
 	    else if (token->type==ID) { 
 			//دستور ورودی یا خروجی با حرف اضافه /را/ مشخص می‌شود.
 			if (token->id==RA) break;
+
 			if (  token->id!=BAR &&
 				token->id!=VA &&
 				token->id!=AZ &&
@@ -185,25 +212,52 @@ long double  eval(int _BP) {
 			push(token);
 	    } else 
 		runtime(1,"عبارت محاسباتی شامل  شناسه غیر مجاز است.");
-      }
-	
+    }
+	*/
 
 	stack_item *v1,*v2;
 	long double  result;
 				
-	int saved_top= top;
+	//int saved_top= top;
 	int input_command=1;
 //	negation in compairsion operators and fix division
 	int neg=0, fix=0;
 	
        
 //	printf("\n eval, varc=%d inFunction=%d", var_counter, inFunction);        
-	while (top >= _top ) {	
-		if (stack[top]->type==OP) {
-			if (stack[top]->u.op!=EVAL) input_command=0; 
+//	while (top >= _top ) {
+	while (1) {		
+		token=token->next;	
+		if (!token) break; // without [.] at end of statement
+	    if (token->type==OP) {
+			if (token->u.op=='=' || token->u.op=='.') { 
+			//assignment or end of statement
+				break;
+			}
+		} else if (token->type==DIGIT) {			 
+	    }
+	    else if (token->type==ID) { 			//دستور ورودی یا خروجی با حرف اضافه /را/ مشخص می‌شود.
+   			last_var= token;
+			if (token->id==RA) break;
+			
+			if (token->id==BAR &&
+				//token->id==VA &&
+				token->id==AZ &&
+				token->id==BA &&
+				token->id==DAR &&
+				token->id==TA  
+			) continue;			
+	    } 
+	    else if (token->type==STRING) {
+	    } else {
+		    runtime(1,"عبارت محاسباتی شامل  شناسه غیر مجاز است.");
+	    }
+		
+		if (token->type==OP) {
+			if (token->u.op!=EVAL) input_command=0; 
 			//دستور ورودی نباید حاوی عملگر باشد.
 			
-			switch( stack[top]->u.op ) {
+			switch( token->u.op ) {
 				/*case INCR:	
 					v1=pop2();
 					result= v1->u.ld +1.0L;				
@@ -214,6 +268,9 @@ long double  eval(int _BP) {
 					result= v1->u.ld -1.0L;
 					push2_vp(LDOUBLE,(void *)&result);
 					break;*/
+				case COMMA: // comma operator
+				break;
+				
 				case '@':	// نصف
 					v1=pop2();					
 					result= v1->u.ld / 2;
@@ -382,10 +439,10 @@ long double  eval(int _BP) {
 						
 					result=0.0L;					
 					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) < 0) result=1.0L;
+						 if (strcmp(v1->u.st,v2->u.st) > 0) result=1.0L;
 					} else {
 					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld < v2->u.ld) result = 1.0L;
+						 if (v1->u.ld > v2->u.ld) result = 1.0L;
 					  } else _error(1,"عدم انطباق عملونده در مقایسه کمتراست");
 					}						
 					//check negative flag
@@ -404,10 +461,10 @@ long double  eval(int _BP) {
 						
 					result=0.0L;					
 					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) > 0) result=1.0L;
+						 if (strcmp(v1->u.st,v2->u.st) < 0) result=1.0L;
 					} else {
 					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld > v2->u.ld) result = 1.0L;
+						 if (v1->u.ld < v2->u.ld) result = 1.0L;
 					  } else _error(1,"عدم انطباق عملونده در مقایسه بیشتراست");
 					}							
 					//check negative flag
@@ -425,10 +482,10 @@ long double  eval(int _BP) {
 					//else result=0.0L;	
 					result=0.0L;					
 					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) <= 0) result=1.0L;
+						 if (strcmp(v1->u.st,v2->u.st) >= 0) result=1.0L;
 					} else {
 					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld <= v2->u.ld) result = 1.0L;
+						 if (v1->u.ld >= v2->u.ld) result = 1.0L;
 					  } else _error(1,"عدم انطباق عملونده در مقایسه کمترمساوی");
 					}								
 					//check negative flag
@@ -446,10 +503,10 @@ long double  eval(int _BP) {
 							
 					result=0.0L;					
 					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) >= 0) result=1.0L;
+						 if (strcmp(v1->u.st,v2->u.st) <= 0) result=1.0L;
 					} else {
 					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld >= v2->u.ld) result = 1.0L;
+						 if (v1->u.ld <= v2->u.ld) result = 1.0L;
 					  } else _error(1,"عدم انطباق عملونده در مقایسه بیشترمساوی");
 					}							
 					//check negative flag
@@ -499,31 +556,33 @@ long double  eval(int _BP) {
 				break;
 			} 
 		}
-		else if (stack[top]->type==DIGIT) {
+		else if (token->type==DIGIT) {
 		        
 		//   	printf("\n eval, varc=%d inFunction=%d", var_counter, inFunction);
 			input_command=0; //دستور ورودی نباید حاوی پارامتر مقداری باشد
-			//printf("\n digit=[%FRMT]",*(stack[top].u.val.value.ld));
-			long double v1 = LDVALUE(stack[top]->u.val);
+			//printf("\n digit=[%FRMT]",*(token.u.val.value.ld));
+			long double v1 = LDVALUE(token->u.val);
 			if (debug)
 				printf("digit=%Lf, sp=%d",v1, top2);
 			push2_vp(LDOUBLE, (void *)&v1);
 		}
-		else if (stack[top]->type==ID) {
+		else if (token->type==ID) {
+		
+			last_var= token;
 		    // todo : check for function ID () at this point call function
-		    if (debug==4) printf("\n ID=%d, IP=%d, IX=%d", stack[top]->id, stack[top]->tok_ip, stack[top]->tok_ix);
-		    if (debug ==4 && stack[top]->tok_ip>=0) {
+		    if (debug==4) printf("\n ID=%d, IP=%d, IX=%d", token->id, token->tok_ip, token->tok_ix);
+		    if (debug ==4 && token->tok_ip>=0) {
 		    	printf("\n+++++++++++++++this is function");
 		    }
-		    if (stack[top]->tok_ip >= 0) {
+		    if (token->tok_ip >= 0) {
 		    	//printf("\nthis is function top=%d id=%d [%s] IP=%d,\n", top, stack[top]->id, stack[top]->u.tok, values[stack[top]->id]->IP);
  		      // exit(0);
 		        //todone: This is function call
 		       // printf("\nstack2 top= (%d) value=(%Lf) ", top2, stack2[top2].u.ld);
 		       // push for all local variales in the function
 		       
-		       int func= values[stack[top]->id]->IP;
-      		//       int func= stack[top]->tok_ix;
+		       int func= values[token->id]->IP;
+      		//       int func= token->tok_ix;
       		       
 		       int varc=nodes[func].var_count - nodes[func].arg_count;
 		       int argc=nodes[func].arg_count;
@@ -575,23 +634,23 @@ long double  eval(int _BP) {
 		      // exit(0); //disable function call
 		    } else { // this is a variable local or global
 		    // todone: what about getVar function and setVar
-		    	if (stack[top]->tok_ix > 0) { //local
-					//v1=  getVarLocal(stack[top]->tok_ix);
+		    	if (token->tok_ix > 0) { //local
+					//v1=  getVarLocal(token->tok_ix);
 					if (debug){
 						printf("\nlocal var=#%d[%Lf], BP=%d\n", 
-							stack[top]->tok_ix,
-							stack2[_BP+stack[top]->tok_ix].u.ld,
+							token->tok_ix,
+							stack2[_BP+token->tok_ix].u.ld,
 							_BP);
 					}
 		
 					stack_item v;			
-					v=stack2[_BP + stack[top]->tok_ix];
+					v=stack2[_BP + token->tok_ix];
 					
 					push2_item(v);	
 
 		    	} else {  //global
 			    	variant  * v1;
-					v1=  getVar(stack[top]->id);
+					v1=  getVar(token->id);
 							
 					if (v1->datatype==LDOUBLE)  {
 						push2_vp(LDOUBLE, (void *)(v1->start));
@@ -603,10 +662,10 @@ long double  eval(int _BP) {
 		    }
 
 		}
-		else if (stack[top]->type==STRING) {			 
-			 push2_st(STVALUE(stack[top]->u.val));
+		else if (token->type==STRING) {			 
+			 push2_st(STVALUE(token->u.val));
 		}
-		pop();
+//		pop(); 
 	}
 
 	int mode=0;
@@ -667,9 +726,9 @@ long double  eval(int _BP) {
 		if (mode < 20) {// write command	11 or 12 or 13
 			if (mode==12) {
 				int i=0;
-				for (i=top2; i>= _top2 ; i--) {
+				for (i=_top2; i<= top2 ; i++) {
 					print_item(stack2[i],i);
-					pop2();
+					//pop2();
 				}
 				fflush(stdout);
 			} else {
@@ -678,34 +737,41 @@ long double  eval(int _BP) {
 				   if(token->id == KHOROJI ) {
 				   	if (debug==4) printf("\n KHOROJI ");
 					int i=0;
-					for (i=top2; i>= _top2 ; i--)
+					for (i=_top2; i<= top2 ; i++)
 						print_item(stack2[i],i);
 					fflush(stdout);
 				   } else {
 					//TODO: check for write file here
-					while (top2 >= _top2) {
+					int i=_top2;
+					while (i <= top2) {
 					  if (token->tok_ix > 0 ) { // it is local var
 					  	if(debug) 
 					  	printf("\naccess local var %d, V=%Lf", token->tok_ix, stack2[_BP+token->tok_ix].u.ld);
 					 // 		fflush(stdout);
-					  	stack2[_BP+token->tok_ix]= stack2[top2];
+					  	stack2[_BP+token->tok_ix]= stack2[i];
 					  } else {
-						if (stack2[top2].dt==LDOUBLE)
-						 set_var_ld(values[token->id],stack2[top2].u.ld );
+						if (stack2[i].dt==LDOUBLE)
+						 set_var_ld(values[token->id],stack2[i].u.ld );
 						else {
 						 //printf("\nSTRING2 %d =%s", token->id, stack2[top2].u.st);
-						 set_var_st(values[token->id],stack2[top2].u.st );
+						 set_var_st(values[token->id],stack2[i].u.st );
 						}
 					  }
 
-						top2--;
-						last_token=token;
-						token=token->next;
-						if (token->type!=ID && top2>=_top2) 
+					  i++;
+					  last_token=token;
+					  token=token->next;
+					  //skip COMMA
+					  if (token && token->type==OP && token->u.op== COMMA) 
+					  	token=token->next;
+					  						  
+					  if (token && token->type!=ID && i <= top2) {
+					  		printf("i= %d _top2=%d, top2=%d\n", i, _top2, top2);
 							runtime(1,"اینجا یک متغییر لازم است.");
+					  }
 						
-						if (token->id==ZAKHIREH || 
-							token->id==BENVIS) {
+						if (token && (token->id==ZAKHIREH || 
+							token->id==BENVIS)) {
 							token=last_token;
 							break;
 						}
@@ -754,23 +820,23 @@ long double  eval(int _BP) {
 			if (input_command==0) 
 				runtime(1,"برای دستور بخوان بایستی از پارامترهای نوع متغییر استفاده شود.");
 
-			for (i= _top+1 ; i<= saved_top; i++) {
-				var=stack[i]->id;	
+			for ( token=first_var ; token!=last_var ; token=token->next) {
+				var=token->id;	
 				//todo:<b>*</> check for saveing in local variables
 				//if it is local use stack to save
-				tok=getToken(1);	
+				tok=getToken(1);	// read from input
 //		printf("\ni=%d, ix=%d %Lf*\n",i, stack[i]->tok_ix, LDVALUE( tok.u.val ));
-				if (stack[i]->tok_ix > 0) { //this is local var
+				if (token->tok_ix > 0) { //this is local var
 				//todo: reading string values for local vars.
 				
-				    stack2[ _BP + stack[i]->tok_ix ].dt= LDOUBLE;
+				    stack2[ _BP + token->tok_ix ].dt= LDOUBLE;
 
 				    if (tok.type==STRING) {
-					     stack2[ _BP + stack[i]->tok_ix ].dt= TEXT;
-					     stack2[ _BP + stack[i]->tok_ix ].u.st=
+					     stack2[ _BP + token->tok_ix ].dt= TEXT;
+					     stack2[ _BP + token->tok_ix ].u.st=
 						     tok.u.val.start;
 				    } else 
-     				       stack2[ _BP + stack[i]->tok_ix ].u.ld
+     				       stack2[ _BP + token->tok_ix ].u.ld
 					      =  LDVALUE( tok.u.val );
 					     
 				} else	{
@@ -783,10 +849,10 @@ long double  eval(int _BP) {
 			int i, var;
 			token=token->next;
 			if (token->id!=BEDEH) runtime(1,"کلمه /بده/ لازم است.");
-			for (i=_top+1; i<=saved_top; i++) {
-				var=stack[i]->id;
-				if (stack[i]->tok_ix>0) {
-					stack2[ _BP+ stack[i]->tok_ix ].u.ld ++;
+			for (token= first_var; token!=last_var ; token=token->next) {
+				var=token->id;
+				if (token->tok_ix>0) {
+					stack2[ _BP+ token->tok_ix ].u.ld ++;
 				} else {
 					variant * val= getVar(var);
 					if (val->datatype==LDOUBLE) {
@@ -799,10 +865,11 @@ long double  eval(int _BP) {
 			int i, var;
 			token=token->next;
 			if (token->id!=BEDEH) runtime(1,"کلمه /بده/ لازم است.");
-			for (i=_top+1; i<=saved_top; i++) {
-				var=stack[i]->id;
-				if (stack[i]->tok_ix>0) {
-					stack2[ _BP+ stack[i]->tok_ix ].u.ld ++;
+//			for (i=_top+1; i<=saved_top; i++) {
+			for (token= first_var; token!=last_var ; token=token->next) {
+				var=token->id;
+				if (token->tok_ix>0) {
+					stack2[ _BP+ token->tok_ix ].u.ld ++;
 				} else {	
 					variant  *val=getVar(var);
 					if (val->datatype==LDOUBLE)

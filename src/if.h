@@ -16,14 +16,34 @@ int _if() {
 		 hb= head;
 		 token=getToken(0);
 
-		 if (token.type==KEYWORD && (token.id==K_THEN1 || token.id==K_THEN2)) 				break;
+		 if (token.type==KEYWORD && (token.id==K_THEN1 || token.id==K_THEN2)) 	{
+			//SIGN:INFIX-POSTFIX	 
+			while ( top_op() != 0 ) add_token( &_main, pop_op() );
+		 	break;
+		 }
 
 		 if (token.type== KEYWORD) 	
 			_error(1, "کلمه /آنگاه/ در دستور اگر لازم است.");
 //		 if (token.type==ID) //convert id to number
-//			token.id=check(token.u.tok);
+//			token.id=check(token.u.tok);	
 	
-		add_token(&_main, token);		
+		 if (token.type==OP 
+			 || (token.type==ID && token.tok_ip>=0) ) { // infix to postfix conversion		 
+		 	 //SIGN:INFIX-POSTFIX	 
+		 	 if (token.u.op=='(') 
+		 	 	push_op(token); // higest precedence for ( operator
+		 	 else
+		 	 if (token.u.op==')') { 
+		 	 	while ( top_op() != '(' ) add_token( &_main, pop_op() );
+		 	 	pop_op(); // skip '('
+		 	 } else	 {
+		 	 	while (precedence(token.u.op) <= precedence( top_op() ) ) {  			 		
+			 	 	 add_token( &_main, pop_op());
+			 	}			 	
+			 	push_op(token);
+			 }
+		 } else	 add_token(&_main, token);	
+
 	}
 
 	if (token.id!=K_THEN1 && token.id!=K_THEN2) 

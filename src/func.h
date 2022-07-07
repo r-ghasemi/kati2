@@ -31,7 +31,7 @@ int _func() {
     add_node(&n1);
     
     if (inFunction) 
-        _error(1, "nested functions definition is not allowed!.");
+        _error(1, "تابع درون تابع نمی‌توان تعریف کرد.");
 
     //todone:<span style='color:red'>continue from here</span>: apply function address
     //for id's inside function
@@ -54,17 +54,25 @@ int _func() {
 	int idd=check("نتیجه");
 	arg0=add_token(&_main, create_token_id( idd ) );
 
+	token=getToken(0);
+	
+	if (token.type!=OP || token.u.op!='(') {
+		_error(1,"علامت پرانتز بعد از نام تابع الزامی است.");
+	}
+	
+	
 //	printf("fvar=%d", fvar_counter);
 	while (code[head]!=0 ) {
-		 hb= head;
-		 token=getToken(0);
+		hb= head;
+		token=getToken(0);
 		 
 	    if (token.type==OP && 
-	    	(token.u.op== '{' || token.u.op== '.')) 
+	    	(token.u.op==')' || token.u.op== '{' || token.u.op== '.')) 
 	    	break;
+	    	
+	    if (token.type==OP && token.u.op==COMMA) continue;
         // todone: do not add AZ VA TA BA BAR
-	     if (  token.id!=BAR &&
-				token.id!=VA &&
+	     if (  token.id!=BAR &&				
 				token.id!=AZ &&
 				token.id!=BA &&
 				token.id!=DAR &&
@@ -74,6 +82,13 @@ int _func() {
 		 }
 	}
 	
+	if (token.u.op!=')') {
+		_error(1,"علامت پرانتز بسته در تعریف تابع الزامی است");
+	}
+
+	token=getToken(0); 
+	
+
 	int count=fvar_counter - MAXKEYS -1;
 	n1.self->arg_count= count;
 	arg1=arg0;

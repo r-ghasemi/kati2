@@ -99,7 +99,7 @@ int 		asmm=0;
 #define	DECR		251
 
 #define	MOD		'%'
-#define	MULT		'*'
+#define	MULT	'*'
 #define	DIV		'/'
 
 #define	V_INTEGER	240 /*= CORRECT*/
@@ -112,8 +112,10 @@ int 		asmm=0;
 #define	ROOT		258
 #define	POWER		259
 #define	NOT2		260
-#define	OR		261
-#define AND		262
+#define	OR			261
+#define AND			262
+#define FUNCTION	263
+#define COMMA	264
 
 #include "variant.h"
 
@@ -133,11 +135,36 @@ struct tokenval {
 };
 
 struct tokenval  operators[] = {
-{'*' ,"ضرب"}, {ADD, "جمع"}, {SUB,"تفریق"},{SUB,"تفاضل"},{'/',"تقسیم"},{MOD,"باقیمانده"},{DIV2,"نصف"},{FMT,"دقت"},{FMT,"قالب"},{EQ,"مساوی"},{EQ,"برابر"},{GT,"بزرگتر"},{GT,"بیشتر"},{LT,"کوچکتر"},{LT,"کمتر"},{GTE,"بزرگترمساوی"},{GTE,"بیشترمساوی"},{LTE,"کمترمساوی"},{LTE,"کوچکترمساوی"},{EVAL,"حاصل"},{EVAL,"مقدار"},{IS,"است"},{IS,"باشد"},{IS,"بود"},{NOT,"نیست"},{NOT,"نباشد"},{NOT,"نبود"},{NOT2,"نقیض"},{'=',"قراربده"},{CORRECT,"صحیح"},{DIVN,"معکوس"},{DIV3,"ثلث"},{DIV4,"ربع"},{DIV5,"خمس"},{MIRROR,"منفی"},{MIRROR,"قرینه"},{SQRT,"جذر"},{SQR2,"مربع"},{SQR3,"مکعب"},{FARMAN,"فرمان"},{FARMAN,"دستور"},{ROOT,"ریشه"},{POWER,"توان"}
+{COMMA,"و"},
+{'*' ,"ضرب"},{'*' ,"ضربدر"}, 
+{ADD, "جمع"},{ADD, "بعلاوه"},
+{SUB,"منها"}, {SUB,"منهای"},
+{'/',"تقسیم"},{MOD,"باقیمانده"},{DIV2,"نصف"},{FMT,"دقت"},{FMT,"قالب"},{EQ,"مساوی"}
+,{EQ,"برابر"}
+,{EQ,"برابربا"}
+,{GT,"بزرگتراز"}
+,{GT,"بیشتراز"}
+,{LT,"کوچکتر"}
+,{LT,"کوچکتراز"}
+,{LT,"کمتر"},
+{LT,"کمتراز"},
+{GTE,"بزرگترمساوی"},{GTE,"بیشترمساوی"},{LTE,"کمترمساوی"},{LTE,"کوچکترمساوی"},{EVAL,"حاصل"},{EVAL,"مقدار"},{IS,"است"},{IS,"باشد"},{IS,"بود"},{NOT,"نیست"},{NOT,"نباشد"},{NOT,"نبود"},{NOT2,"نقیض"},{'=',"قراربده"},{CORRECT,"صحیح"},{DIVN,"معکوس"},{DIV3,"ثلث"},{DIV4,"ربع"},{DIV5,"خمس"},{MIRROR,"منفی"},{MIRROR,"قرینه"},{SQRT,"جذر"},{SQR2,"مربع"},{SQR3,"مکعب"},{FARMAN,"فرمان"},{FARMAN,"دستور"},{ROOT,"ریشه"},{POWER,"توان"}
 ,{AND,"هم"}
 ,{OR,"یا"}
 ,{0,""}
 };
+
+int precedence(unsigned int op) {
+	if (op==0 || op=='(') return 0;
+	if (op==COMMA) return 1;		
+	if (op==GT || op==LT || op==GTE || op==LTE) return 2;	
+	if (op=='+' || op=='-' || op==ADD || op==SUB) return 3;
+	if (op=='*' || op=='/' || op==MOD) return 4;	
+	if (op==DIV2) return 5;
+	if (op==FUNCTION) return 6;	
+	return 7;	
+}
+
 struct tokenval numbers[] = {
 {0.0,"صفر"},{1.0,"یک"},{2.0,"دو"},{30,"سه"},{1.0,"اول"},{2.0,"دوم"},{30,"سوم"},{4.0,"چهار"},{5.0,"پنج"},{6.0,"شش"},{7.0,"هفت"},{8.0,"هشت"},{9.0,"نه"},{10.0,"ده"},{11.0,"یازده"},{12.0,"دوازده"},{13.0,"سیزده"},{14.0,"چهارده"},{15.0,"پانزده"},{16.0,"شانزده"},{17.0,"هفده"},{18.0,"هجده"},{19.0,"نوزده"},{20.0,"بیست"},{30.0,"سی"},{40.0,"چهل"},{50.0,"پنجاه"},{60.0,"شصت"},{70.0,"هفتاد"},{80.0,"هشتاد"},{90.0,"نود"},{100.0,"صد"},{1000.0,"هزار"},{1000000.0,"میلیون"},{1000000000.0,"میلیارد"},{0,"END"}
 };
@@ -321,7 +348,7 @@ void 	error(char *err, int fatal) {
 	}
 }
 void 	runtime(int fatal, char * err) {
-	printf("\nخطای زمان اجرا: (%d):%s\n", line, err);	
+	printf("\nخطای زمان اجرا: (IP=%d):%s\n", _ip, err);	
 	unsigned char * s=code+last_head;
 
 	if (fatal) {
@@ -360,7 +387,7 @@ unsigned char _ungetc(unsigned char c, int std) {
 	  head--;
 	  code[head]=c;
   } else   ungetc(c,stdin);
-
+  return c;
 }
 
 unsigned char  _getc(int std) {
@@ -433,9 +460,10 @@ struct token _getToken(int std, int flag) {
 		
 		if (debug==5) printf("\n%d[%X]%c\n",c,c,c);
 	    
-		if (c && (c== '<' || c=='|')) { //string value
+		if (c && (c== '<' || c=='|' /*|| c=='«'*/)) { //string value
 		    int eos='|';
-		    if (c=='<') eos='>'; 
+		    if (c=='<') eos='>';
+//		    if (c=='«') eos='»';
 		    
 			tok.type=STRING;
 			init_var( &tok.u.val ,TEXT,1000);
@@ -603,8 +631,9 @@ struct token _getToken(int std, int flag) {
 			} else {    // identifier (variable or function name)
 				tok.id=check(tok.u.tok);
 				tok.tok_ip=function_ip(tok.u.tok);
+				tok.u.op = FUNCTION;
 				//printf("\n%s IP =%d", tok.u.tok, tok.tok_ip);
-	 		        if (inFunction) {
+	 		    if (inFunction) {
 					 //printf("\nid=%d ix=%d", token.id, fvars[token.id]);
 					if (fvars[tok.id].ix > 0)
 					     tok.tok_ix= fvars[tok.id].ix;
@@ -626,10 +655,13 @@ struct token _getToken(int std, int flag) {
 				} else {
 					head=last_head;
 					tok.type=OP;
+					c=SUB; 
 					tok.u.op=c;
 				}
 			} else {
 				tok.type=OP;
+				if (c=='+') c=ADD;
+				if (c=='-') c=SUB;				
 				tok.u.op=c;
 			}
 		} else { // EOS
@@ -647,6 +679,7 @@ int add_node(struct node *node) {
   node->self= nodes+counter;
   nodes[counter]= *node;
   counter++;
+  return counter;
 }
 
 #endif

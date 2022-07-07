@@ -32,12 +32,13 @@ void scan(char *file) {
 
 void add_statement(enum command cmd, struct context *c) {
 	struct node n;
+	int clearStack=1;
 	n.cmd=cmd;
 
 	n.link= 0;
 	if (cmd==BREAK || cmd==CONTINUE) {		
 		if (loop_top < 0) 
-		   _error(1,"دستور توقف و ادامه بایستی در یک خلقه تکرار استفاده شوند.");
+		   _error(1,"دستور توقف و ادامه بایستی در یک حلقه تکرار استفاده شوند.");
 
 		n.link=loop_stack[loop_top];	   //for break & countinue
 	}
@@ -46,13 +47,20 @@ void add_statement(enum command cmd, struct context *c) {
 	n.start= c->end;
  
 	if (cmd==PRINT || cmd==READ) {
-		add_token(c, create_token_op(EVAL));
+		//add_token(c, create_token_op(EVAL));
 	}	
 
 	do {
 		 token=getToken(0);		 
 
-		 if (token.type==OP && token.u.op=='.') break;
+		 if (token.type==OP && token.u.op=='.') {
+		 		//read and add stack3 items
+		 		//SIGN:INFIX-POSTFIX	 
+		 	 	if (clearStack) while ( top_op() != 0 ) {
+			 	 	add_token( c, pop_op() );
+		 	 	}		 		
+		 		break;
+		 }
 		 
 		 if (token.type== KEYWORD) 
 		 	_error(1,"اینجا کلمه کلیدی مجاز نمی‌باشد.");
@@ -61,13 +69,35 @@ void add_statement(enum command cmd, struct context *c) {
 			token.id!=BA && token.id!=BAR &&
 			token.id!=AZ && token.id!=TA
 		 )  */
-		 if (token.type==ID && (token.id==VA || token.id==BAR)) continue;
+		 if (token.type==ID && (token.id==RA)) {
+		 	//read and add stack3 items
+		 	//SIGN:INFIX-POSTFIX	 
+		 	while ( top_op() != 0 ) add_token( c, pop_op() );
+		 	
+		 	add_token(c, token);
+		 	clearStack=0;	 
+		    continue;
+		 }
+		 		 
+		/* if (token.type==ID && (token.id==VA)) {
+		 	//read and add stack3 items		
+		 	//SIGN:INFIX-POSTFIX	  	
+		 	while ( top_op() != 0 ) {
+			  	add_token( c, pop_op() );
+		 	}	
+//		 	add_token(c, token);
+		    continue;
+		 }	*/	 		 
+		 
+		 if (token.type==ID && (token.id==BAR)) {
+		    continue;
+		 }
 
-		 if (cmd==LET && token.type==OP && token.u.op==FARMAN ){
+		 if (cmd==LET && token.type==OP && token.u.op==FARMAN ) {
 	   	    add_token(c, token);
 		    token = getToken(0);
 		    if (token.type!=STRING) 
-		    	_error(1,"اینجا یک رشته برای نام تابع c لازم است.");
+		    	_error(1,"اینجا یک رشته برای نام تابع  لازم است.");
 		    
 		    int ex_func=check_external(token.u.val.start);		    
 		    if (ex_func<0) {
@@ -78,7 +108,25 @@ void add_statement(enum command cmd, struct context *c) {
  		   add_token(c, create_token_dig(ex_func));
 		   continue;
 		 } 
-		 add_token(c, token);		 
+		 
+		 //SIGN:INFIX-POSTFIX	 
+		 if (clearStack && (token.type==OP 
+		 		|| (token.type==ID && token.tok_ip>=0) )) { // infix to postfix conversion		 
+		 	 if (token.u.op=='(') 
+		 	 	push_op(token); // higest precedence for ( operator
+		 	 else if (token.u.op==')') { 
+		 	 	while ( top_op() != '(' ) {
+			 	 	add_token( c, pop_op() );
+		 	 	}
+		 	 	pop_op(); // skip '('
+		 	 } else	 {
+		 	 	while (precedence(token.u.op) <= precedence( top_op() ) ) { 
+			 	 	 add_token( c, pop_op());
+			 	 }
+			 	
+			 	push_op(token);
+			 }
+		 } else	 add_token(c, token);		 
 
 	} while (token.type!=EOS && token.u.op!='.');
 
@@ -144,8 +192,8 @@ int parse(int h, int stop) {
 
 	
 		if (token.type==OP &&  token.u.op==EVAL  ) {
-			head=saveHead;
 			if (debug==2) printf("\n---------EVAL");
+			//head=saveHead;
 			add_statement(LET, &_main);
 			continue;
 		}

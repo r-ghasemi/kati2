@@ -10,7 +10,10 @@ int _while() {
 		hb=head;
 		token=getToken(0);
 		 if (token.type==KEYWORD && (token.id==K_THEN1 ||
-						token.id==K_THEN2)) break;
+						token.id==K_THEN2)) {
+				while ( top_op() != 0 ) add_token( &_main, pop_op() );
+				break;
+		}
 
 		if (token.type== KEYWORD) 	
 			_error(1, "کلمه /آنگاه/ در دستور تکرار لازم است.");
@@ -18,7 +21,22 @@ int _while() {
 //		if (token.type==ID) //convert id to number
 //			token.id=check(token.u.tok);
 
-		add_token(&_main, token);
+		if (token.type==OP 
+				|| (token.type==ID && token.tok_ip>=0) ) { // infix to postfix conversion		 
+		 	 //SIGN:INFIX-POSTFIX	 
+		 	 if (token.u.op=='(') 
+		 	 	push_op(token); // higest precedence for ( operator
+		 	 else
+		 	 if (token.u.op==')') { 
+		 	 	while ( top_op() != '(' ) add_token( &_main, pop_op() );
+		 	 	pop_op(); // skip '('
+		 	 } else	 {
+		 	 	while (precedence(token.u.op) <= precedence( top_op() ) ) {  			 		
+			 	 	 add_token( &_main, pop_op());
+			 	}			 	
+			 	push_op(token);
+			 }
+		 } else	 add_token(&_main, token);
 	}
 
 	if (token.id!=K_THEN1 && token.id!=K_THEN2)
@@ -117,26 +135,41 @@ int _while2() {
 	n1.cmd=WHILE;	n1.link=0;	save1= head;
 	n1.start= _main.end;
 
-	add_token(&_main, create_token_op(LTE));
-	//add_token(&_main, create_token_op(IS));
-	vv=add_token(&_main, create_token_id(0));
-				 // بعدا مقدار شمارنده حلقه مشخص خواهد شد.
-	//add_token(&_main, create_token_id("از"));
-
 	int hb;
 	while (code[head]!=0 ) {
 		hb=head;
 		token=getToken(0);
 
-		if (token.type==ID && (token.id==TIMES || token.id==MARTABEH) ) break;
+		if (token.type==ID && (token.id==TIMES || token.id==MARTABEH) ) {
+			//SIGN:INFIX-POSTFIX	 
+			while ( top_op() != 0 ) add_token( &_main, pop_op() );
+			break;
+		}
 		if (token.type==OP && token.u	.op=='.') break;
 
 		if (token.type== KEYWORD) 	
 				_error(1,"کلمه /بار/ یا /مرتبه/ در دستور تکرار الزامی است. ولی اینجا یک کلمه کلیدی آورده شده است.");
 
-		add_token(&_main, token);
+		if (token.type==OP 
+				|| (token.type==ID && token.tok_ip>=0) ) { // infix to postfix conversion		 
+		 	 //SIGN:INFIX-POSTFIX	 
+		 	 if (token.u.op=='(') 
+		 	 	push_op(token); // higest precedence for ( operator
+		 	 else
+		 	 if (token.u.op==')') { 
+		 	 	while ( top_op() != '(' ) add_token( &_main, pop_op() );
+		 	 	pop_op(); // skip '('
+		 	 } else	 {
+		 	 	while (precedence(token.u.op) <= precedence( top_op() ) ) {  			 		
+			 	 	 add_token( &_main, pop_op());
+			 	}			 	
+			 	push_op(token);
+			 }
+		 } else	 add_token(&_main, token);
 	}
 
+	vv=add_token(&_main, create_token_id(0));
+	add_token(&_main, create_token_op(GTE));
 //	compiler_code+= sprintf(code+compiler_code, " . ");
 	add_token( &_main, create_token_op('.'));
 
@@ -178,11 +211,12 @@ int _while2() {
 //	add_token(&_main, create_token_op(EVAL));
 	add_token(&_main, create_token_dig(1));
 	add_token(&_main, create_token_op('='));
-	
+		
 	struct token tk=create_token_id(varid);
 	vv->tok_ix= tk.tok_ix; // local var
 	add_token(&_main, tk);
-
+	add_token( &_main, create_token_op('.'));
+		
 	s1.end= _main.end;
 
 	n2.cmd=NOP, n2.link=0, n2.start=NULL, n2.end=NULL, n2.next=0;
@@ -218,8 +252,13 @@ int _while2() {
 	add_token(&_main, create_token_op('='));
 	add_token(&_main, create_token_id(varid));*/
 
-	add_token(&_main, create_token_op(INCR));
+//	add_token(&_main, create_token_op(INCR));
+	add_token(&_main, create_token_dig(1));	
+	add_token(&_main, tk);	
+	add_token(&_main, create_token_op(ADD));			
+	add_token(&_main, create_token_op('='));		
 	add_token(&_main, tk);
+	add_token( &_main, create_token_op('.'));
 //	add_token(&_main, create_token_op('='));
 //	add_token(&_main, create_token_id(varid));
 
