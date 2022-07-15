@@ -1,7 +1,6 @@
 #include "def.h"
 
-int _while();
-int parse(int h, int stop) ;
+int  parse(int h, int stop) ;
 void check_kati_keywords();
 /*
 * functions  IP >=0 
@@ -51,8 +50,6 @@ int _func() {
 	check_kati_keywords();
 	//<b>todone:</b> function result var name=نتیجه
 	//arg=add_token(&_main, token);
-	int idd=check("نتیجه");
-	arg0=add_token(&_main, create_token_id( idd ) );
 
 	token=getToken(0);
 	
@@ -78,7 +75,7 @@ int _func() {
 				token.id!=DAR &&
 				token.id!=TA  
 		 )  {
-		     add_token(&_main, token);		
+		 	add_token(&_main, token);		
 		 }
 	}
 	
@@ -87,16 +84,20 @@ int _func() {
 	}
 
 	token=getToken(0); 
-	
+
+	int idd=check("نتیجه");
+	arg0=add_token(&_main, create_token_id( idd ) );
+
 
 	int count=fvar_counter - MAXKEYS -1;
-	n1.self->arg_count= count;
+	n1.self->arg_count = count;
+	int k=0;
 	arg1=arg0;
 	while (arg1) {
-	    arg1->tok_ix= count;
-	    fvars[arg1->id].ix=count;
+	    arg1->tok_ix= k;//count;
+	    fvars[arg1->id].ix=k;//count;
 	    arg1=arg1->next;
-	    count--;
+	    k++;//count--;
 	}
 	add_token(&_main, create_token_op('.'));
 	n1.self->end= _main.end;

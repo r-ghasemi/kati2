@@ -92,7 +92,7 @@ int 		asmm=0;
 
 #define	MIRROR	245
 #define	SQRT	246
-#define	FMT		247
+#define	FMT		247  // or :
 #define	SUB		248
 #define	ADD		249
 #define	INCR		250
@@ -117,6 +117,7 @@ int 		asmm=0;
 #define FUNCTION	263
 #define COMMA	264
 
+
 #include "variant.h"
 
 enum command 
@@ -139,7 +140,7 @@ struct tokenval  operators[] = {
 {'*' ,"ضرب"},{'*' ,"ضربدر"}, 
 {ADD, "جمع"},{ADD, "بعلاوه"},
 {SUB,"منها"}, {SUB,"منهای"},
-{'/',"تقسیم"},{MOD,"باقیمانده"},{DIV2,"نصف"},{FMT,"دقت"},{FMT,"قالب"},{EQ,"مساوی"}
+{DIV,"تقسیم"},{MOD,"باقیمانده"},{DIV2,"نصف"},{FMT,"دقت"},{FMT,"قالب"},{EQ,"مساوی"}
 ,{EQ,"برابر"}
 ,{EQ,"برابربا"}
 ,{GT,"بزرگتراز"}
@@ -157,12 +158,13 @@ struct tokenval  operators[] = {
 int precedence(unsigned int op) {
 	if (op==0 || op=='(') return 0;
 	if (op==COMMA) return 1;		
-	if (op==GT || op==LT || op==GTE || op==LTE) return 2;	
-	if (op=='+' || op=='-' || op==ADD || op==SUB) return 3;
-	if (op=='*' || op=='/' || op==MOD) return 4;	
-	if (op==DIV2) return 5;
-	if (op==FUNCTION) return 6;	
-	return 7;	
+	if (op==FMT) return 2;				
+	if (op==GT || op==LT || op==GTE || op==LTE) return 3;	
+	if (op=='+' || op=='-' || op==ADD || op==SUB) return 4;
+	if (op=='*' || op==DIV || op==MOD) return 5;	
+	if (op==DIV2) return 6;
+	if (op==FUNCTION) return 7;	
+	return 8;	
 }
 
 struct tokenval numbers[] = {
@@ -450,8 +452,17 @@ struct token _getToken(int std, int flag) {
 				if (c==10 && !std) line++;
 				if (!c) break;
 			} while (isspace(c));
+
+			//checking comments
 			if (!c || c!='/') break;
-			// comment
+			if (c) {
+				unsigned char c2=_getc(std);
+				if (c2!='/') { // look ahead for next '/'
+					_ungetc(c2,std);
+					break;
+				}
+			}
+			// skip comments			
 			while (c && c!=10) {
 				c=_getc(std);
 				if (c==10) line ++;
@@ -629,6 +640,8 @@ struct token _getToken(int std, int flag) {
 				tok.id=check(tok.u.tok);
 			//	printf("\nKEYWORD");
 			} else {    // identifier (variable or function name)
+				// todo: check synonyms
+				
 				tok.id=check(tok.u.tok);
 				tok.tok_ip=function_ip(tok.u.tok);
 				tok.u.op = FUNCTION;
@@ -661,7 +674,9 @@ struct token _getToken(int std, int flag) {
 			} else {
 				tok.type=OP;
 				if (c=='+') c=ADD;
-				if (c=='-') c=SUB;				
+				if (c=='-') c=SUB;
+				if (c=='/') c=DIV;
+				if (c==':') c=FMT;
 				tok.u.op=c;
 			}
 		} else { // EOS

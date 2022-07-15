@@ -192,7 +192,7 @@ int _while2() {
 	hb=head;
 	token=getToken(0); // counter name for loop
 
-      if (token.type==OP && token.u.op==':') {
+      if (token.type==OP && token.u.op==FMT) {  //  : after repeat
 		token=getToken(0);
 		if (token.type!=ID) _error(1,"نیاز به یک نام شمارنده است.");
 		//define custom variable

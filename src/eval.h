@@ -38,6 +38,7 @@ unsigned int top_op() {
 void print_item(stack_item si, int format) {
 	char fmt[20];
 	if (si.dt==LDOUBLE) {
+	//	printf("i=%d, f=%lf\n", format, _format[format]);
 		sprintf(fmt, FORMAT, _format[format]);
 		printf(fmt, si.u.ld );
 	} else //TEXT
@@ -254,7 +255,7 @@ long double  eval(int _BP) {
 	    }
 		
 		if (token->type==OP) {
-			if (token->u.op!=EVAL) input_command=0; 
+			//if (token->u.op!=EVAL) input_command=0; 
 			//دستور ورودی نباید حاوی عملگر باشد.
 			
 			switch( token->u.op ) {
@@ -375,22 +376,21 @@ long double  eval(int _BP) {
 					result= v2->u.ld - v1->u.ld;
 					push2_vp(LDOUBLE,(void *)&result);					 	
 				break;
-				case DIV:	//	تقسیم			
-					
+				case DIV:	//	تقسیم								
 					v1=pop2();
 					v2=pop2();
 		
 					if (fix) {
 					if (debug==4) printf("\n\nFIXX");
-						if ((long long int) v2->u.ld!=0) 
- 					          result=(long long int)v1->u.ld /
-							(long long int)v2->u.ld;
+						if ((long long int) v1->u.ld!=0) 
+ 					          result=(long long int)v2->u.ld /
+							(long long int)v1->u.ld;
 						else runtime(1,"خطای تقسیم بر صفر در تقسیم صحیح.");
 						fix=0;
 					} else {			
-						if (v2->u.ld != 0.0) 
+						if (v1->u.ld != 0.0) 
 							result= 
-								v1->u.ld / v2->u.ld;
+								v2->u.ld / v1->u.ld;
 						else runtime(1,"خطای تقسیم بر صفر.");
 					}
 					push2_vp(LDOUBLE,(void *)&result); 
@@ -399,13 +399,13 @@ long double  eval(int _BP) {
 
 				case MOD: // باقیمانده
 					v1=pop2();
-					v2=pop2();
+					v2=pop2();					
 					
 	//				printf("\n--%%--%FRMT %% %FRMT\n",v1,v2);
-					if ((long long int)v2->u.ld!=0) 
+					if ((long long int)v1->u.ld!=0) 
 						result=
-							(long long int)v1->u.ld %
-								(long long int)v2->u.ld;
+							(long long int)v2->u.ld %
+								(long long int)v1->u.ld;
 					else runtime(1,"خطای تقسیم بر صفر در محاسبه باقیمانده");
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
@@ -525,8 +525,8 @@ long double  eval(int _BP) {
 
 				case FMT: // assign value
 				  	v1=pop2();
-					_format[top2+1]= v1->u.ld;
-					//				
+				  	//printf("top2=%ld ", top2);
+					_format[top2]= v1->u.ld;						
 				break;
 	
 				case NOT:
@@ -546,7 +546,7 @@ long double  eval(int _BP) {
 					//printf("\n\FFFFFFFFF");
 					//fflush(stdout);
 					fix=1;
-				  	//if (stack[top-1].u.op=='/') stack[top-1].u.op= '\\';
+
 				break;
 				case FARMAN: { // اجرای دستورات خارجی
 					v1=pop2();	
@@ -817,15 +817,19 @@ long double  eval(int _BP) {
 		  	//for(i=1; i<= saved_top; i++)
 			//	printf("\n---%d --> %s\n", i,stack[i].u.tok);
 			struct token  tok;
+			
 			if (input_command==0) 
 				runtime(1,"برای دستور بخوان بایستی از پارامترهای نوع متغییر استفاده شود.");
 
-			for ( token=first_var ; token!=last_var ; token=token->next) {
+			for ( token=first_var ; token && token!=last_var ; token=token->next) {
+			    if (token->type==OP && token->u.op==COMMA) continue;		    
+
 				var=token->id;	
+//		printf(" tok_ix=%d %d %d \n", token->tok_ix, token->id, token->type);				
 				//todo:<b>*</> check for saveing in local variables
 				//if it is local use stack to save
-				tok=getToken(1);	// read from input
-//		printf("\ni=%d, ix=%d %Lf*\n",i, stack[i]->tok_ix, LDVALUE( tok.u.val ));
+				tok=getToken(1);	// read from input file
+
 				if (token->tok_ix > 0) { //this is local var
 				//todo: reading string values for local vars.
 				
