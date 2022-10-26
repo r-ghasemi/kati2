@@ -13,12 +13,12 @@
 
 int asm_flag=1;
 
-void scan(char *file) {
+int scan(char *file) {
     int k=0; char c;
     FILE * fp=fopen(file,"r");
     if (!fp) {
 	printf("خطای فایل ورودی.");
-	exit(0);
+	return 0;
     }
     c=getc(fp);
     while (c!=EOF)    {
@@ -27,7 +27,8 @@ void scan(char *file) {
     }
     code[k++]=0;
     code_size=k;
-    fclose(fp);
+    fclose(fp);	
+    return 1;
 }
 
 void add_statement(enum command cmd, struct context *c) {
@@ -62,8 +63,8 @@ void add_statement(enum command cmd, struct context *c) {
 		 		break;
 		 }
 		 
-		 if (token.type== KEYWORD) 
-		 	_error(1,"اینجا کلمه کلیدی مجاز نمی‌باشد.");
+		// if (token.type== KEYWORD) 
+		// 	_error(1,"اینجا کلمه کلیدی مجاز نمی‌باشد.");
 
 		/* && token.id!= DAR && 
 			token.id!=BA && token.id!=BAR &&
@@ -99,7 +100,7 @@ void add_statement(enum command cmd, struct context *c) {
 		    if (token.type!=STRING) 
 		    	_error(1,"اینجا یک رشته برای نام تابع  لازم است.");
 		    
-		    int ex_func=check_external(token.u.val.start);		    
+		    int ex_func=check_external((char * )token.u.val.start);		    
 		    if (ex_func<0) {
 		    	sprintf(msg, "فرمان خارجی [%s] تعریف نشده است",  token.u.val.start);
 		    	_error(1, msg);
@@ -302,7 +303,13 @@ int parse(int h, int stop) {
 			_while2();
 			continue;
 		}
-				
+		
+		if (token.type==KEYWORD && token.id == AZ ) {
+			if (debug==2) printf("\n---------AZ");
+			_while3();
+			continue;
+		}
+									  
 		if (token.type==ID && token.id == BENVIS) {
 			if (debug==2) printf("\n---------BENVIS");
 			add_statement(PRINT, &_main);
@@ -575,7 +582,10 @@ int main(int ac, char **av) {
 
    init();
 
-   scan(av[1]);
+   if  ( scan(av[1]) ==0 ) {
+  	  printf("Scanner error");
+	  return 0;
+   }
   // data();
 
    if (ac>2) {
@@ -597,6 +607,7 @@ int main(int ac, char **av) {
 
    if (!(debug+asmm) || debug>=2) {
     	run(0, -1);
+    	fflush(stdout);
    }
 
    if (debug==3) 

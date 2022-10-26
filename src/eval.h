@@ -243,7 +243,7 @@ long double  eval(int _BP) {
 			
 			if (token->id==BAR &&
 				//token->id==VA &&
-				token->id==AZ &&
+				//token->id==AZ &&
 				token->id==BA &&
 				token->id==DAR &&
 				token->id==TA  
@@ -429,6 +429,27 @@ long double  eval(int _BP) {
 
 					push2_vp(LDOUBLE,(void *)&result);
 				break;
+
+				case NE:
+					v1=pop2();
+					v2=pop2();
+					
+					if (debug==20) 	printf("\n--NE--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
+					
+					result=0.0L;					
+					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
+						 if (strcmp(v1->u.st,v2->u.st)!=0) result=1.0L;
+					} else {
+					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
+						 if (v1->u.ld != v2->u.ld) result = 1.0L;
+					  } else _error(1,"عدم انطباق عملونده در تست برابراست");
+					}
+					//check negative flag
+					if (neg) { result=1-result; neg=0; }
+
+					push2_vp(LDOUBLE,(void *)&result);
+				break;
+				
 				case LT:					
 					v1=pop2();
 					v2=pop2();
@@ -778,7 +799,7 @@ long double  eval(int _BP) {
 					}
 
 				   }
-				} else runtime(1, "ID requiered ");
+				} else runtime(1, "ID ruiered ");
 			}
 
 			
@@ -838,7 +859,7 @@ long double  eval(int _BP) {
 				    if (tok.type==STRING) {
 					     stack2[ _BP + token->tok_ix ].dt= TEXT;
 					     stack2[ _BP + token->tok_ix ].u.st=
-						     tok.u.val.start;
+						     (char *) tok.u.val.start;
 				    } else 
      				       stack2[ _BP + token->tok_ix ].u.ld
 					      =  LDVALUE( tok.u.val );

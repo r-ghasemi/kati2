@@ -141,6 +141,7 @@ struct tokenval  operators[] = {
 {ADD, "جمع"},{ADD, "بعلاوه"},
 {SUB,"منها"}, {SUB,"منهای"},
 {DIV,"تقسیم"},{MOD,"باقیمانده"},{DIV2,"نصف"},{FMT,"دقت"},{FMT,"قالب"},{EQ,"مساوی"}
+,{NE,"مخالف"}
 ,{EQ,"برابر"}
 ,{EQ,"برابربا"}
 ,{GT,"بزرگتراز"}
@@ -149,8 +150,10 @@ struct tokenval  operators[] = {
 ,{LT,"کوچکتراز"}
 ,{LT,"کمتر"},
 {LT,"کمتراز"},
-{GTE,"بزرگترمساوی"},{GTE,"بیشترمساوی"},{LTE,"کمترمساوی"},{LTE,"کوچکترمساوی"},{EVAL,"حاصل"},{EVAL,"مقدار"},{IS,"است"},{IS,"باشد"},{IS,"بود"},{NOT,"نیست"},{NOT,"نباشد"},{NOT,"نبود"},{NOT2,"نقیض"},{'=',"قراربده"},{CORRECT,"صحیح"},{DIVN,"معکوس"},{DIV3,"ثلث"},{DIV4,"ربع"},{DIV5,"خمس"},{MIRROR,"منفی"},{MIRROR,"قرینه"},{SQRT,"جذر"},{SQR2,"مربع"},{SQR3,"مکعب"},{FARMAN,"فرمان"},{FARMAN,"دستور"},{ROOT,"ریشه"},{POWER,"توان"}
-,{AND,"هم"}
+{GTE,"بزرگترمساوی"},{GTE,"بیشترمساوی"},{LTE,"کمترمساوی"},{LTE,"کوچکترمساوی"},{EVAL,"حاصل"},{EVAL,"مقدار"},{IS,"است"},{IS,"باشد"},{IS,"بود"}
+,{NOT,"نیست"},{NOT,"نباشد"},{NOT,"نبود"},{NOT2,"نقیض"}
+,{'=',"قراربده"},{CORRECT,"صحیح"},{DIVN,"معکوس"},{DIV3,"ثلث"},{DIV4,"ربع"},{DIV5,"خمس"},{MIRROR,"منفی"},{MIRROR,"قرینه"},{SQRT,"جذر"},{SQR2,"مربع"},{SQR3,"مکعب"},{FARMAN,"فرمان"},{FARMAN,"دستور"},{ROOT,"ریشه"},{POWER,"توان"}
+,{AND,"وو"}
 ,{OR,"یا"}
 ,{0,""}
 };
@@ -159,9 +162,9 @@ int precedence(unsigned int op) {
 	if (op==0 || op=='(') return 0;
 	if (op==COMMA) return 1;		
 	if (op==FMT) return 2;				
-	if (op==GT || op==LT || op==GTE || op==LTE) return 3;	
-	if (op=='+' || op=='-' || op==ADD || op==SUB) return 4;
-	if (op=='*' || op==DIV || op==MOD) return 5;	
+	if (op==EQ || op==GT || op==LT || op==GTE || op==LTE) return 3;	
+	if (op==OR || op=='+' || op=='-' || op==ADD || op==SUB) return 4;
+	if (op==AND || op=='*' || op==DIV || op==MOD) return 5;	
 	if (op==DIV2) return 6;
 	if (op==FUNCTION) return 7;	
 	return 8;	
@@ -471,10 +474,10 @@ struct token _getToken(int std, int flag) {
 		
 		if (debug==5) printf("\n%d[%X]%c\n",c,c,c);
 	    
-		if (c && (c== '<' || c=='|' /*|| c=='«'*/)) { //string value
+		if (c && (c== '<' || c=='|' || c=='"')) { //string value
 		    int eos='|';
 		    if (c=='<') eos='>';
-//		    if (c=='«') eos='»';
+		    if (c=='"') eos='"';
 		    
 			tok.type=STRING;
 			init_var( &tok.u.val ,TEXT,1000);
@@ -634,6 +637,7 @@ struct token _getToken(int std, int flag) {
 			!strcmp(tok.u.tok, "تابع") ||
 			!strcmp(tok.u.tok, "تعداد") ||			
 			!strcmp(tok.u.tok, "بازگشت")||
+			!strcmp(tok.u.tok, "از")||
 			!strcmp(tok.u.tok, "فراخوان")
 			) {
 				tok.type=KEYWORD;

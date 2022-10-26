@@ -145,7 +145,7 @@ int _while2() {
 			while ( top_op() != 0 ) add_token( &_main, pop_op() );
 			break;
 		}
-		if (token.type==OP && token.u	.op=='.') break;
+		if (token.type==OP && token.u.op=='.') break;
 
 		if (token.type== KEYWORD) 	
 				_error(1,"کلمه /بار/ یا /مرتبه/ در دستور تکرار الزامی است. ولی اینجا یک کلمه کلیدی آورده شده است.");
@@ -218,6 +218,185 @@ int _while2() {
 	add_token( &_main, create_token_op('.'));
 		
 	s1.end= _main.end;
+
+	n2.cmd=NOP, n2.link=0, n2.start=NULL, n2.end=NULL, n2.next=0;
+
+	add_node(&s1);
+	add_node(&n1);
+	add_node(&n2);
+
+
+	while (isspace(code[head])) head++;
+
+	loop_top++;
+	loop_stack[loop_top]=n1.counter;
+
+	if (code[head]=='{') {  
+		// body of while								
+		//parse block of code until closing brace
+		if (parse(head+1,1)==0) 
+			_error(1,"بدنه بلاک بسته نشده است.");
+
+	} else {
+		//parse next statement only
+		parse(head, 0); 
+	}
+	loop_top--;
+
+	s2.cmd=LET, s2.link=0, s2.start=_main.end, s2.next=counter+1;	
+
+//	add_token(&_main, create_token_op(EVAL));
+/*	add_token(&_main, create_token_op(ADD));
+	add_token(&_main, create_token_id(varid));
+	add_token(&_main, create_token_dig(1));
+	add_token(&_main, create_token_op('='));
+	add_token(&_main, create_token_id(varid));*/
+
+//	add_token(&_main, create_token_op(INCR));
+	add_token(&_main, create_token_dig(1));	
+	add_token(&_main, tk);	
+	add_token(&_main, create_token_op(ADD));			
+	add_token(&_main, create_token_op('='));		
+	add_token(&_main, tk);
+	add_token( &_main, create_token_op('.'));
+//	add_token(&_main, create_token_op('='));
+//	add_token(&_main, create_token_id(varid));
+
+	s2.end= _main.end;
+	add_node(&s2);
+
+	g2.cmd=GOTO, g2.link=0, g2.start=NULL, g2.end=NULL, g2.next=-1;
+
+	n3.cmd=NOP, n3.link=0, n3.start=NULL, n3.end=NULL, n3.next=0;
+
+
+	add_node(&g2);
+	add_node(&n3);
+
+	// configuring while structure
+	n1.self->next=n3.counter;
+	g2.self->next=n1.counter; 
+
+	n1.self->link=n3.counter;  // needed for [break] statement
+	n3.self->link=s2.counter;  // nedded for [continue] statement
+
+	scope--;
+
+	return 0; 
+}
+
+
+int _while3() {	 // from a to b do : x { }
+	struct node s1,s2,n1,g2,n2,f1,n3;
+	struct token *variable;
+	struct token *v1;
+	struct token tk;
+	int save1;
+	//printf("\n---while---");
+
+	char var[20];
+
+	char temp[200];
+	sprintf(var,"rep%d",rep+1);
+	int varid= check(var);
+//printf("\n------%s = %d", var, varid);
+
+
+	//	initialize from part
+	s1.cmd=LET;	s1.start=_main.end; s1.link=0; s1.next=counter+1;
+	
+
+	int hb;
+	while (code[head]!=0 ) {
+		hb=head;
+		token=getToken(0);
+
+		if (token.type==ID && (token.id==TA )) {
+			//SIGN:INFIX-POSTFIX	 
+			while ( top_op() != 0 ) add_token( &_main, pop_op() );
+			
+			add_token(&_main, create_token_op('='));
+			//variable->tok_ix= tk.tok_ix; // local var
+			v1=add_token(&_main, create_token_id(0));			
+			add_token( &_main, create_token_op('.'));
+			s1.end= _main.end;			
+			
+			//initialize to part
+			n1.cmd=WHILE;	n1.link=0;	save1= head; n1.start= _main.end;
+			continue;
+		}
+		
+		if (token.type==KEYWORD && (token.id==TEKRAR || token.id==TEKRARKON )) {
+		   //SIGN:INFIX-POSTFIX	 
+			while ( top_op() != 0 ) add_token( &_main, pop_op() );
+			break;
+		}
+		
+		if (token.type==OP && token.u.op=='.') break;
+
+		//if (token.type == KEYWORD) 	_error(1,"ERROR");
+
+		 if (token.type == OP 
+				|| (token.type==ID && token.tok_ip >=0 ) ) { // infix to postfix conversion		 
+		 	 //SIGN:INFIX-POSTFIX	 
+		 	 if (token.u.op=='(') 
+		 	 	push_op(token); // higest precedence for ( operator
+		 	 else
+		 	 if (token.u.op==')') { 
+		 	 	while ( top_op() != '(' ) add_token( &_main, pop_op() );
+		 	 	pop_op(); // skip '('
+		 	 } else	 {
+		 	 	while (precedence(token.u.op) <= precedence( top_op() ) ) {  			 		
+			 	 	 add_token( &_main, pop_op());
+			 	}			 	
+			 	push_op(token);
+			 }
+		 } else	 add_token(&_main, token);
+		 
+		 
+	}
+
+	variable=add_token(&_main, create_token_id(0));
+	add_token(&_main, create_token_op(GTE));
+//	compiler_code+= sprintf(code+compiler_code, " . ");
+	add_token( &_main, create_token_op('.'));
+
+	if (token.type!=KEYWORD && (token.id!=TEKRAR || token.id!=TEKRARKON)) 
+		_error(1, "کلمه /تکرار/ الزامی است.");
+
+	if (token.id == TEKRAR ) {
+		hb=head;
+		token=getToken(0); //کن یا ...
+//		printf("---%s", token.u.tok);
+		if (token.type==OP && token.u.op=='{') head=hb;		
+	} 
+
+	rep++;
+	scope++;
+	
+	hb=head;
+	token=getToken(0); // counter name for loop
+
+      if (token.type==OP && token.u.op==FMT) {  //  : after repeat
+		token=getToken(0);
+		if (token.type!=ID) _error(1,"نیاز به یک نام شمارنده است.");
+		//define custom variable
+		varid= variable->id = v1->id = token.id;
+		
+      } else {
+		head=hb;
+		// define شمارنده variable
+		variable->id= varid;// check(var);
+	}
+
+	n1.end= _main.end;
+	
+	tk=create_token_id(varid);
+	v1->tok_ix= variable->tok_ix = tk.tok_ix;
+	
+//	variable->tok_ix= tk.tok_ix; // local var
+//	add_token( &_main, tk);
+
 
 	n2.cmd=NOP, n2.link=0, n2.start=NULL, n2.end=NULL, n2.next=0;
 

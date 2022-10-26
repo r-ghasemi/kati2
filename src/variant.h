@@ -47,8 +47,9 @@ variant  *  values[MAX_VAR]; // variables pool
 int     	var_counter=0;
 int         fvar_counter=0;
 int         inFunction=0;
+
 variable   	vars[MAX_VAR];
-variable    fvars[MAX_VAR];
+variable    fvars[MAX_VAR]; // variables inside function
 
 void init_var(variant * v, datatypes dt, int size) ;
 
