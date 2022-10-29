@@ -259,12 +259,13 @@ long double  eval(int _BP) {
 			//دستور ورودی نباید حاوی عملگر باشد.
 			
 			switch( token->u.op ) {
-				/*case INCR:	
+				case INCR:	
 					v1=pop2();
-					result= v1->u.ld +1.0L;				
+					result= ++ v1->u.ld ;				
 					push2_vp(LDOUBLE,(void *)&result);
+					//++(stack2[_BP+token->tok_ix].u.ld);
 					break;
-				case DECR:	
+				/*case DECR:	
 					v1=pop2();					
 					result= v1->u.ld -1.0L;
 					push2_vp(LDOUBLE,(void *)&result);

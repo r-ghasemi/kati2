@@ -317,7 +317,7 @@ int _while3() {	 // from a to b do : x { }
 			
 			add_token(&_main, create_token_op('='));
 			//variable->tok_ix= tk.tok_ix; // local var
-			v1=add_token(&_main, create_token_id(0));			
+			v1=add_token(&_main, create_token_id(varid));			
 			add_token( &_main, create_token_op('.'));
 			s1.end= _main.end;			
 			
@@ -424,20 +424,17 @@ int _while3() {	 // from a to b do : x { }
 
 	s2.cmd=LET, s2.link=0, s2.start=_main.end, s2.next=counter+1;	
 
-//	add_token(&_main, create_token_op(EVAL));
-/*	add_token(&_main, create_token_op(ADD));
-	add_token(&_main, create_token_id(varid));
-	add_token(&_main, create_token_dig(1));
-	add_token(&_main, create_token_op('='));
-	add_token(&_main, create_token_id(varid));*/
 
-//	add_token(&_main, create_token_op(INCR));
-	add_token(&_main, create_token_dig(1));	
-	add_token(&_main, tk);	
-	add_token(&_main, create_token_op(ADD));			
-	add_token(&_main, create_token_op('='));		
-	add_token(&_main, tk);
-	add_token( &_main, create_token_op('.'));
+	/*add_token( &_main, tk );	
+	add_token(&_main, create_token_op(INCR));*/
+	
+	add_token( &_main, create_token_dig(1) );
+	add_token( &_main, tk );	
+	add_token( &_main, create_token_op(ADD) );
+	add_token( &_main, create_token_op('=') );		
+	add_token( &_main, tk );
+	add_token( &_main, create_token_op('.') );
+	
 //	add_token(&_main, create_token_op('='));
 //	add_token(&_main, create_token_id(varid));
 
