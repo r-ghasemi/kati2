@@ -99,7 +99,8 @@ external_function  external_functions[MAXFUNCTIONS]= {
 
 //todo: search optimization to check external function in compile time!?
 int  check_external(char *s) {
- for (int i=0;  external_functions[i].name[0]  ; i++ ) {
+ int i;
+ for (i=0;  external_functions[i].name[0]  ; i++ ) {
    if (!strcmp(s,external_functions[i].name)) 
    	return i;
  }

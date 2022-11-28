@@ -590,7 +590,7 @@ long double  eval(int _BP) {
 		}
 		else if (token->type==ID) {
 		
-			last_var= token;
+			last_var = token;
 		    // todo : check for function ID () at this point call function
 		    if (debug==4) printf("\n ID=%d, IP=%d, IX=%d", token->id, token->tok_ip, token->tok_ix);
 		    if (debug ==4 && token->tok_ip>=0) {
@@ -606,8 +606,8 @@ long double  eval(int _BP) {
 		       int func= values[token->id]->IP;
       		//       int func= token->tok_ix;
       		       
-		       int varc=nodes[func].var_count - nodes[func].arg_count;
-		       int argc=nodes[func].arg_count;
+		       int varc = nodes[func].var_count - nodes[func].arg_count;
+		       int argc = nodes[func].arg_count;
 		       
 		      if (debug==4)
 		      	 printf("\nbefore call sp=%d , varc=%d, argc=%d\n", top2, varc, argc);
@@ -637,7 +637,7 @@ long double  eval(int _BP) {
 		       top2 -= varc;  //remove local variables from stack
 		       //printf("\naf2 sp=%d", top2);
 		       
-		       v1=pop2();  // result value
+		       v1 = pop2();  // result value
 
 		       if (debug==4)	
 		       	printf("\nfunction result= %Lf\n", v1->u.ld);
@@ -665,20 +665,18 @@ long double  eval(int _BP) {
 							_BP);
 					}
 		
-					stack_item v;			
-					v=stack2[_BP + token->tok_ix];
+					stack_item v= stack2[_BP + token->tok_ix];
 					
 					push2_item(v);	
 
 		    	} else {  //global
-			    	variant  * v1;
-					v1=  getVar(token->id);
+			    	variant  * v1= getVar(token->id);
 							
 					if (v1->datatype==LDOUBLE)  {
-						push2_vp(LDOUBLE, (void *)(v1->start));
-					} else   if (v1->datatype==TEXT) {
+						push2_vp ( LDOUBLE, (void *)(v1->start) );
+					} else if (v1->datatype==TEXT) {
 //					    printf("\nSTRING1 %s", STVALUEP(v1));
-						push2_st(STVALUEP(v1));
+						push2_st( STVALUEP(v1) );
 					}
 			}				
 		    }

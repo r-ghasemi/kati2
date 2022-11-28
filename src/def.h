@@ -193,6 +193,7 @@ struct  node {
 
 typedef struct {
 	datatypes dt;
+	//int       size;
 	union  {	
 		void    * vp;
 		int     i;
@@ -311,8 +312,8 @@ struct token create_token_id(int id) {
 }
 
 void init_context(struct context *c) {	
-	c->counter=0;
-	c->start=c->end=add_token(c, create_token_op('#'));
+	c->counter = 0;
+	c->start = c->end = add_token(c, create_token_op('#'));
 }
 
 
