@@ -11,9 +11,9 @@ int _if() {
 
 	n1.cmd=IF;	n1.link=0;	n1.start= _main.end;
 
-	int hb;
+	//int hb;
 	while (code[head]!=0 && code[head]!='.' ) {
-		 hb= head;
+	//	 hb= head;
 		 token=getToken(0);
 
 		 if (token.type==KEYWORD && (token.id==K_THEN1 || token.id==K_THEN2)) 	{
@@ -28,7 +28,7 @@ int _if() {
 //			token.id=check(token.u.tok);	
 	
 		 if (token.type==OP 
-			 || (token.type==ID && token.tok_ip>=0) ) { // infix to postfix conversion		 
+			 || (token.type==ID /*&& token.tok_ip >= 0) */)) { // infix to postfix conversion		 
 		 	 //SIGN:INFIX-POSTFIX	 
 		 	 if (token.u.op=='(') 
 		 	 	push_op(token); // higest precedence for ( operator

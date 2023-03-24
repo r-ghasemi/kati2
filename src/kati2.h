@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <setjmp.h>
+jmp_buf env_buffer;  // for error handling 
+
 #define KATI_VERSION 2.0
 
 #include "def.h"
@@ -9,19 +12,20 @@
 #include "eval.h"
 #include "if.h"
 #include "while.h"
+#include "var.h"
 
 
 int asm_flag=1;
 
 int scan(char *file) {
-    int k=0; char c;
+    int k=0; int c;
     FILE * fp=fopen(file,"r");
     if (!fp) {
 	printf("خطای فایل ورودی.");
 	return 0;
     }
     c=getc(fp);
-    while (c!=EOF)    {
+    while (c != EOF )  {
         code[k++]=c;
         c=getc(fp);			
     }
@@ -52,7 +56,7 @@ void add_statement(enum command cmd, struct context *c) {
 	}	
 
 	do {
-		 token=getToken(0);		 
+		 token=getToken(0);
 
 		 if (token.type==OP && token.u.op=='.') {
 		 		//read and add stack3 items
@@ -63,20 +67,14 @@ void add_statement(enum command cmd, struct context *c) {
 		 		break;
 		 }
 		 
-		// if (token.type== KEYWORD) 
-		// 	_error(1,"اینجا کلمه کلیدی مجاز نمی‌باشد.");
-
-		/* && token.id!= DAR && 
-			token.id!=BA && token.id!=BAR &&
-			token.id!=AZ && token.id!=TA
-		 )  */
 		 if (token.type==ID && (token.id==RA)) {
 		 	//read and add stack3 items
 		 	//SIGN:INFIX-POSTFIX	 
-		 	while ( top_op() != 0 ) add_token( c, pop_op() );
+		 	while ( top_op() != 0 ) 
+		 	   add_token( c, pop_op() );
 		 	
 		 	add_token(c, token);
-		 	clearStack=0;	 
+		 	//clearStack=0;	 
 		    continue;
 		 }
 		 		 
@@ -90,9 +88,10 @@ void add_statement(enum command cmd, struct context *c) {
 		    continue;
 		 }	*/	 		 
 		 
-		 if (token.type==ID && (token.id==BAR)) {
+		 if (token.type==ID && (token.id==BAR || token.id==AZ || token.id==DAR)) {
 		    continue;
 		 }
+		 
 
 		 if (cmd==LET && token.type==OP && token.u.op==FARMAN ) {
 	   	    add_token(c, token);
@@ -100,19 +99,19 @@ void add_statement(enum command cmd, struct context *c) {
 		    if (token.type!=STRING) 
 		    	_error(1,"اینجا یک رشته برای نام تابع  لازم است.");
 		    
-		    int ex_func=check_external((char * )token.u.val.start);		    
+		    int ex_func=check_external( token.u.val.data.u.st );
 		    if (ex_func<0) {
-		    	sprintf(msg, "فرمان خارجی [%s] تعریف نشده است",  token.u.val.start);
+		    	sprintf(msg, "فرمان خارجی [%s] تعریف نشده است",   token.u.val.data.u.st);
 		    	_error(1, msg);
 		    }
 		    
- 		   add_token(c, create_token_dig(ex_func));
+ 		   add_token(c, create_token_dig_i(ex_func));
 		   continue;
 		 } 
 		 
 		 //SIGN:INFIX-POSTFIX	 
 		 if (clearStack && (token.type==OP 
-		 		|| (token.type==ID && token.tok_ip>=0) )) { // infix to postfix conversion		 
+		 		|| (token.type==ID /*&& token.tok_ip>=0*/) )) { // infix to postfix conversion		 
 		 	 if (token.u.op=='(') 
 		 	 	push_op(token); // higest precedence for ( operator
 		 	 else if (token.u.op==')') { 
@@ -152,9 +151,9 @@ void add_statement(enum command cmd, struct context *c) {
 }
 
 int parse(int h, int stop) {
-	struct node n;
+	//struct node n;
 	
-	int saveHead;
+	//int saveHead;
 	head=h;
 
 	while(code[head] && isspace(code[head])) {
@@ -172,11 +171,11 @@ int parse(int h, int stop) {
 	}
  
 	do {	
-	  int l;
+	 // int l;
 
 	   // if (head==stop) return 0;	
 	
-	    saveHead=head;
+	  //  saveHead=head;
 	    token=getToken(0);
 	 	    
 	    if (token.type==EOS) return 0;
@@ -274,6 +273,12 @@ int parse(int h, int stop) {
 	//		continue;
 	//	} 
 		
+		if (token.type==KEYWORD && token.id==K_VAR) {
+			if (debug==2) printf("\n---------K_NEWLINE");
+			_var();
+			continue;
+		}
+		
 		if (token.type==KEYWORD && token.id==K_NEWLINE) {
 			if (debug==2) printf("\n---------K_NEWLINE");
 			add_statement(NEWLINE, &_main);		
@@ -342,8 +347,20 @@ int parse(int h, int stop) {
 	return 2;
 }
 
+void print_op(int op) {
+	switch (op) {
+		case ADD: printf(" ADD "); break;
+		case LTE: printf(" LTE "); break;
+		case GTE: printf(" GTE "); break;
+		case '*': printf(" MUL "); break;
+		case '/': printf(" DIV "); break;						
+		case '.': printf(" . "); break;														
+		default: printf(" %d(%c) ", op,op);	
+	}
+}
+
 void display () {
-	int i,j;
+	int i;
 	struct token * t;
 
 
@@ -363,11 +380,11 @@ void display () {
 						//printf(" %s[%d,IP=%d] ", vars[t->id], t->id, values[t->id]->IP);
 			}
 			else if (t->type==DIGIT)
-				printf(" %Lf ", LDVALUE(t->u.val));
+				printf("DIGIT");//printf(" %Lf ", t->u.val.data.u.d);
 			else if (t->type==OP)
-				printf(" %c ", t->u.op);
+				print_op(t->u.op);
 			else if (t->type==STRING)
-				printf(" |%s| ", STVALUE(t->u.val));
+				printf(" |%s| ", t->u.val.data.u.st);
 			
 		} while (t);
 
@@ -382,11 +399,11 @@ void display () {
 
 
 int ife(int bp) {
-	long double  val1;
+	variant  val1;
 
 	val1=eval(bp);
 
-	if ((int)(val1)==0) return -1;
+	if (iszero(&val1)) return -1;
 	return 0;
 	//_ip=nodes[_ip].next-1;
 }
@@ -402,7 +419,7 @@ void continue_() {
 
 void run(int ip, int bp) {
     // todo: prepare() function for run
-    int savedIP=0;
+   // int savedIP=0;
 	do {	 
 	  if (debug) {
 	  	 //printf("\nIP=%d\n", ip); fflush(stdout);
@@ -421,7 +438,7 @@ void run(int ip, int bp) {
 		break;
 
 		case END:  
-			exit(0) ;
+				return;
 			break;
 
 		case LET:   
@@ -433,7 +450,7 @@ void run(int ip, int bp) {
         break;
         
         case CALL:
-            savedIP=ip;
+          //  savedIP=ip;
             // todo: use eval() function to call function
             // todone: (can use eval function stack) create a variable scope based on function arguments count
             // todone: function local variables : move to eval()
@@ -475,6 +492,7 @@ void run(int ip, int bp) {
 			if (debug==2) printf("\nIP=%d", ip);
 		}
 		break;	
+		case NOP: case PRINT: case READ: case WRITE: case DATA: case FOR: case DO: case BEGIN:;
 	  }
 	  ip++;
 	  _ip=ip;
@@ -542,22 +560,34 @@ void  check_kati_keywords() {
 	/*39*/check("ریشه");	
 	/*40*/check("توان");
 	/*41*/check("هم");
-	/*42*/check("یا");				
+	/*42*/check("یا");
+	/*43*/check("متغییر");								
 }
 void init() {
 	//initialize heap_pointer
-    heap_pointer = heap;
+//    heap_pointer = heap;
 	
     check_kati_keywords();
     
     // initialize timer value
-	init_var(values[ZAMAN], LDOUBLE, 0);
+	init_var(values[ZAMAN], LDOUBLE, 1);
 	set_var_ld(values[ZAMAN], 0.0);
 
 	init_context( &_main );
+	init_kt_add();
 }
 
 int kati2_main(int ac, char **av) {
+   int ret;
+   int val;
+   
+   val = setjmp( env_buffer );
+   
+   if( val != 0 ) {
+      printf("Returned from a longjmp() with value = %d\n", val);
+      return 1;
+   }
+    
    if (ac<2) {
 	printf("\nkati  : persian programming language version 2.0 build [%s %s]", __DATE__, __TIME__);
 	printf("\nusage : kati file_to_run [options]\n\n \
@@ -565,7 +595,7 @@ int kati2_main(int ac, char **av) {
 		\n\ta 	:generarte assembly  \
 		\n\td?	:debug ?=1,2,3\
 		\n\n");
-	exit(1);
+	 return 0;
    }
 
    if (ac>2) {
@@ -596,12 +626,13 @@ int kati2_main(int ac, char **av) {
    }
 
    head=0;
-   int ret;
+   
    while ( (ret=parse(head, 0)) ) {
-	if (ret==1) {
-		_error(1,"علامت ناخواسته انتهای بلاک.");
-	}
-  };
+	 if (ret==1) {
+	 	_error(1,"علامت ناخواسته انتهای بلاک.");
+	 	
+	 }
+   };
 
    if (asmm)   display();
 
@@ -610,8 +641,8 @@ int kati2_main(int ac, char **av) {
     	fflush(stdout);
    }
 
-   if (debug==3) 
-		printf("\nHeap pointer= [%d from %d]\n", 
-					heap_pointer-heap, MAX_HEAP_SIZE);
+/*   if (debug==3) 
+		printf("\nHeap pointer= [%i from %d]\n", 
+					(int ) ( heap_pointer - heap ), MAX_HEAP_SIZE);*/
    return 0;
 }

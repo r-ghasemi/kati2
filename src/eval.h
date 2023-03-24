@@ -2,47 +2,111 @@
 #define __EVAL_H
 
 #include "external.h"
+//#include "assign.h"
+#include "ktmath.h"
 
 #define STACKSIZE	50000
 
 //int 		top=-1;
 //struct 	token 	*stack[STACKSIZE];
-
 int 	    top2=-1;
-stack_item  stack2[STACKSIZE];
+variant	    stack2[STACKSIZE];
 float	    _format[STACKSIZE]={0.0};
-
 
 // stack for operators in parser to convert infix to postfix
 int			top3=-1; 
 struct token stack3[STACKSIZE];
 
 void push_op(struct token tok) {
-  if (top3==STACKSIZE) runtime(1, "stack overflow(3)");
+  if (top3==STACKSIZE) _error(1, "خطای سرریز پشته (۳)");
   //printf("Added %c=%d\n", tok.u.op, tok.u.op);
   top3++;
   stack3[top3]= tok;
 }
 
 struct token pop_op() {
-  if (top3==-1) runtime(1,"خطای تبدیل در جمله محاسباتی");
+  if (top3==-1) _error(1,"خطای تبدیل در جمله محاسباتی");
   struct token temp=stack3[top3];
   top3--;
   return temp;
 }
+
 unsigned int top_op() {
 	if (top3==-1) return 0;
 	return stack3[top3].u.op;
 }
 
-void print_item(stack_item si, int format) {
+void print_item(variant *si, float format) {
 	char fmt[20];
-	if (si.dt==LDOUBLE) {
+	KATI *v= &si->data;
+	
+	/*if (!si->data) {
+		printf("<NULL>");
+		return;
+	}*/
+	
+	if (si->ref) v = &si->ref->data ;// si->refvar->data.u.a + si->offset;
+	sprintf(fmt, FORMAT[si->dt], format);
+	
+//	printf("data type=%d format=%s offset=%d\n", si->dt, fmt, si->offset);	
+	if (si->dt==CHAR) {
+		printf(fmt, v->u.c);
+		return ;
+	} 
+		
+	if (si->dt==INT) {
+		printf(fmt,  v->u.i);
+		return ;
+	} 
+	
+	if (si->dt==UINT) {
+		printf(fmt, v->u.ui);
+		return ;
+	} 	
+	
+	if (si->dt==LINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		sprintf(fmt, FORMAT, _format[format]);
-		printf(fmt, si.u.ld );
-	} else //TEXT
-		print_string(si.u.st);
+		printf(fmt, v->u.li);
+		return ;
+	} 
+		
+	if (si->dt==ULINT) {
+	//	printf("i=%d, f=%lf\n", format, _format[format]);
+		printf(fmt, v->u.uli);
+	} 
+
+	if (si->dt==LLINT) {
+		printf(fmt, v->u.lli);
+		return ;
+	} 			
+	
+	if (si->dt==ULLINT) {
+	//	printf("i=%d, f=%lf\n", format, _format[format]);
+		printf(fmt, v->u.ulli);
+		return ;
+	} 	
+			
+	if (si->dt==FLOAT) {
+		printf(fmt, v->u.f);
+		return ;
+	}	
+		
+	if (si->dt==DOUBLE) {
+		printf(fmt, v->u.d);
+		return ;
+	}	
+		
+	if (si->dt==LDOUBLE) {
+		printf(fmt, v->u.ld);
+		return ;
+	}	
+	//TEXT
+	if (si->dt==TEXT) {
+		printf("%s", v->u.st );
+		return ;
+	}
+	
+	printf("data type=%d not handled int print_item eval.h(%d)\n", si->dt, __LINE__);	
 }
 
 /*void push(struct token *tok) {
@@ -59,66 +123,69 @@ struct token *pop() {
 }*/
 
 
-void push2_item(stack_item item) {
-  if (top2==STACKSIZE) runtime(1,"stack overflow(2)");  
+void push2_item(variant item) {
+  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته");  
   
   top2++;
   stack2[top2] = item;
+  stack2[top2].ref = NULL;
 }
 
-void push2_vp(datatypes dt, void *value) {
-  if (top2==STACKSIZE) runtime(1,"stack overflow(2)");  
-  
-  top2++;
-  stack2[top2].dt   = dt;
 
-  switch (dt) {
-	case INT:  stack2[top2].u.i= *((int *) value); break;
-	case LDOUBLE:  stack2[top2].u.ld= *((long double *) value); break;
-	case TEXT:  stack2[top2].u.st= ((char *) value); break;	
-  }
+void _push2_vp(variant * var, int offset) {
+  if (top2 == STACKSIZE) runtime(1,"خطای سرریز پشته");    
+  top2++;
+
+  stack2[top2]= *var;
   
+  stack2[top2].offset = offset;
+  stack2[top2].ref = var;     
+}
+/*
+void push2_vp(datatypes dt, void *value) {
+	_push2_vp(dt, value, NULL, 0);
 }
 
 void push2_i(int value) {
-  if (top2==STACKSIZE) runtime(1,"stack overflow(2)");  
-  
+  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته.");    
   top2++;
   stack2[top2].u.ld = value;
   stack2[top2].dt   = INT;
 }
 
 void push2_ld(long double value) {
-  if (top2==STACKSIZE) runtime(1,"stack overflow(2)");  
+  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته");  
   
   top2++;
   stack2[top2].u.ld = value;
   stack2[top2].dt   = LDOUBLE;
 }
 
-void push2_st(char * value) {
-  if (top2==STACKSIZE) runtime(1,"stack overflow(2)");  
+void push2_st(char * value, int isref) {
+  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته اتفاق افتاده است.");  
   
   top2++;
-  stack2[top2].u.st = value;
+  stack2[top2].u.st =  value;
   stack2[top2].dt   = TEXT;
+  
+  //stack2[top2].var= NULL;
+  //if (isref)  stack2[top2].var= (char **) value;
 }
-
-stack_item * pop2() {
-  if (top2==-1) runtime(1,"stack empty");
-  stack_item *temp;
+*/
+variant * pop2() {
+  if (top2==-1) runtime(1,"ورودی کامل نیست.");
+  variant *temp;
   temp= stack2+top2;
   top2--;
   return temp;
 }
 
-
 variant * getVarLocal(int  ix ) {
-	variant * v;
+	//variant * v;
 	return NULL;
 }
 
-long double  eval(int _BP) {
+variant  eval(int _BP) {
 //	head=nodes[_ip].start;
 	struct token * token = nodes[_ip].start;
 	struct token * first_var= token->next;
@@ -126,6 +193,7 @@ long double  eval(int _BP) {
 	struct token * last_token;
 	_flag=0;
 	int  _top2=top2+1;/*,  _top=top+1*/;
+	int  midofStack=-1;
 
 //	printf("\n eval, varc=%d inFunction=%d", var_counter, inFunction);
 	if (debug==4) printf("\n++++++++ TOP2=%d\n", top2);
@@ -216,11 +284,15 @@ long double  eval(int _BP) {
     }
 	*/
 
-	stack_item *v1,*v2;
-	long double  result;
-				
+	variant *v1,*v2;
+	variant  result;
+	variant  temp;
+	init_var( &result, LDOUBLE, 1);
+	init_var( &temp, INT, 1);	
+	alloc_var(&temp);
 	//int saved_top= top;
 	int input_command=1;
+	
 //	negation in compairsion operators and fix division
 	int neg=0, fix=0;
 	
@@ -229,28 +301,51 @@ long double  eval(int _BP) {
 //	while (top >= _top ) {
 	while (1) {		
 		token=token->next;	
+
 		if (!token) break; // without [.] at end of statement
 	    if (token->type==OP) {
-			if (token->u.op=='=' || token->u.op=='.') { 
-			//assignment or end of statement
+			if (token->u.op=='=') {//assignment  
+				midofStack=top2;
+				continue;
+			}
+			if (token->u.op=='.') { 
+			//end of statement
 				break;
 			}
 		} else if (token->type==DIGIT) {			 
-	    }
-	    else if (token->type==ID) { 			//دستور ورودی یا خروجی با حرف اضافه /را/ مشخص می‌شود.
+	    } else if (token->type==ID) { 			//دستور ورودی یا خروجی با حرف اضافه /را/ مشخص می‌شود.
    			last_var= token;
-			if (token->id==RA) break;
+			if ( token->id==BEKHAN 
+				|| token->id==BENVIS
+				|| token->id==AFZAYESH
+				|| token->id==KAHESH
+				) break;
+			if (token->id==ZAKHIREH) {
+				 token->id=BENVIS;	
+				 break;
+			}
+			if (token->id==RA) {//assignment  
+				midofStack=top2;
+				continue;
+			}
 			
-			if (token->id==BAR &&
-				//token->id==VA &&
-				//token->id==AZ &&
-				token->id==BA &&
-				token->id==DAR &&
+			if (token->id==KHOROJI || token->id==VORODI) {//TODO: convert to standard file
+				continue;
+			}
+			
+			
+			if (token->id==BAR ||				
+				//token->id==VA ||				
+				token->id==BA ||
+				token->id==DAR ||
 				token->id==TA  
-			) continue;			
+			)  continue;			
+			
 	    } 
 	    else if (token->type==STRING) {
 	    } else {
+		    if (token->id==AZ) continue;
+	    	printf("token type=%d\n", token->type);
 		    runtime(1,"عبارت محاسباتی شامل  شناسه غیر مجاز است.");
 	    }
 		
@@ -259,87 +354,86 @@ long double  eval(int _BP) {
 			//دستور ورودی نباید حاوی عملگر باشد.
 			
 			switch( token->u.op ) {
-				case INCR:	
+				/*case INCR:	
 					v1=pop2();
 					result= ++ v1->u.ld ;				
 					push2_vp(LDOUBLE,(void *)&result);
 					//++(stack2[_BP+token->tok_ix].u.ld);
-					break;
+					break;*/
 				/*case DECR:	
 					v1=pop2();					
 					result= v1->u.ld -1.0L;
 					push2_vp(LDOUBLE,(void *)&result);
 					break;*/
+					
 				case COMMA: // comma operator
 				break;
 				
 				case '@':	// نصف
-					v1=pop2();					
-					result= v1->u.ld / 2;
-					push2_vp(LDOUBLE,(void *)&result);
+					v1=pop2();	
+					temp.data.u.i=2;				
+					kt_div(v1, &temp, &result);
+					push2_item(result);
+					
 				break;
+				
 				case DIV3: //ثلث
-					v1=pop2();
-					
-					result= v1->u.ld / 3;
-					push2_vp(LDOUBLE,(void *)&result);	
+					v1=pop2();					
+					temp.data.u.i=3;				
+					kt_div(v1, &temp, &result);
+					push2_item(result);
 				break;
+				
 				case DIV4: // ربع
-					v1=pop2();
-					
-					result= v1->u.ld / 4;
-					push2_vp(LDOUBLE,(void *)&result);
+					v1=pop2();					
+					temp.data.u.i=4;				
+					kt_div(v1, &temp, &result);
+					push2_item(result);
 				break;
+				
 				case DIV5: // خمس
-					v1=pop2();
-					
-					result= v1->u.ld / 5;
-					push2_vp(LDOUBLE,(void *)&result);	
+					v1=pop2();					
+					temp.data.u.i=5;				
+					kt_div(v1, &temp, &result);
+					push2_item(result);
 				break;
-				case DIVN: // معکوس
-					v1=pop2();
-					
-					if (v1->u.ld != 0.0 )  
-						result = 1.0 / (v1->u.ld); 
-					else runtime(1,"سعی در تقسیم بر صفر.");
-					push2_vp(LDOUBLE,(void *)&result);	
-					// 	
+				
+				case DIVN: // معکوس		
+					v1=pop2();		
+					temp.data.u.i=1;
+					kt_div(&temp, v1, &result);
+					push2_item(result);						
 				break;
+				
 				case MIRROR: // قرینه
 					v1 =pop2();
-					
-					result =  - v1->u.ld;
-					push2_vp(LDOUBLE,(void *)&result);
-					 //		
+					temp.data.u.i=0;				
+					kt_sub(&temp, v1, &result);	
+					push2_item(result);					 
 				break;
 				
+								
 				case SQR2:  // x^2 مربع
-					v1 =pop2();
-				
-					result=(v1->u.ld * v1->u.ld);
-					
-					push2_vp(LDOUBLE,(void *)&result); 
-					 //	
+					v1 =pop2();				
+					kt_mul(v1, v1, &result);	
+					push2_item(result);
 				break;
 				
 				case SQR3:  // x^3 مکعب
 					v1 =pop2();
-				
-					result=(v1->u.ld * v1->u.ld * v1->u.ld);
-					
-					push2_vp(LDOUBLE,(void *)&result); 
-					 //	
+					kt_mul(v1, v1, &result);
+					temp=result;
+					kt_mul(v1, &temp, &result);							
+					push2_item(result);					 
 				break;				
 				
 				case SQRT: // جذر
 					v1 =pop2();
-				
-					if (v1->u.ld >= 0.0) 
-						result=sqrt(v1->u.ld);	
-					else runtime(1,"مقدار منفی برای جذر");
-					push2_vp(LDOUBLE,(void *)&result); 
-					 //	
+					kt_sqrt(v1, NULL, &result);
+					push2_item(result);				
 				break;
+				
+				/*
 				case AND: //هم  در ترکیب عطفی
 					v1=pop2();				
 					v2=pop2();				
@@ -355,186 +449,109 @@ long double  eval(int _BP) {
 					result= (v1->u.ld!=0.0L || v2->u.ld!=0.0L);
 					push2_vp(LDOUBLE,(void *)&result);
 				break;		
+				*/
 				case ADD: //جمع
 					v1=pop2();				
-					v2=pop2();				
-					
-					result= v1->u.ld + v2->u.ld;
-					push2_vp(LDOUBLE,(void *)&result);
+					v2=pop2();						
+					kt_add(v1,v2, &result);
+					push2_item(result);
 				break;
 
 				case MULT: // ضرب
-					v1=pop2();
-					v2=pop2();
-					
-					result= v1->u.ld * v2->u.ld;
-					push2_vp(LDOUBLE,(void *)&result);	
+					v1=pop2();				
+					v2=pop2();				
+					kt_mul(v1,v2,&result);
+					push2_item(result);	
 				break;
+				
 				case SUB: // تفریث
 					v1=pop2();
 					v2=pop2();
 					
-					result= v2->u.ld - v1->u.ld;
-					push2_vp(LDOUBLE,(void *)&result);					 	
+					kt_sub(v2,v1,&result);
+					push2_item(result);					 	
 				break;
+				
 				case DIV:	//	تقسیم								
 					v1=pop2();
-					v2=pop2();
-		
-					if (fix) {
-					if (debug==4) printf("\n\nFIXX");
-						if ((long long int) v1->u.ld!=0) 
- 					          result=(long long int)v2->u.ld /
-							(long long int)v1->u.ld;
-						else runtime(1,"خطای تقسیم بر صفر در تقسیم صحیح.");
-						fix=0;
-					} else {			
-						if (v1->u.ld != 0.0) 
-							result= 
-								v2->u.ld / v1->u.ld;
-						else runtime(1,"خطای تقسیم بر صفر.");
-					}
-					push2_vp(LDOUBLE,(void *)&result); 
-							 	
+					v2=pop2();		
+					kt_div(v2, v1, &result);
+					push2_item(result); 							 	
 				break;
 
 				case MOD: // باقیمانده
 					v1=pop2();
 					v2=pop2();					
-					
-	//				printf("\n--%%--%FRMT %% %FRMT\n",v1,v2);
-					if ((long long int)v1->u.ld!=0) 
-						result=
-							(long long int)v2->u.ld %
-								(long long int)v1->u.ld;
-					else runtime(1,"خطای تقسیم بر صفر در محاسبه باقیمانده");
-					push2_vp(LDOUBLE,(void *)&result);
+					kt_mod(v2, v1, &result);
+					push2_item(result);
 				break;
 				
 				case EQ:
 					v1=pop2();
 					v2=pop2();
 					
-					if (debug==20) 	printf("\n--EQ--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
-					
-					result=0.0L;					
-					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st)==0) result=1.0L;
-					} else {
-					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld == v2->u.ld) result = 1.0L;
-					  } else _error(1,"عدم انطباق عملونده در تست برابراست");
-					}
+					kt_eq(v1,v2,&result);
 					//check negative flag
-					if (neg) { result=1-result; neg=0; }
+					if (neg) { result.data.u.i = !result.data.u.i; neg=0; }
 
-					push2_vp(LDOUBLE,(void *)&result);
+					push2_item(result);
 				break;
 
 				case NE:
 					v1=pop2();
 					v2=pop2();
 					
-					if (debug==20) 	printf("\n--NE--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
+					kt_eq(v1,v2,&result);
+					result.data.u.i = !result.data.u.i;
 					
-					result=0.0L;					
-					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st)!=0) result=1.0L;
-					} else {
-					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld != v2->u.ld) result = 1.0L;
-					  } else _error(1,"عدم انطباق عملونده در تست برابراست");
-					}
 					//check negative flag
-					if (neg) { result=1-result; neg=0; }
+					if (neg) { result.data.u.i = !result.data.u.i; neg=0; }
 
-					push2_vp(LDOUBLE,(void *)&result);
+					push2_item(result);
 				break;
 				
 				case LT:					
 					v1=pop2();
 					v2=pop2();
 					
-					if (debug==20) printf("\n--LT--%Lf < %Lf\n",v1->u.ld,v2->u.ld);
-					//if (v1->u.ld < v2->u.ld) result=1.0L; 
-					//	else result=0.0L;	
-						
-					result=0.0L;					
-					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) > 0) result=1.0L;
-					} else {
-					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld > v2->u.ld) result = 1.0L;
-					  } else _error(1,"عدم انطباق عملونده در مقایسه کمتراست");
-					}						
+					kt_lt(v2, v1, &result);						
 					//check negative flag
-					if (neg) { result=1-result; neg=0; }
-					
-			 		push2_vp(LDOUBLE,(void *)&result);
+					if (neg) { result.data.u.i = !result.data.u.i; neg=0; }				
+			 		push2_item(result);
 				break;
+				
 				case GT:					
 					v1=pop2();
-					v2=pop2();
-					
-			if (debug==2) printf("\n--GT--%Lf > %Lf\n",v1->u.ld,v2->u.ld);
-					//printf("\n--EQ--%f == %f\n",v1,v2);
-					//if (v1->u.ld > v2->u.ld) result=1.0L;
-					//	else result=0.0L;
-						
-					result=0.0L;					
-					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) < 0) result=1.0L;
-					} else {
-					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld < v2->u.ld) result = 1.0L;
-					  } else _error(1,"عدم انطباق عملونده در مقایسه بیشتراست");
-					}							
+					v2=pop2();					
+				
+					//	else result=0.0L;	
+					kt_gt(v2, v1, &result);						
 					//check negative flag
-					if (neg) { result=1-result; neg=0; }
-
-					push2_vp(LDOUBLE,(void *)&result); 	
+					if (neg) { result.data.u.i = !result.data.u.i; neg=0; }				
+			 		push2_item(result);				 	
 				break;
+				
+				
 				case LTE:
 					v1=pop2();
-					v2=pop2();
-					if (debug==20) printf("\n--LTE--%Lf <= %Lf\n",v1->u.ld,v2->u.ld);
-					
-	//				printf("\n--LTE--%f == %f\n",v1,v2);
-					//if (v1->u.ld <= v2->u.ld) result=1.0L; 
-					//else result=0.0L;	
-					result=0.0L;					
-					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) >= 0) result=1.0L;
-					} else {
-					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld >= v2->u.ld) result = 1.0L;
-					  } else _error(1,"عدم انطباق عملونده در مقایسه کمترمساوی");
-					}								
+					v2=pop2();					
+						
+					kt_lt(v2, v1, &result);
+					if (!result.data.u.i)  kt_eq(v2, v1, &result);				
 					//check negative flag
-					if (neg) { result=1-result; neg=0; }
-		 			push2_vp(LDOUBLE,(void *)&result); 	
+					if (neg) { result.data.u.i = !result.data.u.i; neg=0; }				
+			 		push2_item(result);		
 				break;
+				
 				case GTE:
 					v1=pop2();
-					v2=pop2();
-			if (debug==20) printf("\n--GTE--%Lf == %Lf\n",v1->u.ld,v2->u.ld);
-					
-					//printf("\n--EQ--%f == %f\n",v1,v2);
-					//if (v1->u.ld >= v2->u.ld) result=1.0L; 
-					//		else result=0.0L;
-							
-					result=0.0L;					
-					if (v1->dt==TEXT && v2->dt==TEXT) { // TEXT
-						 if (strcmp(v1->u.st,v2->u.st) <= 0) result=1.0L;
-					} else {
-					  if (v1->dt!=TEXT && v2->dt!=TEXT) { // INT or LDOUBLE
-						 if (v1->u.ld <= v2->u.ld) result = 1.0L;
-					  } else _error(1,"عدم انطباق عملونده در مقایسه بیشترمساوی");
-					}							
+					v2=pop2();					
+						
+					kt_gt(v2, v1, &result);						
+					if (!result.data.u.i)  kt_eq(v2, v1, &result);
 					//check negative flag
-					if (neg) { result=1-result; neg=0; }
-
-					 push2_vp(LDOUBLE,(void *)&result); 		
+					if (neg) { result.data.u.i = !result.data.u.i; neg=0; }				
+			 		push2_item(result);			
 				break;
 
 				case IS:
@@ -547,15 +564,15 @@ long double  eval(int _BP) {
 
 				case FMT: // assign value
 				  	v1=pop2();
-				  	//printf("top2=%ld ", top2);
-					_format[top2]= v1->u.ld;						
+					  //	printf("format =%f\n",(float) v1->data.u.ld);
+					_format[top2]= (float) v1->data.u.ld;
 				break;
 	
 				case NOT:
 					//stack[top-1]->neg=1;
 					neg=1;
 				break;
-
+/*
 				case NOT2: // نقیض
 					v1 =pop2();
 				
@@ -563,30 +580,25 @@ long double  eval(int _BP) {
 					
 					push2_vp(LDOUBLE,(void *)&result); 
 				break;
-
+*/
 				case CORRECT: // صحیح مثلا تقسیم صحیح
 					//printf("\n\FFFFFFFFF");
 					//fflush(stdout);
 					fix=1;
 
 				break;
-				case FARMAN: { // اجرای دستورات خارجی
+				case FARMAN:  // اجرای دستورات خارجی
 					v1=pop2();	
 					// call external function
-					external_functions[(int )v1->u.ld].func();
-				}					
+					external_functions[v1->data.u.i].func();				
 				break;
 			} 
 		}
-		else if (token->type==DIGIT) {
-		        
+		else if (token->type==DIGIT) {		       
 		//   	printf("\n eval, varc=%d inFunction=%d", var_counter, inFunction);
 			input_command=0; //دستور ورودی نباید حاوی پارامتر مقداری باشد
-			//printf("\n digit=[%FRMT]",*(token.u.val.value.ld));
-			long double v1 = LDVALUE(token->u.val);
-			if (debug)
-				printf("digit=%Lf, sp=%d",v1, top2);
-			push2_vp(LDOUBLE, (void *)&v1);
+			//printf("\n digit=[%FRMT]",*(token.u.val.value.ld));			
+			push2_item(token->u.val);
 		}
 		else if (token->type==ID) {
 		
@@ -596,7 +608,7 @@ long double  eval(int _BP) {
 		    if (debug ==4 && token->tok_ip>=0) {
 		    	printf("\n+++++++++++++++this is function");
 		    }
-		    if (token->tok_ip >= 0) {
+		    if (token->tok_ip >= 0) { //this is function
 		    	//printf("\nthis is function top=%d id=%d [%s] IP=%d,\n", top, stack[top]->id, stack[top]->u.tok, values[stack[top]->id]->IP);
  		      // exit(0);
 		        //todone: This is function call
@@ -611,24 +623,26 @@ long double  eval(int _BP) {
 		       
 		      if (debug==4)
 		      	 printf("\nbefore call sp=%d , varc=%d, argc=%d\n", top2, varc, argc);
-		       result=0.0L;
-		       push2_vp(LDOUBLE, (void *)&result);  // for function result value
-		       		       
-		       // todone: can add to sp2 value instead of while
+		       //TODO: result=0.0L; =???
+		       init_var(&result, DEFAULT_DATA_TYPE, 1);
+		       push2_item(result);  // for function result value
+		       	
+		       int i,j;	       
+		       for(i=top2+1, j=0; j<varc; i++, j++) {
+		       		init_var( &stack2[i], DEFAULT_DATA_TYPE, 1);
+		       		stack2[i].ref=NULL;
+		       }
+		       
 		       top2 += varc;
+		       
 		      // printf("\ns2 sp=%d", top2);
-		       //while (ac) {
-		           //make space for local variables on stack
-		           //push2_vp(LDOUBLE, (void *)&result); 
-		           //ac--;
-		       //}
 		       // now call function
 		      int _FBP= top2 - argc - varc;
 		      if ( _FBP < -1 ) { // wrong number of parameters
 		      	_error(1,"تعداد آرگومانهای تابع با پارامترهای ارسالی مطابقت ندارد.");
 		      }
 		      if (debug==4) printf("\n*******call start sp=%d BP=%d\n", top2, _FBP);
-		      
+		      		      
 		      //printf ("\ncalling function = %d\n", func);      		
 		       run(func+1, _FBP); // next instruction of func		      
       		   if (debug==4) printf("\n-------call end sp=%d BP=%d\n", top2, _FBP);
@@ -639,54 +653,116 @@ long double  eval(int _BP) {
 		       
 		       v1 = pop2();  // result value
 
-		       if (debug==4)	
-		       	printf("\nfunction result= %Lf\n", v1->u.ld);
+		      // if (debug==4)	
+		       //	printf("\nfunction result= %Lf\n", v1->u.ld);
 		       	
 		       top2 -= (argc-1); // remove args from stack -1 for result
 		       
-		       if (debug==4)	
-		       	printf("\nstack top= %Lf\n", stack2[top2].u.ld);
-		       if (debug==4)	
-		       	printf("\nfunction result= %Lf\n", v1->u.ld);
+		     //  if (debug==4)	
+		      // 	printf("\nstack top= %Lf\n", stack2[top2].u.ld);
+		     //  if (debug==4)	
+		      // 	printf("\nfunction result= %Lf\n", v1->u.ld);
 		       	
 		     //  printf("\nargs sp=%d\n", top2);
-		       if (neg) { v1->u.ld= !v1->u.ld; neg=0; }
-		       push2_item(*v1);		  
+		     //TODO  if (neg) { v1->u.ld= !v1->u.ld; neg=0; }
+		       push2_item(*v1);		
 		       //todone:  stack pointer correctness
 		      // exit(0); //disable function call
 		    } else { // this is a variable local or global
 		    // todone: what about getVar function and setVar
-		    	if (token->tok_ix > 0) { //local
+		    	if (token->tok_ix > 0) { //local variable
 					//v1=  getVarLocal(token->tok_ix);
-					if (debug){
+				/*	if (debug){
 						printf("\nlocal var=#%d[%Lf], BP=%d\n", 
 							token->tok_ix,
 							stack2[_BP+token->tok_ix].u.ld,
 							_BP);
-					}
+					}*/
 		
-					stack_item v= stack2[_BP + token->tok_ix];
+					variant   *v= &stack2[_BP + token->tok_ix];
 					
-					push2_item(v);	
-
-		    	} else {  //global
-			    	variant  * v1= getVar(token->id);
-							
-					if (v1->datatype==LDOUBLE)  {
-						push2_vp ( LDOUBLE, (void *)(v1->start) );
-					} else if (v1->datatype==TEXT) {
-//					    printf("\nSTRING1 %s", STVALUEP(v1));
-						push2_st( STVALUEP(v1) );
+					int ix=0;						
+					if (v->isArray) {
+						//TODO: pop2() must be of type INT
+						variant * vx=pop2();
+						if (vx->dt != INT) {
+							runtime(1,"اندیس آرایه باید از نوع صحیح باشد");
+						}
+						ix= vx->data.u.i;
+					}									
+					_push2_vp (v , ix);
+		    	} else {  //global variable
+		      	    variant  * v1= getVar(token->id);
+					int ix=0;						
+					if (v1->isArray) {
+						//TODO: pop2() must be of type INT
+						variant * vx=pop2();
+						if (vx->dt != INT) {
+							runtime(1,"اندیس آرایه باید از نوع صحیح باشد");
+						}
+						ix= vx->data.u.i;
 					}
-			}				
+					//printf("ix=%d v1-size=%d id=%d\n", ix, v1->size,token->id);
+					_push2_vp (v1 , ix);
+			   }				
 		    }
 
-		}
-		else if (token->type==STRING) {			 
-			 push2_st(STVALUE(token->u.val));
+		}else if (token->type==STRING) {	
+		//printf("TXEXT=%s\n", *((char **)token->u.val.data));
+			 push2_item(token->u.val);
 		}
 //		pop(); 
 	}
+
+	int i;
+	/*for (i=_top2; i<= top2 ; i++) {		
+			print_item(&stack2[i],_format[i]);
+			printf(" ");
+	}
+	printf("\n_top2=%d, midof=%d, top2=%d\n", _top2, midofStack, top2);
+	fflush(stdout);*/
+	//_top2 ---> midofStack --> top2
+	int j;
+	switch (token->id) {
+		case  BENVIS:
+			if (top2==midofStack) {
+				i=0;
+				for (i=_top2; i<= midofStack ; i++)
+					print_item(&stack2[i], _format[i]);
+				fflush(stdout);
+			} else {				
+				for(i=_top2, j=midofStack+1; i<=midofStack; i++,j++) {
+					if (!stack2[j].ref) 
+						runtime(1,"مقصد انتصاب باید قابل آدرس دهی باشد.");					
+					kt_assign(&stack2[j], &stack2[i], NULL);					
+				}				
+			}
+		break;
+		
+
+		case BEKHAN:
+			//printf("BEKHAN\n");
+			for(i=_top2, j=midofStack+1; i<=midofStack; i++,j++) {
+				if (!stack2[i].ref) 
+					runtime(1,"مقصد انتصاب باید قابل آدرس دهی باشد.");
+				struct token tok=getToken(1);	// read from input file									
+				kt_assign(&stack2[i], &tok.u.val, NULL);					
+			}
+		break;
+			
+			
+		case AFZAYESH:
+		case KAHESH:	
+			for(i=_top2, j=midofStack+1; i<=midofStack; i++,j++) {
+				if (!stack2[i].ref) 
+					runtime(1,"مقصد افزایش/کاهش باید قابل آدرس دهی باشد.");					
+				(token->id==AFZAYESH) ? kt_inc(stack2[i].ref, NULL, NULL) 
+									  : kt_dec(stack2[i].ref, NULL, NULL);
+			}				
+			break;		
+	}	
+	
+	
 
 	int mode=0;
 	/* mode
@@ -715,199 +791,10 @@ long double  eval(int _BP) {
 	13 /را در/ 	نشان دستور خروجی یا انتساب است.
 	12 /را بنویس/	نشان دستور خروجی است.	معادل==> 	را در خروجی بنویس.
 */
-	
-	if (token->type == OP) {
-		if(token->u.op=='=') mode=11;
-		else 
-		if (token->u.op=='.') {
-			top2=_top2-1;
-		} else  runtime(1,"عبارمحاسباتی یا ورودی ناقص است.");
-		
-		if (debug==4) printf("\n++end of statement");
-	} else	if (token->type == ID && token->id==RA ) {
-		token=token->next; // در  از   بخوان  بنویس  افزایش کاهش
-	//	printf("\n--->%s",token->u.tok);
-		if (token->id==AFZAYESH ) mode=30;
-		else 
-		if (token->id==KAHESH) 	mode=40;
-		else 
-		if (token->id==DAR) 	mode=13;
-		else 
-		if (token->id==AZ)	 mode=22;
-		else 
-		if (token->id==BEKHAN) 	mode=21;
-		else 
-		if (token->id==BENVIS) 	mode=12;
-		else 	runtime(1,"دستور ورودی خروجی ناقص است.");
-	} else runtime(1,"دستور ورودی یا خروجی ناقص است.");
-	
-	
-	if (mode>0) {
-		if (mode < 20) {// write command	11 or 12 or 13
-			if (mode==12) {
-				int i=0;
-				for (i=_top2; i<= top2 ; i++) {
-					print_item(stack2[i],i);
-					//pop2();
-				}
-				fflush(stdout);
-			} else {
-				token=token->next;
-				if (token->type==ID) {
-				   if(token->id == KHOROJI ) {
-				   	if (debug==4) printf("\n KHOROJI ");
-					int i=0;
-					for (i=_top2; i<= top2 ; i++)
-						print_item(stack2[i],i);
-					fflush(stdout);
-				   } else {
-					//TODO: check for write file here
-					int i=_top2;
-					while (i <= top2) {
-					  if (token->tok_ix > 0 ) { // it is local var
-					  	if(debug) 
-					  	printf("\naccess local var %d, V=%Lf", token->tok_ix, stack2[_BP+token->tok_ix].u.ld);
-					 // 		fflush(stdout);
-					  	stack2[_BP+token->tok_ix]= stack2[i];
-					  } else {
-						if (stack2[i].dt==LDOUBLE)
-						 set_var_ld(values[token->id],stack2[i].u.ld );
-						else {
-						 //printf("\nSTRING2 %d =%s", token->id, stack2[top2].u.st);
-						 set_var_st(values[token->id],stack2[i].u.st );
-						}
-					  }
-
-					  i++;
-					  last_token=token;
-					  token=token->next;
-					  //skip COMMA
-					  if (token && token->type==OP && token->u.op== COMMA) 
-					  	token=token->next;
-					  						  
-					  if (token && token->type!=ID && i <= top2) {
-					  		printf("i= %d _top2=%d, top2=%d\n", i, _top2, top2);
-							runtime(1,"اینجا یک متغییر لازم است.");
-					  }
-						
-						if (token && (token->id==ZAKHIREH || 
-							token->id==BENVIS)) {
-							token=last_token;
-							break;
-						}
-					}
-
-				   }
-				} else runtime(1, "ID ruiered ");
-			}
-
-			
-			if (mode==13) {  // 
-				do{
-					token=token->next; // ذخیره
-					if (token->type!=ID || token->id!=ZAKHIREH ) {
-					  if (token->id==BENVIS) break;
-			  runtime(1, "حرف اضافه /ذخیره/‌ یا /بنویس/ جا مانده 123 است.");
-					}
-					token=token->next; // کن
-					if (token->type!=ID ||	token->id!=KON ) 
-						runtime(1,"حرف اضافه /کن/ جا مانده است.");
-				} while(0);
-			}
-		} else 
-		if (mode < 30) { //read command
-	/* در اینجا بایستی مقادیر از فایل یا ورودی خوانده شده و در متغییرها ذخیره شود.
-	 در عملیات ورودی عملگری تعریف نمی‌شود و متغییرهای که بایستی خوانده شوند در پشته وجود
-	 دارند.
-	مثال:
-		مقدار الف ب ج را بخوان.
-		مقدار الف ب ج را از ورودی بخوان.
-	comment
-	*/
- 
-			token=token->next;  // ورودی یا بخوان
-			if (mode==22) {
-				token=token->next;   //بخوان
-				if (token->id!=BEKHAN)
-					 runtime(1,"کلمه /بخوان/ مد نظر است.");
-
-				//TODO:input file here	
-			}
-			int i, sign=1, var;
-		  	//for(i=1; i<= saved_top; i++)
-			//	printf("\n---%d --> %s\n", i,stack[i].u.tok);
-			struct token  tok;
-			
-			if (input_command==0) 
-				runtime(1,"برای دستور بخوان بایستی از پارامترهای نوع متغییر استفاده شود.");
-
-			for ( token=first_var ; token && token!=last_var ; token=token->next) {
-			    if (token->type==OP && token->u.op==COMMA) continue;		    
-
-				var=token->id;	
-//		printf(" tok_ix=%d %d %d \n", token->tok_ix, token->id, token->type);				
-				//todo:<b>*</> check for saveing in local variables
-				//if it is local use stack to save
-				tok=getToken(1);	// read from input file
-
-				if (token->tok_ix > 0) { //this is local var
-				//todo: reading string values for local vars.
-				
-				    stack2[ _BP + token->tok_ix ].dt= LDOUBLE;
-
-				    if (tok.type==STRING) {
-					     stack2[ _BP + token->tok_ix ].dt= TEXT;
-					     stack2[ _BP + token->tok_ix ].u.st=
-						     (char *) tok.u.val.start;
-				    } else 
-     				       stack2[ _BP + token->tok_ix ].u.ld
-					      =  LDVALUE( tok.u.val );
-					     
-				} else	{
-					//printf("\ni=%d, zzz", i);
-					setVar(var, tok.u.val );
-				}
-			}
-
-		} else if (mode<40) {// افزایش
-			int i, var;
-			token=token->next;
-			if (token->id!=BEDEH) runtime(1,"کلمه /بده/ لازم است.");
-			for (token= first_var; token!=last_var ; token=token->next) {
-				var=token->id;
-				if (token->tok_ix>0) {
-					stack2[ _BP+ token->tok_ix ].u.ld ++;
-				} else {
-					variant * val= getVar(var);
-					if (val->datatype==LDOUBLE) {
-						(LDVALUEP(val))++;
-					}
-					else runtime(1,"عملگر افزایش برای رشته ها تعریف نشده است.");
-				}
-			}
-		} else if (mode<50) {// کاهش 
-			int i, var;
-			token=token->next;
-			if (token->id!=BEDEH) runtime(1,"کلمه /بده/ لازم است.");
-//			for (i=_top+1; i<=saved_top; i++) {
-			for (token= first_var; token!=last_var ; token=token->next) {
-				var=token->id;
-				if (token->tok_ix>0) {
-					stack2[ _BP+ token->tok_ix ].u.ld ++;
-				} else {	
-					variant  *val=getVar(var);
-					if (val->datatype==LDOUBLE)
-						(LDVALUEP(val))--;
-					else 
-					   runtime(1,"عملگر کاهش برای رشته ها تعریف نشده است.");
-				}
-			}
-		}
-	} 
-//	printf("\n--IF %d\n",(int)*(stack2[top2]->value.ld));
+		//	printf("\n--IF %d\n",(int)*(stack2[top2]->value.ld));
 //	if(debug) printf("\ntop2=%d[%Lf],\e[0;31m_-_-_\e[7;0m\n",_top2, stack2[_top2].u.ld);
 	if (debug==4) printf("\n-------- TOP2=%d\n", top2);		
-	result = stack2[_top2].u.ld;
+	result = stack2[_top2];
 	
 	top2=_top2-1; 
 	return result;

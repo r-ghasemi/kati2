@@ -11,9 +11,8 @@
 
 #define _error(a,b) error((b),(a))
 
-#define	FRMT		" %Lf "
-#define 	FORMAT 	"%%%0.1fLf"
-#define	SFORMAT	"%Lf"
+#define		FRMT		" %Lf "
+#define		SFORMAT	"%Lf"
 #define 	DIGITFRMT	"\nDIGIT: %Lf\n"
 
 // predefined ids
@@ -65,7 +64,22 @@
 #define	K_POWER		40/* "توان" */
 #define HAM			41/*هم*/
 #define YA			42/*یا*/
-#define MAXKEYS     42 // = last value in kewords
+#define K_VAR		43/*متغییر*/
+/*
+#define CHAR		44
+#define INT			45
+#define UINT		46
+#define LONG		47
+#define ULONG		48
+#define LLONG		48	
+#define ULLONG		50
+#define FLOAT		51
+#define DOUBLE		52
+#define LDOUBLE		53
+#define STRING		54
+#define BOOLEAN		55
+*/
+#define MAXKEYS     43 // = last value in kewords
 
 char msg[256];
 
@@ -115,7 +129,9 @@ int 		asmm=0;
 #define	OR			261
 #define AND			262
 #define FUNCTION	263
-#define COMMA	264
+#define	ARRAY		264
+#define COMMA		265
+
 
 
 #include "variant.h"
@@ -131,9 +147,27 @@ char commandStr[][10]={
 };
 
 struct tokenval {
-	long double value;
+	long int value;
 	char  str[60];	
 };
+
+/*
+struct tokenval  types[] = {
+	{CHAR,"کاراکتری"},
+	{INT,"صحیح"},
+//	{UINT,""},
+//	{LONG,""},
+//	{ULONG,""},
+//	{LLONG,""},
+//	{ULLONG,""},
+	{FLOAT,"حقیقی"},
+	{DOUBLE,"اعشاری"},
+//	{LDOUBLE,""},
+	{STRING,"رشته"},
+	{BOOLEAN,"بولی"},
+	{0,""},
+							
+};*/
 
 struct tokenval  operators[] = {
 {COMMA,"و"},
@@ -171,7 +205,7 @@ int precedence(unsigned int op) {
 }
 
 struct tokenval numbers[] = {
-{0.0,"صفر"},{1.0,"یک"},{2.0,"دو"},{30,"سه"},{1.0,"اول"},{2.0,"دوم"},{30,"سوم"},{4.0,"چهار"},{5.0,"پنج"},{6.0,"شش"},{7.0,"هفت"},{8.0,"هشت"},{9.0,"نه"},{10.0,"ده"},{11.0,"یازده"},{12.0,"دوازده"},{13.0,"سیزده"},{14.0,"چهارده"},{15.0,"پانزده"},{16.0,"شانزده"},{17.0,"هفده"},{18.0,"هجده"},{19.0,"نوزده"},{20.0,"بیست"},{30.0,"سی"},{40.0,"چهل"},{50.0,"پنجاه"},{60.0,"شصت"},{70.0,"هفتاد"},{80.0,"هشتاد"},{90.0,"نود"},{100.0,"صد"},{1000.0,"هزار"},{1000000.0,"میلیون"},{1000000000.0,"میلیارد"},{0,"END"}
+{0.0,"صفر"},{1.0,"یک"},{2,"دو"},{30,"سه"},{1.0,"اول"},{2.0,"دوم"},{30,"سوم"},{4.0,"چهار"},{5.0,"پنج"},{6.0,"شش"},{7.0,"هفت"},{8.0,"هشت"},{9.0,"نه"},{10.0,"ده"},{11.0,"یازده"},{12.0,"دوازده"},{13.0,"سیزده"},{14.0,"چهارده"},{15.0,"پانزده"},{16.0,"شانزده"},{17.0,"هفده"},{18.0,"هجده"},{19.0,"نوزده"},{20.0,"بیست"},{30.0,"سی"},{40.0,"چهل"},{50.0,"پنجاه"},{60.0,"شصت"},{70.0,"هفتاد"},{80.0,"هشتاد"},{90.0,"نود"},{100.0,"صد"},{1000.0,"هزار"},{1000000.0,"میلیون"},{1000000000.0,"میلیارد"},{0,"END"}
 };
 
 struct  node {
@@ -190,17 +224,6 @@ struct  node {
 	int  next;
 	int  link; 
 };
-
-typedef struct {
-	datatypes dt;
-	//int       size;
-	union  {	
-		void    * vp;
-		int     i;
-		long 	double ld;
-		char 	*st;		
-	} u;
-} stack_item;
 
 int  _ip=0;  //instruction pointer : 
 void run(int ip, int bp) ; // kati2.c
@@ -237,7 +260,8 @@ struct token{
   int       tok_ip; // instruction pointer
   int       tok_ix; // ix on stack when calling
   int	    neg;
-  union {
+
+  struct {
 	char      tok[128];
 	variant   val;
 	unsigned  int op;	
@@ -280,13 +304,13 @@ struct token create_token_op( unsigned char op) {
 	return t;
 }
 
-struct token create_token_dig(long double d) {
+struct token create_token_dig_i(int d) {
 	struct token t;
 	t.type=DIGIT;
 	t.neg=0;
 	
-	init_var(&t.u.val,  LDOUBLE, 0);
-	set_var(&t.u.val, d);
+	init_var(&t.u.val,  INT, 1);
+	set_var_i(&t.u.val, d);
 	return t;
 }
 
@@ -299,7 +323,7 @@ struct token create_token_id(int id) {
 	t.tok_ip=-1;
 	t.tok_ix=-1;
 
-        if (inFunction) {
+    if (inFunction) {
 //		 printf("\nid=%d ", token.id);
 		if (fvars[t.id].ix > 0)
 		     t.tok_ix= fvars[t.id].ix;
@@ -331,8 +355,8 @@ void print_string(char *s) {
 void print_var(variant *v) {
 }
 
-void 	error(char *err, int fatal) {
-	printf("<div dir='rtl' style='width:100%'>");
+void error(char *err, int fatal) {
+	printf("<div dir='rtl' style='width:100%%'>");
 	printf("\nخطا: [خط شماره%d]:%s\n", line, err);	
 	unsigned char * s=code+last_head;
 
@@ -349,16 +373,18 @@ void 	error(char *err, int fatal) {
 	printf("\n------------------------------\n");
 	printf("</div>");	
 
-	if (fatal) {
-		exit(1);
+	if (fatal) {		
+		longjmp(env_buffer, 1); //throw exception
+		return ;
 	}
 }
 void 	runtime(int fatal, char * err) {
 	printf("\nخطای زمان اجرا: (IP=%d):%s\n", _ip, err);	
-	unsigned char * s=code+last_head;
+	//unsigned char * s=code+last_head;
 
-	if (fatal) {
-		exit(1);
+	if (fatal) {		
+		longjmp(env_buffer, 1); //throw exception
+		return ;
 	}
 }
 
@@ -368,7 +394,7 @@ void log_(struct token tok) {
     printf("\nID: id=[%3d], name=[%s]\n", tok.id, tok.u.tok);
  } else
  if (tok.type==DIGIT) {
-    printf( DIGITFRMT , *((long double *)(tok.u.val.start)) );
+    printf( DIGITFRMT , tok.u.val.data.u.ld );
  } else 
  if (tok.type==OP) {
     printf("\nOP: %c[%d]\n", tok.u.op, tok.u.op);
@@ -439,12 +465,13 @@ int isalpha2(int c) {
 
 struct token _getToken(int std, int flag) {
 	struct token tok;
-	KATI z;
+	long double z;
+	long long int llz=0;
 	
     tok.tok_ix=-1;
     tok.tok_ip=-1;
     
-	unsigned char c;
+	int c;
 	int f;
 	
 	last_head=head;
@@ -479,9 +506,15 @@ struct token _getToken(int std, int flag) {
 		    int eos='|';
 		    if (c=='<') eos='>';
 		    if (c=='"') eos='"';
+		    char * temp;
 		    
 			tok.type=STRING;
-			init_var( &tok.u.val ,TEXT,1000);
+			init_var( &tok.u.val ,TEXT,1);
+			alloc_var( &tok.u.val);
+			temp = (char *) malloc(1000);
+			
+			tok.u.val.data.u.st = temp;			
+
 
 			c=_getc(std);
 			f=0;
@@ -516,35 +549,37 @@ struct token _getToken(int std, int flag) {
 					} 
 				}
 				//TODO: string length check here
-				STVALUE(tok.u.val)[f]=c;
+				temp[f]=c;
 				c=_getc(std);
 				f++;
 			}
 			if (!c || c==EOF) _error(1,"انتهای رشته بسته نشده است.");
-			 STVALUE(tok.u.val)[f]=0;			
+			 temp[f]=0;		
 			// heap[tok.u.val.start+f]=0;			
 //			_ungetc(c, std);
 			break;
 		} else		
 		if (c && isdigit(c))  { //DIGIT
 			tok.type=DIGIT;
-			init_var( &tok.u.val , LDOUBLE, 0 );
-			set_var( &tok.u.val, 0.0);
-
-			z=0.0;
+			int isfloat=0;
+			z=0.0; llz=0;
+			
 			while (c!=EOF && isdigit(c)) {				
 				z= z*10+c-48;
+				llz= llz*10+c-48;
 				c=_getc(std);
 			}
-
 			if (c=='.') {
 			    f=10;
 			  // printf("%c %f %d\n",c,z,f);
 			     c=_getc(std);
 				if (c!=EOF && isdigit(c)) {
+			         isfloat=1;
 				    while (c && isdigit(c)) {				
 				          // printf("%c %f %d\n",c,z,f);
+
 					    z +=(c-48)*1.0/f;
+					    
 					    f*=10;
 					    c=_getc(std);
 				    }
@@ -552,24 +587,47 @@ struct token _getToken(int std, int flag) {
 					_ungetc(c,std);
 					c='.';
 				}
-			}
-			
-			LDVALUE(tok.u.val)=z;
+			}		
+			datatypes dtype=INT;
+			if (!isfloat &&  (char )llz == llz ) dtype=CHAR;
+			else if (!isfloat &&  (int ) llz == llz ) dtype=INT;
+			else if (!isfloat &&  (long int )llz == llz ) dtype=LINT;
+			else if (!isfloat &&  (long long int )llz == llz ) dtype=LLINT;
+			else if ( (float )z == z ) dtype=FLOAT;	
+			else if ( (double )z == z ) dtype=DOUBLE;									
+			else if ( (long double )z == z ) dtype=LDOUBLE;
+			else _error(1,"عدد خارج از محدوده");
+
+						
+			init_var( &tok.u.val , dtype, 1 );
+
+			if (tok.u.val.dt==CHAR)			 set_var_c( &tok.u.val, (char ) z);			
+			else if (tok.u.val.dt==INT)		 set_var_i( &tok.u.val, (int ) z);
+			else if (tok.u.val.dt==LINT)	 set_var_li( &tok.u.val, (long int ) z);
+			else if (tok.u.val.dt==LLINT)	 set_var_lli( &tok.u.val, (long long int ) z);
+			else if (tok.u.val.dt==FLOAT)	 set_var_d( &tok.u.val, (float ) z);
+			else if (tok.u.val.dt==DOUBLE)	 set_var_d( &tok.u.val, (double ) z);
+			else set_var_ld( &tok.u.val, z);
+				
 			_ungetc(c, std);
 			break;
 		} else
 		
 		if (c && (isalpha2(c)))  { //ID
 			tok.type=ID;
-
+			char * temp;
 			if (std==1) {
 			  tok.type=STRING;
-			  init_var( &tok.u.val ,TEXT,1000);
+			  init_var( &tok.u.val ,TEXT,1);
+			  alloc_var( &tok.u.val);
+			  
+			  temp = (char *) malloc(1000);
+			  tok.u.val.data.u.st=temp;
 			}
 
 			f=0;
 			while (c && (isalpha2(c) || isdigit(c))) {
-				if (std) STVALUE(tok.u.val)[f]=c;
+				if (std) temp[f]=c;
 					else tok.u.tok[f]=c;
 
 				c=_getc(std);
@@ -577,7 +635,7 @@ struct token _getToken(int std, int flag) {
 				f++;
 			}
 			
-			if (std) STVALUE(tok.u.val)[f]=0;
+			if (std) temp[f]=0;
 				else tok.u.tok[f]=0;
 
 			_ungetc(c, std);
@@ -593,14 +651,14 @@ struct token _getToken(int std, int flag) {
 				}
 			}			
 			if (found) break;
+			
 			//checking for numbers
-
 			for (i=0;  ; i++) {
 				if (!strcmp(numbers[i].str,"END")) break;
 				//printf("\n%s %Lf", numbers[i].str, numbers[i].value);
 				if (!strcmp(numbers[i].str, tok.u.tok)) {
-					init_var( &tok.u.val , LDOUBLE, 0 );
-					set_var(&tok.u.val, numbers[i].value);
+					init_var( &tok.u.val , LINT, 1 );
+					set_var_li(&tok.u.val, numbers[i].value);
 					tok.type=DIGIT;				
 					found=1;
 					break;
@@ -637,17 +695,18 @@ struct token _getToken(int std, int flag) {
 			!strcmp(tok.u.tok, "تکرارکن") ||
 			!strcmp(tok.u.tok, "تابع") ||
 			!strcmp(tok.u.tok, "تعداد") ||			
-			!strcmp(tok.u.tok, "بازگشت")||
-			!strcmp(tok.u.tok, "از")||
-			!strcmp(tok.u.tok, "فراخوان")
+			!strcmp(tok.u.tok, "بازگشت") ||
+			!strcmp(tok.u.tok, "از") ||
+			!strcmp(tok.u.tok, "فراخوان") ||
+			!strcmp(tok.u.tok, "متغییر")
 			) {
 				tok.type=KEYWORD;
 				tok.id=check(tok.u.tok);
 			//	printf("\nKEYWORD");
-			} else {    // identifier (variable or function name)
-				// todo: check synonyms
-				
-				tok.id=check(tok.u.tok);
+			}  //TODO: check for ARRAY name
+			else {    // identifier (variable or function name)
+				// todo: check synonyms				
+				tok.id = check(tok.u.tok);
 				tok.tok_ip=function_ip(tok.u.tok);
 				tok.u.op = FUNCTION;
 				//printf("\n%s IP =%d", tok.u.tok, tok.tok_ip);
@@ -658,7 +717,7 @@ struct token _getToken(int std, int flag) {
 					 // this token is function arg ix calced in func()
 					else 
 					    tok.tok_ix= tok.id - MAXKEYS; 
-				}				
+				}			
 			}
 			break;
 		} 	
@@ -669,7 +728,7 @@ struct token _getToken(int std, int flag) {
 				last_head=head;
 				tok=_getToken(std,1);
 				if (tok.type==DIGIT) {
-					LDVALUE(tok.u.val) *= -1;
+					//TODO*((long double *)tok.u.val.data) *= -1;
 				} else {
 					head=last_head;
 					tok.type=OP;
@@ -682,6 +741,9 @@ struct token _getToken(int std, int flag) {
 				if (c=='-') c=SUB;
 				if (c=='/') c=DIV;
 				if (c==':') c=FMT;
+				if (c=='(') { //convert previous ID to array if is not FUNCTION
+					//TODO: convert previous ID to array if is not FUNCTION
+				}
 				tok.u.op=c;
 			}
 		} else { // EOS

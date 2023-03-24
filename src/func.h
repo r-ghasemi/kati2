@@ -1,4 +1,4 @@
-#include "def.h"
+//#include "def.h"
 
 int  parse(int h, int stop) ;
 void check_kati_keywords();
@@ -9,16 +9,16 @@ void check_kati_keywords();
 */
 //todone: define each variable in stack  arguments and local variables
 //todone: call function and access to local variable
+
 int _func() {
-	struct node n1,g1,n2,n3;
-	int hsave=head, hsave2;
+	struct node n1,g1,n2;
     struct token * arg0=NULL;
     struct token * arg1=NULL;
 
 	//token=getToken(0);
 	n1.cmd=FUNC;	n1.link=0;	n1.start= _main.end;
 
-	int hb;
+//	int hb;
 	
     token=getToken(0);
 	// first token is function name	
@@ -60,7 +60,7 @@ int _func() {
 	
 //	printf("fvar=%d", fvar_counter);
 	while (code[head]!=0 ) {
-		hb= head;
+//		hb= head;
 		token=getToken(0);
 		 
 	    if (token.type==OP && 
@@ -140,13 +140,13 @@ int _func() {
     return 0;
 }
 
+
 int _call() {
-	struct node n1,g1,n2,n3;
-	int hsave=head, hsave2;
+	struct node n1;
 	//token=getToken(0);
 	n1.cmd=CALL;	n1.link=0;	n1.start= _main.end;
 
-	int hb;
+//	int hb;
 	struct token funcName;
 	
     token=getToken(0);
@@ -158,7 +158,7 @@ int _call() {
 	funcName=  token;
 
 	while (code[head]!=0 ) {
-		 hb= head;
+//		 hb= head;
 		 token=getToken(0);
 		 
 		 if (token.type==OP && token.u.op== '.')  break;
@@ -177,3 +177,5 @@ int _call() {
 	}
     return 0;    
 }
+
+
