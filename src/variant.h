@@ -324,7 +324,7 @@ void set_var_ld( variant *v , long double value) {
 
 /*
 void set_var_st( variant *v , char * value) {
-	if (!v->data) alloc_var(v);
+//	if (!v->data) alloc_var(v);
 
 	v->data= (void *) value;
 //TODO: v->size= ?
@@ -345,13 +345,14 @@ void realloc_var(variant *v, int force) {
 		printf("data type=%d\n", v->dt);
 		_error(1,"تعداد عناصر برابر صفر است.");
 	}
-	
+	//if ( v->isArray ) printf("crating array with size=%d and type=%d FORCE=%d\n", v->size, v->dt, force);	
 	if (!force && v->data.u.a) return ;	
 //	if (v->dt==TEXT) 
 		//printf("size=%d\n", v->size);
 	//TODO what about previous memory
 	if ( v->isArray ) {	// this is array
 		v->data.u.a =  malloc (v->size * _sizeof[v->dt]);	
+		//printf("**crated\n", v->size, v->dt);		
 	}
 }
 
@@ -361,8 +362,8 @@ void init_var(variant * v, datatypes dt, int size) {
 	v->set = 0;
 	v->IP  = -1;	
 	v->size=size;
-	v->isArray= (size>1);
-//	v->data=NULL;
+	v->isArray = (size > 1);
+	v->data.u.a=NULL;
 }
 
 variant * create_var(datatypes dt, int size) {
@@ -370,6 +371,7 @@ variant * create_var(datatypes dt, int size) {
 	if (!v) _error(1,"خطای کمبود حافظه.");	
 	//printf("cv size==%d\n", size);
 	init_var(v, dt, size);
+	alloc_var(v);
 	return v;
 }
 

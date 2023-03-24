@@ -25,7 +25,8 @@ void ktx_assign_c_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -41,7 +42,8 @@ void ktx_assign_c_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -57,7 +59,8 @@ void ktx_assign_c_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -73,7 +76,8 @@ void ktx_assign_c_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -89,7 +93,8 @@ void ktx_assign_c_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -105,7 +110,8 @@ void ktx_assign_c_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -121,7 +127,8 @@ void ktx_assign_c_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -137,7 +144,8 @@ void ktx_assign_c_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -153,7 +161,8 @@ void ktx_assign_c_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -169,7 +178,8 @@ void ktx_assign_c_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -185,7 +195,8 @@ void ktx_assign_c_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((char *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -201,7 +212,8 @@ void ktx_assign_uc_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -217,7 +229,8 @@ void ktx_assign_uc_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -233,7 +246,8 @@ void ktx_assign_uc_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -249,7 +263,8 @@ void ktx_assign_uc_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -265,7 +280,8 @@ void ktx_assign_uc_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -281,7 +297,8 @@ void ktx_assign_uc_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -297,7 +314,8 @@ void ktx_assign_uc_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -313,7 +331,8 @@ void ktx_assign_uc_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -329,7 +348,8 @@ void ktx_assign_uc_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -345,7 +365,8 @@ void ktx_assign_uc_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -361,7 +382,8 @@ void ktx_assign_uc_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned char *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -377,7 +399,8 @@ void ktx_assign_i_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -393,7 +416,8 @@ void ktx_assign_i_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -409,7 +433,8 @@ void ktx_assign_i_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -425,7 +450,8 @@ void ktx_assign_i_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -441,7 +467,8 @@ void ktx_assign_i_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -457,7 +484,8 @@ void ktx_assign_i_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -473,7 +501,8 @@ void ktx_assign_i_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -489,7 +518,8 @@ void ktx_assign_i_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -505,7 +535,8 @@ void ktx_assign_i_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -521,7 +552,8 @@ void ktx_assign_i_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -537,7 +569,8 @@ void ktx_assign_i_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -553,7 +586,8 @@ void ktx_assign_ui_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -569,7 +603,8 @@ void ktx_assign_ui_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -585,7 +620,8 @@ void ktx_assign_ui_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -601,7 +637,8 @@ void ktx_assign_ui_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -617,7 +654,8 @@ void ktx_assign_ui_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -633,7 +671,8 @@ void ktx_assign_ui_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -649,7 +688,8 @@ void ktx_assign_ui_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -665,7 +705,8 @@ void ktx_assign_ui_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -681,7 +722,8 @@ void ktx_assign_ui_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -697,7 +739,8 @@ void ktx_assign_ui_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -713,7 +756,8 @@ void ktx_assign_ui_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -729,7 +773,8 @@ void ktx_assign_li_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -745,7 +790,8 @@ void ktx_assign_li_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -761,7 +807,8 @@ void ktx_assign_li_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -777,7 +824,8 @@ void ktx_assign_li_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -793,7 +841,8 @@ void ktx_assign_li_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -809,7 +858,8 @@ void ktx_assign_li_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -825,7 +875,8 @@ void ktx_assign_li_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -841,7 +892,8 @@ void ktx_assign_li_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -857,7 +909,8 @@ void ktx_assign_li_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -873,7 +926,8 @@ void ktx_assign_li_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -889,7 +943,8 @@ void ktx_assign_li_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -905,7 +960,8 @@ void ktx_assign_uli_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -921,7 +977,8 @@ void ktx_assign_uli_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -937,7 +994,8 @@ void ktx_assign_uli_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -953,7 +1011,8 @@ void ktx_assign_uli_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -969,7 +1028,8 @@ void ktx_assign_uli_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -985,7 +1045,8 @@ void ktx_assign_uli_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1001,7 +1062,8 @@ void ktx_assign_uli_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1017,7 +1079,8 @@ void ktx_assign_uli_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1033,7 +1096,8 @@ void ktx_assign_uli_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1049,7 +1113,8 @@ void ktx_assign_uli_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1065,7 +1130,8 @@ void ktx_assign_uli_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1081,7 +1147,8 @@ void ktx_assign_lli_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1097,7 +1164,8 @@ void ktx_assign_lli_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1113,7 +1181,8 @@ void ktx_assign_lli_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1129,7 +1198,8 @@ void ktx_assign_lli_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1145,7 +1215,8 @@ void ktx_assign_lli_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1161,7 +1232,8 @@ void ktx_assign_lli_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1177,7 +1249,8 @@ void ktx_assign_lli_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1193,7 +1266,8 @@ void ktx_assign_lli_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1209,7 +1283,8 @@ void ktx_assign_lli_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1225,7 +1300,8 @@ void ktx_assign_lli_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1241,7 +1317,8 @@ void ktx_assign_lli_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1257,7 +1334,8 @@ void ktx_assign_ulli_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1273,7 +1351,8 @@ void ktx_assign_ulli_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1289,7 +1368,8 @@ void ktx_assign_ulli_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1305,7 +1385,8 @@ void ktx_assign_ulli_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1321,7 +1402,8 @@ void ktx_assign_ulli_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1337,7 +1419,8 @@ void ktx_assign_ulli_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1353,7 +1436,8 @@ void ktx_assign_ulli_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1369,7 +1453,8 @@ void ktx_assign_ulli_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1385,7 +1470,8 @@ void ktx_assign_ulli_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1401,7 +1487,8 @@ void ktx_assign_ulli_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1417,7 +1504,8 @@ void ktx_assign_ulli_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1433,7 +1521,8 @@ void ktx_assign_f_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1449,7 +1538,8 @@ void ktx_assign_f_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1465,7 +1555,8 @@ void ktx_assign_f_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1481,7 +1572,8 @@ void ktx_assign_f_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1497,7 +1589,8 @@ void ktx_assign_f_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1513,7 +1606,8 @@ void ktx_assign_f_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1529,7 +1623,8 @@ void ktx_assign_f_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1545,7 +1640,8 @@ void ktx_assign_f_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1561,7 +1657,8 @@ void ktx_assign_f_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1577,7 +1674,8 @@ void ktx_assign_f_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1593,7 +1691,8 @@ void ktx_assign_f_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((float  *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1609,7 +1708,8 @@ void ktx_assign_d_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1625,7 +1725,8 @@ void ktx_assign_d_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1641,7 +1742,8 @@ void ktx_assign_d_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1657,7 +1759,8 @@ void ktx_assign_d_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1673,7 +1776,8 @@ void ktx_assign_d_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1689,7 +1793,8 @@ void ktx_assign_d_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1705,7 +1810,8 @@ void ktx_assign_d_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1721,7 +1827,8 @@ void ktx_assign_d_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1737,7 +1844,8 @@ void ktx_assign_d_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1753,7 +1861,8 @@ void ktx_assign_d_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1769,7 +1878,8 @@ void ktx_assign_d_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((double *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1785,7 +1895,8 @@ void ktx_assign_ld_c(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.c;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.c ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1801,7 +1912,8 @@ void ktx_assign_ld_uc(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.uc;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1817,7 +1929,8 @@ void ktx_assign_ld_i(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.i;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.i ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1833,7 +1946,8 @@ void ktx_assign_ld_ui(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ui;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1849,7 +1963,8 @@ void ktx_assign_ld_li(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.li;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.li ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1865,7 +1980,8 @@ void ktx_assign_ld_uli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.uli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1881,7 +1997,8 @@ void ktx_assign_ld_lli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.lli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1897,7 +2014,8 @@ void ktx_assign_ld_ulli(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ulli;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1913,7 +2031,8 @@ void ktx_assign_ld_f(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.f;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.f ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1929,7 +2048,8 @@ void ktx_assign_ld_d(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.d;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.d ;
 		}
 	} else {
 		if (b->isArray) {
@@ -1945,7 +2065,8 @@ void ktx_assign_ld_ld(variant *a, variant *b, variant *c) {
 		if (b->isArray) {
 			*((long double *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
 		} else {
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ld;
+			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
+			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
 		}
 	} else {
 		if (b->isArray) {
@@ -7380,6 +7501,10 @@ void kt_assign(variant *a, variant *b, variant *c) {
 	if (a->dt != b->dt) {
 		//TODO: type conversion warning
 	}
+	if (a->isArray) {
+//		printf("A is an array\n");
+	}
+	//printf("%d = %d\n", a->dt, b->dt);
 	ktp_assign[a->dt][b->dt](a,b,c);
 }
 

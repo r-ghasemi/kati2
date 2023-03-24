@@ -3,6 +3,7 @@ all: build
  
 build:
 #	gcc kati2.c -o kati2 -lm
+	php ktmath.php > ktmath.h  
 	gcc kati2.c -o kati2.o -lm	 
 #	-Wconversion
 win32:

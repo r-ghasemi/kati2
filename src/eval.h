@@ -38,71 +38,71 @@ unsigned int top_op() {
 
 void print_item(variant *si, float format) {
 	char fmt[20];
-	KATI *v= &si->data;
+	variant *v= si;
 	
 	/*if (!si->data) {
 		printf("<NULL>");
 		return;
 	}*/
-	
-	if (si->ref) v = &si->ref->data ;// si->refvar->data.u.a + si->offset;
+	//printf("A=%d\n", v->isArray);
+	//if (si->ref) v = si->ref ;// si->refvar->data.u.a + si->offset;
 	sprintf(fmt, FORMAT[si->dt], format);
 	
 //	printf("data type=%d format=%s offset=%d\n", si->dt, fmt, si->offset);	
 	if (si->dt==CHAR) {
-		printf(fmt, v->u.c);
+		printf(fmt, (v->isArray) ? *((char *)v->data.u.a + v->offset ) : v->data.u.c);
 		return ;
 	} 
 		
 	if (si->dt==INT) {
-		printf(fmt,  v->u.i);
+		printf(fmt, (v->isArray) ? *((int *)v->data.u.a + v->offset ) : v->data.u.i);	
 		return ;
 	} 
 	
 	if (si->dt==UINT) {
-		printf(fmt, v->u.ui);
+		printf(fmt, (v->isArray) ? *((unsigned int *)v->data.u.a + v->offset ) : v->data.u.ui);
 		return ;
 	} 	
 	
 	if (si->dt==LINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf(fmt, v->u.li);
+		printf(fmt, (v->isArray) ? *((long int *)v->data.u.a + v->offset ) : v->data.u.li);
 		return ;
 	} 
 		
 	if (si->dt==ULINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf(fmt, v->u.uli);
+		printf(fmt, (v->isArray) ? *((unsigned long int *)v->data.u.a + v->offset ) : v->data.u.uli);	
 	} 
 
 	if (si->dt==LLINT) {
-		printf(fmt, v->u.lli);
+		printf(fmt, (v->isArray) ? *((long long int *)v->data.u.a + v->offset ) : v->data.u.lli);		
 		return ;
 	} 			
 	
 	if (si->dt==ULLINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf(fmt, v->u.ulli);
-		return ;
+		printf(fmt, (v->isArray) ? *((unsigned long long int *)v->data.u.a + v->offset ) : v->data.u.ulli);
+			return ;
 	} 	
 			
 	if (si->dt==FLOAT) {
-		printf(fmt, v->u.f);
+		printf(fmt, (v->isArray) ? *((float  *)v->data.u.a + v->offset ) : v->data.u.f);			
 		return ;
 	}	
 		
 	if (si->dt==DOUBLE) {
-		printf(fmt, v->u.d);
+		printf(fmt, (v->isArray) ? *((double  *)v->data.u.a + v->offset ) : v->data.u.d);				
 		return ;
 	}	
 		
 	if (si->dt==LDOUBLE) {
-		printf(fmt, v->u.ld);
+		printf(fmt, (v->isArray) ? *((long double  *)v->data.u.a + v->offset ) : v->data.u.ld);				
 		return ;
 	}	
 	//TEXT
 	if (si->dt==TEXT) {
-		printf("%s", v->u.st );
+		printf("%s", v->data.u.st );
 		return ;
 	}
 	
@@ -564,8 +564,8 @@ variant  eval(int _BP) {
 
 				case FMT: // assign value
 				  	v1=pop2();
-					  //	printf("format =%f\n",(float) v1->data.u.ld);
-					_format[top2]= (float) v1->data.u.ld;
+//					  	printf("format type=%d val=%f\n",v1->dt, (float) v1->data.u.f);
+					_format[top2]= valueof_f(v1);
 				break;
 	
 				case NOT:
@@ -701,8 +701,9 @@ variant  eval(int _BP) {
 							runtime(1,"اندیس آرایه باید از نوع صحیح باشد");
 						}
 						ix= vx->data.u.i;
+						//printf("ix=%d v1-size=%d id=%d\n", ix, v1->size,token->id);
 					}
-					//printf("ix=%d v1-size=%d id=%d\n", ix, v1->size,token->id);
+					
 					_push2_vp (v1 , ix);
 			   }				
 		    }

@@ -589,8 +589,8 @@ struct token _getToken(int std, int flag) {
 				}
 			}		
 			datatypes dtype=INT;
-			if (!isfloat &&  (char )llz == llz ) dtype=CHAR;
-			else if (!isfloat &&  (int ) llz == llz ) dtype=INT;
+//			if (!isfloat &&  (char )llz == llz ) dtype=CHAR;
+			if (!isfloat &&  (int ) llz == llz ) dtype=INT;
 			else if (!isfloat &&  (long int )llz == llz ) dtype=LINT;
 			else if (!isfloat &&  (long long int )llz == llz ) dtype=LLINT;
 			else if ( (float )z == z ) dtype=FLOAT;	
@@ -728,7 +728,14 @@ struct token _getToken(int std, int flag) {
 				last_head=head;
 				tok=_getToken(std,1);
 				if (tok.type==DIGIT) {
-					//TODO*((long double *)tok.u.val.data) *= -1;
+//					printf("NEG t=%d\n", tok.u.val.dt);
+					if (tok.u.val.dt== CHAR)  tok.u.val.data.u.c *= -1;
+					else if (tok.u.val.dt== INT)  tok.u.val.data.u.i *= -1;
+					else if (tok.u.val.dt== LINT)  tok.u.val.data.u.li *= -1;
+					else if (tok.u.val.dt== LLINT)  tok.u.val.data.u.lli *= -1;
+					else if (tok.u.val.dt== FLOAT)  tok.u.val.data.u.f *= -1;
+					else if (tok.u.val.dt== DOUBLE)  tok.u.val.data.u.d *= -1;
+					else if (tok.u.val.dt== LDOUBLE) tok.u.val.data.u.ld *= -1;
 				} else {
 					head=last_head;
 					tok.type=OP;
