@@ -577,9 +577,7 @@ struct token _getToken(int std, int flag) {
 			         isfloat=1;
 				    while (c && isdigit(c)) {				
 				          // printf("%c %f %d\n",c,z,f);
-
-					    z +=(c-48)*1.0/f;
-					    
+					    z +=(c-48)*1.0/f;					    
 					    f*=10;
 					    c=_getc(std);
 				    }
@@ -591,21 +589,21 @@ struct token _getToken(int std, int flag) {
 			datatypes dtype=INT;
 //			if (!isfloat &&  (char )llz == llz ) dtype=CHAR;
 			if (!isfloat &&  (int ) llz == llz ) dtype=INT;
-			else if (!isfloat &&  (long int )llz == llz ) dtype=LINT;
+			//else if (!isfloat &&  (long int )llz == llz ) dtype=LINT;
 			else if (!isfloat &&  (long long int )llz == llz ) dtype=LLINT;
 			else if ( (float )z == z ) dtype=FLOAT;	
 			else if ( (double )z == z ) dtype=DOUBLE;									
 			else if ( (long double )z == z ) dtype=LDOUBLE;
 			else _error(1,"عدد خارج از محدوده");
-
 						
 			init_var( &tok.u.val , dtype, 1 );
 
-			if (tok.u.val.dt==CHAR)			 set_var_c( &tok.u.val, (char ) z);			
-			else if (tok.u.val.dt==INT)		 set_var_i( &tok.u.val, (int ) z);
+			//if (tok.u.val.dt==CHAR)			 set_var_c( &tok.u.val, (char ) z);			
+			//else 
+			if (tok.u.val.dt==INT)		 set_var_i( &tok.u.val, (int ) z);
 			else if (tok.u.val.dt==LINT)	 set_var_li( &tok.u.val, (long int ) z);
 			else if (tok.u.val.dt==LLINT)	 set_var_lli( &tok.u.val, (long long int ) z);
-			else if (tok.u.val.dt==FLOAT)	 set_var_d( &tok.u.val, (float ) z);
+			else if (tok.u.val.dt==FLOAT)	 set_var_f( &tok.u.val, (float ) z);
 			else if (tok.u.val.dt==DOUBLE)	 set_var_d( &tok.u.val, (double ) z);
 			else set_var_ld( &tok.u.val, z);
 				

@@ -6,8 +6,8 @@
 #define MAXFUNCTIONS 100
 
 variant * pop2();
-/*void push2_ld(long double value);
-void push2_vp(datatypes dt, void *value);*/
+/*void push2_ld(long double value);*/
+void push2_item(variant item);
 extern int top2;
 extern variant stack2[];
 
@@ -34,14 +34,17 @@ char *strrev(char *str) {
 }
 
 void   ex_kati() {
-	/*printf("\n\ 
-	\n*******************************************************\ 
-        \n*                  سلام من کاتی %4.2f هستم             *\n \ 
+	printf("\n\
+	\n*******************************************************\
+	\n*                  سلام من کاتی %4.2f هستم             *\n \
 	\n*******************************************************\n\n",
-		KATI_VERSION);*/
-	/*long double result= KATI_VERSION;
+		KATI_VERSION);
+		
+	variant result;
+	init_var(&result, FLOAT, 1);
+	result.data.u.f = KATI_VERSION;
 	//printf("\n This is strlen %s =%Lf\n", v->u.st, result);
-	push2_vp(LDOUBLE,(void *)&result);	*/
+	push2_item(result);
 }
 
 void   ex_strlen() {
@@ -53,9 +56,11 @@ void   ex_strlen() {
 		runtime(1,"اینجا یک رشته برای محاسبه طول رشته لازم است");
 	}		
 	
-	/*long double result= strlen(v->start);
+	variant result;
+	init_var(&result, INT, 1);
+	result.data.u.i = strlen(v->data.u.st);
 	//printf("\n This is strlen %s =%Lf\n", v->u.st, result);
-	push2_vp(LDOUBLE,(void *)&result);*/
+	push2_item(result);
 }
 
 void   ex_strrev() {

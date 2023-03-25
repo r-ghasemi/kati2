@@ -94,9 +94,10 @@ void add_statement(enum command cmd, struct context *c) {
 		 
 
 		 if (cmd==LET && token.type==OP && token.u.op==FARMAN ) {
-	   	    add_token(c, token);
+  		    struct token temp=token;
+	   	   
 		    token = getToken(0);
-		    if (token.type!=STRING) 
+		    if (token.type != STRING) 
 		    	_error(1,"اینجا یک رشته برای نام تابع  لازم است.");
 		    
 		    int ex_func=check_external( token.u.val.data.u.st );
@@ -106,6 +107,7 @@ void add_statement(enum command cmd, struct context *c) {
 		    }
 		    
  		   add_token(c, create_token_dig_i(ex_func));
+ 		    add_token(c, temp);
 		   continue;
 		 } 
 		 

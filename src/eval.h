@@ -50,54 +50,54 @@ void print_item(variant *si, float format) {
 	
 //	printf("data type=%d format=%s offset=%d\n", si->dt, fmt, si->offset);	
 	if (si->dt==CHAR) {
-		printf(fmt, (v->isArray) ? *((char *)v->data.u.a + v->offset ) : v->data.u.c);
+		printf((format==0)?"%c":fmt, (v->isArray) ? *((char *)v->data.u.a + v->offset ) : v->data.u.c);
 		return ;
 	} 
 		
 	if (si->dt==INT) {
-		printf(fmt, (v->isArray) ? *((int *)v->data.u.a + v->offset ) : v->data.u.i);	
+		printf((format==0)?"%d":fmt, (v->isArray) ? *((int *)v->data.u.a + v->offset ) : v->data.u.i);	
 		return ;
 	} 
 	
 	if (si->dt==UINT) {
-		printf(fmt, (v->isArray) ? *((unsigned int *)v->data.u.a + v->offset ) : v->data.u.ui);
+		printf((format==0)?"%u":fmt, (v->isArray) ? *((unsigned int *)v->data.u.a + v->offset ) : v->data.u.ui);
 		return ;
 	} 	
 	
 	if (si->dt==LINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf(fmt, (v->isArray) ? *((long int *)v->data.u.a + v->offset ) : v->data.u.li);
+		printf((format==0)?"%ld":fmt, (v->isArray) ? *((long int *)v->data.u.a + v->offset ) : v->data.u.li);
 		return ;
 	} 
 		
 	if (si->dt==ULINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf(fmt, (v->isArray) ? *((unsigned long int *)v->data.u.a + v->offset ) : v->data.u.uli);	
+		printf((format==0)?"%lu":fmt, (v->isArray) ? *((unsigned long int *)v->data.u.a + v->offset ) : v->data.u.uli);	
 	} 
 
 	if (si->dt==LLINT) {
-		printf(fmt, (v->isArray) ? *((long long int *)v->data.u.a + v->offset ) : v->data.u.lli);		
+		printf((format==0)?"%lld":fmt, (v->isArray) ? *((long long int *)v->data.u.a + v->offset ) : v->data.u.lli);		
 		return ;
 	} 			
 	
 	if (si->dt==ULLINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf(fmt, (v->isArray) ? *((unsigned long long int *)v->data.u.a + v->offset ) : v->data.u.ulli);
+		printf((format==0)?"%llu":fmt, (v->isArray) ? *((unsigned long long int *)v->data.u.a + v->offset ) : v->data.u.ulli);
 			return ;
 	} 	
 			
 	if (si->dt==FLOAT) {
-		printf(fmt, (v->isArray) ? *((float  *)v->data.u.a + v->offset ) : v->data.u.f);			
+		printf((format==0)?"%f":fmt, (v->isArray) ? *((float  *)v->data.u.a + v->offset ) : v->data.u.f);			
 		return ;
 	}	
 		
 	if (si->dt==DOUBLE) {
-		printf(fmt, (v->isArray) ? *((double  *)v->data.u.a + v->offset ) : v->data.u.d);				
+		printf((format==0)?"%lf":fmt, (v->isArray) ? *((double  *)v->data.u.a + v->offset ) : v->data.u.d);				
 		return ;
 	}	
 		
 	if (si->dt==LDOUBLE) {
-		printf(fmt, (v->isArray) ? *((long double  *)v->data.u.a + v->offset ) : v->data.u.ld);				
+		printf((format==0)?"%Lf":fmt, (v->isArray) ? *((long double  *)v->data.u.a + v->offset ) : v->data.u.ld);				
 		return ;
 	}	
 	//TEXT
@@ -289,7 +289,6 @@ variant  eval(int _BP) {
 	variant  temp;
 	init_var( &result, LDOUBLE, 1);
 	init_var( &temp, INT, 1);	
-	alloc_var(&temp);
 	//int saved_top= top;
 	int input_command=1;
 	
@@ -433,23 +432,27 @@ variant  eval(int _BP) {
 					push2_item(result);				
 				break;
 				
-				/*
+				
 				case AND: //هم  در ترکیب عطفی
 					v1=pop2();				
 					v2=pop2();				
 					
-					result= (v1->u.ld!=0.0L && v2->u.ld!=0.0L);
-					push2_vp(LDOUBLE,(void *)&result);
+					init_var(&result, INT , 1);
+					
+					result.data.u.i= (valueof_i(v1)!=0 && valueof_i(v2)!=0);
+					push2_item(result);
 				break;
 			
 				case OR: //هم  در ترکیب عطفی
 					v1=pop2();				
-					v2=pop2();				
-					
-					result= (v1->u.ld!=0.0L || v2->u.ld!=0.0L);
-					push2_vp(LDOUBLE,(void *)&result);
+					v2=pop2();			
+						
+					init_var(&result, INT , 1);
+					result.data.u.i= (valueof_i(v1)!=0 || valueof_i(v2)!=0);
+					//result= (v1->u.ld!=0.0L || v2->u.ld!=0.0L);
+					push2_item(result);
 				break;		
-				*/
+				
 				case ADD: //جمع
 					v1=pop2();				
 					v2=pop2();						
@@ -572,15 +575,15 @@ variant  eval(int _BP) {
 					//stack[top-1]->neg=1;
 					neg=1;
 				break;
-/*
+
 				case NOT2: // نقیض
 					v1 =pop2();
 				
-					result=!(v1->u.ld);
+					kt_not2(v1, NULL, &result);
 					
-					push2_vp(LDOUBLE,(void *)&result); 
+					push2_item(result); 
 				break;
-*/
+
 				case CORRECT: // صحیح مثلا تقسیم صحیح
 					//printf("\n\FFFFFFFFF");
 					//fflush(stdout);
