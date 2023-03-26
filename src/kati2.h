@@ -4,7 +4,7 @@
 #include <setjmp.h>
 jmp_buf env_buffer;  // for error handling 
 
-#define KATI_VERSION 2.0
+#define KATI_VERSION 3.0
 
 #include "def.h"
 #include "func.h" 
