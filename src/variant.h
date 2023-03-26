@@ -63,9 +63,9 @@ struct KATI{
 		float f;
 		double d;
 		long double ld;
-		char * st;
-		void * a;	//ARRAY , ...
+		char * st;		
 	} u;
+	void * a;	//ARRAY , ...
 };
 
 typedef struct KATI KATI;
@@ -346,12 +346,12 @@ void realloc_var(variant *v, int force) {
 		_error(1,"تعداد عناصر برابر صفر است.");
 	}
 	//if ( v->isArray ) printf("crating array with size=%d and type=%d FORCE=%d\n", v->size, v->dt, force);	
-	if (!force && v->data.u.a) return ;	
+	if (!force && v->data.a) return ;	
 //	if (v->dt==TEXT) 
 		//printf("size=%d\n", v->size);
 	//TODO what about previous memory
 	if ( v->isArray ) {	// this is array
-		v->data.u.a =  malloc (v->size * _sizeof[v->dt]);	
+		v->data.a =  malloc (v->size * _sizeof[v->dt]);	
 		//printf("**crated\n", v->size, v->dt);		
 	}
 }
@@ -363,7 +363,7 @@ void init_var(variant * v, datatypes dt, int size) {
 	v->IP  = -1;	
 	v->size=size;
 	v->isArray = (size > 1);
-	v->data.u.a=NULL;
+	v->data.a=NULL;
 }
 
 variant * create_var(datatypes dt, int size) {

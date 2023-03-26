@@ -23,2068 +23,737 @@ void (*ktp_inc[12][12])(variant * , variant * , variant *);
 void (*ktp_dec[12][12])(variant * , variant * , variant *);
 
 void ktx_assign_c_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.c = b->data.u.c);
 }
 
 void ktx_assign_c_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.c = b->data.u.uc);
 }
 
 void ktx_assign_c_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.c = b->data.u.i);
 }
 
 void ktx_assign_c_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.c = b->data.u.ui);
 }
 
 void ktx_assign_c_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.c = b->data.u.li);
 }
 
 void ktx_assign_c_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.c = b->data.u.uli);
 }
 
 void ktx_assign_c_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.c = b->data.u.lli);
 }
 
 void ktx_assign_c_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.c = b->data.u.ulli);
 }
 
 void ktx_assign_c_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.c = b->data.u.f);
 }
 
 void ktx_assign_c_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.c = b->data.u.d);
 }
 
 void ktx_assign_c_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((char *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((char *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.c = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.c = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((char *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.c = b->data.u.ld);
 }
 
 void ktx_assign_uc_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.uc = b->data.u.c);
 }
 
 void ktx_assign_uc_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.uc = b->data.u.uc);
 }
 
 void ktx_assign_uc_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.uc = b->data.u.i);
 }
 
 void ktx_assign_uc_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.uc = b->data.u.ui);
 }
 
 void ktx_assign_uc_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.uc = b->data.u.li);
 }
 
 void ktx_assign_uc_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.uc = b->data.u.uli);
 }
 
 void ktx_assign_uc_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.uc = b->data.u.lli);
 }
 
 void ktx_assign_uc_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.uc = b->data.u.ulli);
 }
 
 void ktx_assign_uc_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.uc = b->data.u.f);
 }
 
 void ktx_assign_uc_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.uc = b->data.u.d);
 }
 
 void ktx_assign_uc_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned char *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((unsigned char *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uc = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uc = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned char *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.uc = b->data.u.ld);
 }
 
 void ktx_assign_i_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.i = b->data.u.c);
 }
 
 void ktx_assign_i_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.i = b->data.u.uc);
 }
 
 void ktx_assign_i_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.i = b->data.u.i);
 }
 
 void ktx_assign_i_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.i = b->data.u.ui);
 }
 
 void ktx_assign_i_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.i = b->data.u.li);
 }
 
 void ktx_assign_i_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.i = b->data.u.uli);
 }
 
 void ktx_assign_i_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.i = b->data.u.lli);
 }
 
 void ktx_assign_i_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.i = b->data.u.ulli);
 }
 
 void ktx_assign_i_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.i = b->data.u.f);
 }
 
 void ktx_assign_i_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.i = b->data.u.d);
 }
 
 void ktx_assign_i_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.i = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.i = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((int *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.i = b->data.u.ld);
 }
 
 void ktx_assign_ui_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.ui = b->data.u.c);
 }
 
 void ktx_assign_ui_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.ui = b->data.u.uc);
 }
 
 void ktx_assign_ui_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.ui = b->data.u.i);
 }
 
 void ktx_assign_ui_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.ui = b->data.u.ui);
 }
 
 void ktx_assign_ui_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.ui = b->data.u.li);
 }
 
 void ktx_assign_ui_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.ui = b->data.u.uli);
 }
 
 void ktx_assign_ui_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.ui = b->data.u.lli);
 }
 
 void ktx_assign_ui_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.ui = b->data.u.ulli);
 }
 
 void ktx_assign_ui_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.ui = b->data.u.f);
 }
 
 void ktx_assign_ui_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.ui = b->data.u.d);
 }
 
 void ktx_assign_ui_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((unsigned int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ui = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ui = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned int *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.ui = b->data.u.ld);
 }
 
 void ktx_assign_li_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.li = b->data.u.c);
 }
 
 void ktx_assign_li_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.li = b->data.u.uc);
 }
 
 void ktx_assign_li_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.li = b->data.u.i);
 }
 
 void ktx_assign_li_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.li = b->data.u.ui);
 }
 
 void ktx_assign_li_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.li = b->data.u.li);
 }
 
 void ktx_assign_li_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.li = b->data.u.uli);
 }
 
 void ktx_assign_li_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.li = b->data.u.lli);
 }
 
 void ktx_assign_li_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.li = b->data.u.ulli);
 }
 
 void ktx_assign_li_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.li = b->data.u.f);
 }
 
 void ktx_assign_li_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.li = b->data.u.d);
 }
 
 void ktx_assign_li_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.li = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.li = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long int *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.li = b->data.u.ld);
 }
 
 void ktx_assign_uli_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.uli = b->data.u.c);
 }
 
 void ktx_assign_uli_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.uli = b->data.u.uc);
 }
 
 void ktx_assign_uli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.uli = b->data.u.i);
 }
 
 void ktx_assign_uli_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.uli = b->data.u.ui);
 }
 
 void ktx_assign_uli_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.uli = b->data.u.li);
 }
 
 void ktx_assign_uli_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.uli = b->data.u.uli);
 }
 
 void ktx_assign_uli_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.uli = b->data.u.lli);
 }
 
 void ktx_assign_uli_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.uli = b->data.u.ulli);
 }
 
 void ktx_assign_uli_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.uli = b->data.u.f);
 }
 
 void ktx_assign_uli_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.uli = b->data.u.d);
 }
 
 void ktx_assign_uli_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((unsigned long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.uli = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.uli = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long int *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.uli = b->data.u.ld);
 }
 
 void ktx_assign_lli_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.lli = b->data.u.c);
 }
 
 void ktx_assign_lli_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.lli = b->data.u.uc);
 }
 
 void ktx_assign_lli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.lli = b->data.u.i);
 }
 
 void ktx_assign_lli_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.lli = b->data.u.ui);
 }
 
 void ktx_assign_lli_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.lli = b->data.u.li);
 }
 
 void ktx_assign_lli_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.lli = b->data.u.uli);
 }
 
 void ktx_assign_lli_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.lli = b->data.u.lli);
 }
 
 void ktx_assign_lli_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.lli = b->data.u.ulli);
 }
 
 void ktx_assign_lli_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.lli = b->data.u.f);
 }
 
 void ktx_assign_lli_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.lli = b->data.u.d);
 }
 
 void ktx_assign_lli_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((long long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.lli = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.lli = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long long int *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.lli = b->data.u.ld);
 }
 
 void ktx_assign_ulli_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.ulli = b->data.u.c);
 }
 
 void ktx_assign_ulli_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.ulli = b->data.u.uc);
 }
 
 void ktx_assign_ulli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.ulli = b->data.u.i);
 }
 
 void ktx_assign_ulli_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.ulli = b->data.u.ui);
 }
 
 void ktx_assign_ulli_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.ulli = b->data.u.li);
 }
 
 void ktx_assign_ulli_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.ulli = b->data.u.uli);
 }
 
 void ktx_assign_ulli_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.ulli = b->data.u.lli);
 }
 
 void ktx_assign_ulli_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.ulli = b->data.u.ulli);
 }
 
 void ktx_assign_ulli_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.ulli = b->data.u.f);
 }
 
 void ktx_assign_ulli_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.ulli = b->data.u.d);
 }
 
 void ktx_assign_ulli_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((unsigned long long int *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ulli = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ulli = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((unsigned long long int *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.ulli = b->data.u.ld);
 }
 
 void ktx_assign_f_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.f = b->data.u.c);
 }
 
 void ktx_assign_f_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.f = b->data.u.uc);
 }
 
 void ktx_assign_f_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.f = b->data.u.i);
 }
 
 void ktx_assign_f_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.f = b->data.u.ui);
 }
 
 void ktx_assign_f_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.f = b->data.u.li);
 }
 
 void ktx_assign_f_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.f = b->data.u.uli);
 }
 
 void ktx_assign_f_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.f = b->data.u.lli);
 }
 
 void ktx_assign_f_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.f = b->data.u.ulli);
 }
 
 void ktx_assign_f_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.f = b->data.u.f);
 }
 
 void ktx_assign_f_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.f = b->data.u.d);
 }
 
 void ktx_assign_f_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((float  *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((float  *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.f = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.f = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((float  *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.f = b->data.u.ld);
 }
 
 void ktx_assign_d_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.d = b->data.u.c);
 }
 
 void ktx_assign_d_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.d = b->data.u.uc);
 }
 
 void ktx_assign_d_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.d = b->data.u.i);
 }
 
 void ktx_assign_d_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.d = b->data.u.ui);
 }
 
 void ktx_assign_d_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.d = b->data.u.li);
 }
 
 void ktx_assign_d_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.d = b->data.u.uli);
 }
 
 void ktx_assign_d_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.d = b->data.u.lli);
 }
 
 void ktx_assign_d_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.d = b->data.u.ulli);
 }
 
 void ktx_assign_d_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.d = b->data.u.f);
 }
 
 void ktx_assign_d_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.d = b->data.u.d);
 }
 
 void ktx_assign_d_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((double *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((double *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.d = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.d = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((double *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.d = b->data.u.ld);
 }
 
 void ktx_assign_ld_c(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.c);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.c ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.c;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.c )
+		 : ( a->ref->data.u.ld = b->data.u.c);
 }
 
 void ktx_assign_ld_uc(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uc);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.uc ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((unsigned char *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.uc;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.uc )
+		 : ( a->ref->data.u.ld = b->data.u.uc);
 }
 
 void ktx_assign_ld_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.i);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.i ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.i;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.i )
+		 : ( a->ref->data.u.ld = b->data.u.i);
 }
 
 void ktx_assign_ld_ui(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ui);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ui ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((unsigned int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.ui;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.ui )
+		 : ( a->ref->data.u.ld = b->data.u.ui);
 }
 
 void ktx_assign_ld_li(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.li);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.li ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.li;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.li )
+		 : ( a->ref->data.u.ld = b->data.u.li);
 }
 
 void ktx_assign_ld_uli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.uli);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.uli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((unsigned long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.uli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.uli )
+		 : ( a->ref->data.u.ld = b->data.u.uli);
 }
 
 void ktx_assign_ld_lli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.lli);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.lli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.lli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.lli )
+		 : ( a->ref->data.u.ld = b->data.u.lli);
 }
 
 void ktx_assign_ld_ulli(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ulli);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ulli ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((unsigned long long int *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.ulli;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.ulli )
+		 : ( a->ref->data.u.ld = b->data.u.ulli);
 }
 
 void ktx_assign_ld_f(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.f);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.f ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((float  *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.f;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.f )
+		 : ( a->ref->data.u.ld = b->data.u.f);
 }
 
 void ktx_assign_ld_d(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.d);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.d ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.d;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.d )
+		 : ( a->ref->data.u.ld = b->data.u.d);
 }
 
 void ktx_assign_ld_ld(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		if (b->isArray) {
-			*((long double *)a->ref->data.u.a + a->offset) = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			//printf("A[%d]=%d\n ", a->offset, b->data.u.ld);
-			*((long double *)a->ref->data.u.a + a->offset) = b->data.u.ld ;
-		}
-	} else {
-		if (b->isArray) {
-			a->ref->data.u.ld = *((long double *)b->ref->data.u.a + b->offset) ;
-		} else {
-			a->ref->data.u.ld = b->data.u.ld;
-		}	
-	}
+	 (a->isArray)
+	 	 ? (*((long double *)a->ref->data.a + a->offset) = b->data.u.ld )
+		 : ( a->ref->data.u.ld = b->data.u.ld);
 }
 
 void ktx_add_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 + temp2);	
 }
@@ -2093,8 +762,8 @@ void ktx_add_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 + temp2);	
 }
@@ -2103,8 +772,8 @@ void ktx_add_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 + temp2);	
 }
@@ -2113,8 +782,8 @@ void ktx_add_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 + temp2);	
 }
@@ -2123,8 +792,8 @@ void ktx_add_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 + temp2);	
 }
@@ -2133,8 +802,8 @@ void ktx_add_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 + temp2);	
 }
@@ -2143,8 +812,8 @@ void ktx_add_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2153,8 +822,8 @@ void ktx_add_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2163,8 +832,8 @@ void ktx_add_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2173,8 +842,8 @@ void ktx_add_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2183,8 +852,8 @@ void ktx_add_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2193,8 +862,8 @@ void ktx_add_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 + temp2);	
 }
@@ -2203,8 +872,8 @@ void ktx_add_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 + temp2);	
 }
@@ -2213,8 +882,8 @@ void ktx_add_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 + temp2);	
 }
@@ -2223,8 +892,8 @@ void ktx_add_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 + temp2);	
 }
@@ -2233,8 +902,8 @@ void ktx_add_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 + temp2);	
 }
@@ -2243,8 +912,8 @@ void ktx_add_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2253,8 +922,8 @@ void ktx_add_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2263,8 +932,8 @@ void ktx_add_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2273,8 +942,8 @@ void ktx_add_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2283,8 +952,8 @@ void ktx_add_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2293,8 +962,8 @@ void ktx_add_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 + temp2);	
 }
@@ -2303,8 +972,8 @@ void ktx_add_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 + temp2);	
 }
@@ -2313,8 +982,8 @@ void ktx_add_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 + temp2);	
 }
@@ -2323,8 +992,8 @@ void ktx_add_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 + temp2);	
 }
@@ -2333,8 +1002,8 @@ void ktx_add_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2343,8 +1012,8 @@ void ktx_add_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2353,8 +1022,8 @@ void ktx_add_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2363,8 +1032,8 @@ void ktx_add_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2373,8 +1042,8 @@ void ktx_add_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2383,8 +1052,8 @@ void ktx_add_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 + temp2);	
 }
@@ -2393,8 +1062,8 @@ void ktx_add_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 + temp2);	
 }
@@ -2403,8 +1072,8 @@ void ktx_add_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 + temp2);	
 }
@@ -2413,8 +1082,8 @@ void ktx_add_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2423,8 +1092,8 @@ void ktx_add_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2433,8 +1102,8 @@ void ktx_add_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2443,8 +1112,8 @@ void ktx_add_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2453,8 +1122,8 @@ void ktx_add_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2463,8 +1132,8 @@ void ktx_add_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 + temp2);	
 }
@@ -2473,8 +1142,8 @@ void ktx_add_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 + temp2);	
 }
@@ -2483,8 +1152,8 @@ void ktx_add_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2493,8 +1162,8 @@ void ktx_add_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2503,8 +1172,8 @@ void ktx_add_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2513,8 +1182,8 @@ void ktx_add_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2523,8 +1192,8 @@ void ktx_add_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2533,8 +1202,8 @@ void ktx_add_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 + temp2);	
 }
@@ -2543,8 +1212,8 @@ void ktx_add_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2553,8 +1222,8 @@ void ktx_add_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2563,8 +1232,8 @@ void ktx_add_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2573,8 +1242,8 @@ void ktx_add_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2583,8 +1252,8 @@ void ktx_add_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2593,8 +1262,8 @@ void ktx_add_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 + temp2);	
 }
@@ -2603,8 +1272,8 @@ void ktx_add_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2613,8 +1282,8 @@ void ktx_add_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2623,8 +1292,8 @@ void ktx_add_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2633,8 +1302,8 @@ void ktx_add_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2643,8 +1312,8 @@ void ktx_add_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 + temp2);	
 }
@@ -2653,8 +1322,8 @@ void ktx_add_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2663,8 +1332,8 @@ void ktx_add_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2673,8 +1342,8 @@ void ktx_add_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2683,8 +1352,8 @@ void ktx_add_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 + temp2);	
 }
@@ -2693,8 +1362,8 @@ void ktx_add_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2703,8 +1372,8 @@ void ktx_add_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2713,8 +1382,8 @@ void ktx_add_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 + temp2);	
 }
@@ -2723,8 +1392,8 @@ void ktx_add_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2733,8 +1402,8 @@ void ktx_add_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 + temp2);	
 }
@@ -2743,8 +1412,8 @@ void ktx_mul_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 * temp2);	
 }
@@ -2753,8 +1422,8 @@ void ktx_mul_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 * temp2);	
 }
@@ -2763,8 +1432,8 @@ void ktx_mul_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 * temp2);	
 }
@@ -2773,8 +1442,8 @@ void ktx_mul_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 * temp2);	
 }
@@ -2783,8 +1452,8 @@ void ktx_mul_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 * temp2);	
 }
@@ -2793,8 +1462,8 @@ void ktx_mul_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 * temp2);	
 }
@@ -2803,8 +1472,8 @@ void ktx_mul_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -2813,8 +1482,8 @@ void ktx_mul_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -2823,8 +1492,8 @@ void ktx_mul_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -2833,8 +1502,8 @@ void ktx_mul_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -2843,8 +1512,8 @@ void ktx_mul_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -2853,8 +1522,8 @@ void ktx_mul_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 * temp2);	
 }
@@ -2863,8 +1532,8 @@ void ktx_mul_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 * temp2);	
 }
@@ -2873,8 +1542,8 @@ void ktx_mul_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 * temp2);	
 }
@@ -2883,8 +1552,8 @@ void ktx_mul_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 * temp2);	
 }
@@ -2893,8 +1562,8 @@ void ktx_mul_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 * temp2);	
 }
@@ -2903,8 +1572,8 @@ void ktx_mul_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -2913,8 +1582,8 @@ void ktx_mul_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -2923,8 +1592,8 @@ void ktx_mul_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -2933,8 +1602,8 @@ void ktx_mul_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -2943,8 +1612,8 @@ void ktx_mul_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -2953,8 +1622,8 @@ void ktx_mul_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 * temp2);	
 }
@@ -2963,8 +1632,8 @@ void ktx_mul_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 * temp2);	
 }
@@ -2973,8 +1642,8 @@ void ktx_mul_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 * temp2);	
 }
@@ -2983,8 +1652,8 @@ void ktx_mul_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 * temp2);	
 }
@@ -2993,8 +1662,8 @@ void ktx_mul_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -3003,8 +1672,8 @@ void ktx_mul_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -3013,8 +1682,8 @@ void ktx_mul_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3023,8 +1692,8 @@ void ktx_mul_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3033,8 +1702,8 @@ void ktx_mul_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3043,8 +1712,8 @@ void ktx_mul_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 * temp2);	
 }
@@ -3053,8 +1722,8 @@ void ktx_mul_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 * temp2);	
 }
@@ -3063,8 +1732,8 @@ void ktx_mul_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 * temp2);	
 }
@@ -3073,8 +1742,8 @@ void ktx_mul_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -3083,8 +1752,8 @@ void ktx_mul_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -3093,8 +1762,8 @@ void ktx_mul_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3103,8 +1772,8 @@ void ktx_mul_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3113,8 +1782,8 @@ void ktx_mul_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3123,8 +1792,8 @@ void ktx_mul_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 * temp2);	
 }
@@ -3133,8 +1802,8 @@ void ktx_mul_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 * temp2);	
 }
@@ -3143,8 +1812,8 @@ void ktx_mul_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -3153,8 +1822,8 @@ void ktx_mul_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -3163,8 +1832,8 @@ void ktx_mul_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3173,8 +1842,8 @@ void ktx_mul_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3183,8 +1852,8 @@ void ktx_mul_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3193,8 +1862,8 @@ void ktx_mul_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 * temp2);	
 }
@@ -3203,8 +1872,8 @@ void ktx_mul_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -3213,8 +1882,8 @@ void ktx_mul_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -3223,8 +1892,8 @@ void ktx_mul_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3233,8 +1902,8 @@ void ktx_mul_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3243,8 +1912,8 @@ void ktx_mul_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3253,8 +1922,8 @@ void ktx_mul_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 * temp2);	
 }
@@ -3263,8 +1932,8 @@ void ktx_mul_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -3273,8 +1942,8 @@ void ktx_mul_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3283,8 +1952,8 @@ void ktx_mul_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3293,8 +1962,8 @@ void ktx_mul_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3303,8 +1972,8 @@ void ktx_mul_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 * temp2);	
 }
@@ -3313,8 +1982,8 @@ void ktx_mul_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3323,8 +1992,8 @@ void ktx_mul_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3333,8 +2002,8 @@ void ktx_mul_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3343,8 +2012,8 @@ void ktx_mul_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 * temp2);	
 }
@@ -3353,8 +2022,8 @@ void ktx_mul_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3363,8 +2032,8 @@ void ktx_mul_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3373,8 +2042,8 @@ void ktx_mul_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 * temp2);	
 }
@@ -3383,8 +2052,8 @@ void ktx_mul_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3393,8 +2062,8 @@ void ktx_mul_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 * temp2);	
 }
@@ -3403,8 +2072,8 @@ void ktx_sub_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3413,8 +2082,8 @@ void ktx_sub_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3423,8 +2092,8 @@ void ktx_sub_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3433,8 +2102,8 @@ void ktx_sub_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -3443,8 +2112,8 @@ void ktx_sub_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -3453,8 +2122,8 @@ void ktx_sub_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -3463,8 +2132,8 @@ void ktx_sub_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -3473,8 +2142,8 @@ void ktx_sub_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -3483,8 +2152,8 @@ void ktx_sub_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -3493,8 +2162,8 @@ void ktx_sub_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -3503,8 +2172,8 @@ void ktx_sub_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -3513,8 +2182,8 @@ void ktx_sub_uc_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3523,8 +2192,8 @@ void ktx_sub_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3533,8 +2202,8 @@ void ktx_sub_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3543,8 +2212,8 @@ void ktx_sub_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -3553,8 +2222,8 @@ void ktx_sub_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -3563,8 +2232,8 @@ void ktx_sub_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -3573,8 +2242,8 @@ void ktx_sub_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -3583,8 +2252,8 @@ void ktx_sub_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -3593,8 +2262,8 @@ void ktx_sub_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -3603,8 +2272,8 @@ void ktx_sub_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -3613,8 +2282,8 @@ void ktx_sub_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -3623,8 +2292,8 @@ void ktx_sub_i_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -3633,8 +2302,8 @@ void ktx_sub_i_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -3643,8 +2312,8 @@ void ktx_sub_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3653,8 +2322,8 @@ void ktx_sub_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -3663,8 +2332,8 @@ void ktx_sub_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -3673,8 +2342,8 @@ void ktx_sub_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -3683,8 +2352,8 @@ void ktx_sub_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -3693,8 +2362,8 @@ void ktx_sub_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -3703,8 +2372,8 @@ void ktx_sub_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -3713,8 +2382,8 @@ void ktx_sub_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -3723,8 +2392,8 @@ void ktx_sub_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -3733,8 +2402,8 @@ void ktx_sub_ui_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -3743,8 +2412,8 @@ void ktx_sub_ui_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -3753,8 +2422,8 @@ void ktx_sub_ui_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3763,8 +2432,8 @@ void ktx_sub_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -3773,8 +2442,8 @@ void ktx_sub_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -3783,8 +2452,8 @@ void ktx_sub_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -3793,8 +2462,8 @@ void ktx_sub_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -3803,8 +2472,8 @@ void ktx_sub_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -3813,8 +2482,8 @@ void ktx_sub_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -3823,8 +2492,8 @@ void ktx_sub_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -3833,8 +2502,8 @@ void ktx_sub_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -3843,8 +2512,8 @@ void ktx_sub_li_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -3853,8 +2522,8 @@ void ktx_sub_li_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -3863,8 +2532,8 @@ void ktx_sub_li_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3873,8 +2542,8 @@ void ktx_sub_li_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -3883,8 +2552,8 @@ void ktx_sub_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -3893,8 +2562,8 @@ void ktx_sub_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -3903,8 +2572,8 @@ void ktx_sub_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -3913,8 +2582,8 @@ void ktx_sub_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -3923,8 +2592,8 @@ void ktx_sub_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -3933,8 +2602,8 @@ void ktx_sub_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -3943,8 +2612,8 @@ void ktx_sub_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -3953,8 +2622,8 @@ void ktx_sub_uli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -3963,8 +2632,8 @@ void ktx_sub_uli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -3973,8 +2642,8 @@ void ktx_sub_uli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -3983,8 +2652,8 @@ void ktx_sub_uli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -3993,8 +2662,8 @@ void ktx_sub_uli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -4003,8 +2672,8 @@ void ktx_sub_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -4013,8 +2682,8 @@ void ktx_sub_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -4023,8 +2692,8 @@ void ktx_sub_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -4033,8 +2702,8 @@ void ktx_sub_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -4043,8 +2712,8 @@ void ktx_sub_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -4053,8 +2722,8 @@ void ktx_sub_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -4063,8 +2732,8 @@ void ktx_sub_lli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -4073,8 +2742,8 @@ void ktx_sub_lli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -4083,8 +2752,8 @@ void ktx_sub_lli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -4093,8 +2762,8 @@ void ktx_sub_lli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -4103,8 +2772,8 @@ void ktx_sub_lli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -4113,8 +2782,8 @@ void ktx_sub_lli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -4123,8 +2792,8 @@ void ktx_sub_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -4133,8 +2802,8 @@ void ktx_sub_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -4143,8 +2812,8 @@ void ktx_sub_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -4153,8 +2822,8 @@ void ktx_sub_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -4163,8 +2832,8 @@ void ktx_sub_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -4173,8 +2842,8 @@ void ktx_sub_ulli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -4183,8 +2852,8 @@ void ktx_sub_ulli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -4193,8 +2862,8 @@ void ktx_sub_ulli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -4203,8 +2872,8 @@ void ktx_sub_ulli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -4213,8 +2882,8 @@ void ktx_sub_ulli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -4223,8 +2892,8 @@ void ktx_sub_ulli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -4233,8 +2902,8 @@ void ktx_sub_ulli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -4243,8 +2912,8 @@ void ktx_sub_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -4253,8 +2922,8 @@ void ktx_sub_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -4263,8 +2932,8 @@ void ktx_sub_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -4273,8 +2942,8 @@ void ktx_sub_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -4283,8 +2952,8 @@ void ktx_sub_f_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -4293,8 +2962,8 @@ void ktx_sub_f_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -4303,8 +2972,8 @@ void ktx_sub_f_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -4313,8 +2982,8 @@ void ktx_sub_f_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -4323,8 +2992,8 @@ void ktx_sub_f_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -4333,8 +3002,8 @@ void ktx_sub_f_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -4343,8 +3012,8 @@ void ktx_sub_f_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -4353,8 +3022,8 @@ void ktx_sub_f_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -4363,8 +3032,8 @@ void ktx_sub_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -4373,8 +3042,8 @@ void ktx_sub_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -4383,8 +3052,8 @@ void ktx_sub_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -4393,8 +3062,8 @@ void ktx_sub_d_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -4403,8 +3072,8 @@ void ktx_sub_d_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -4413,8 +3082,8 @@ void ktx_sub_d_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -4423,8 +3092,8 @@ void ktx_sub_d_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -4433,8 +3102,8 @@ void ktx_sub_d_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -4443,8 +3112,8 @@ void ktx_sub_d_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -4453,8 +3122,8 @@ void ktx_sub_d_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -4463,8 +3132,8 @@ void ktx_sub_d_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -4473,8 +3142,8 @@ void ktx_sub_d_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -4483,8 +3152,8 @@ void ktx_sub_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -4493,8 +3162,8 @@ void ktx_sub_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -4503,8 +3172,8 @@ void ktx_sub_ld_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 - temp2);	
 }
@@ -4513,8 +3182,8 @@ void ktx_sub_ld_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 - temp2);	
 }
@@ -4523,8 +3192,8 @@ void ktx_sub_ld_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 - temp2);	
 }
@@ -4533,8 +3202,8 @@ void ktx_sub_ld_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 - temp2);	
 }
@@ -4543,8 +3212,8 @@ void ktx_sub_ld_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 - temp2);	
 }
@@ -4553,8 +3222,8 @@ void ktx_sub_ld_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 - temp2);	
 }
@@ -4563,8 +3232,8 @@ void ktx_sub_ld_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 - temp2);	
 }
@@ -4573,8 +3242,8 @@ void ktx_sub_ld_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 - temp2);	
 }
@@ -4583,8 +3252,8 @@ void ktx_sub_ld_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 - temp2);	
 }
@@ -4593,8 +3262,8 @@ void ktx_sub_ld_d(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 - temp2);	
 }
@@ -4603,8 +3272,8 @@ void ktx_sub_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 - temp2);	
 }
@@ -4613,8 +3282,8 @@ void ktx_div_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4623,8 +3292,8 @@ void ktx_div_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4633,8 +3302,8 @@ void ktx_div_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4643,8 +3312,8 @@ void ktx_div_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -4653,8 +3322,8 @@ void ktx_div_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -4663,8 +3332,8 @@ void ktx_div_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -4673,8 +3342,8 @@ void ktx_div_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -4683,8 +3352,8 @@ void ktx_div_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -4693,8 +3362,8 @@ void ktx_div_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -4703,8 +3372,8 @@ void ktx_div_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -4713,8 +3382,8 @@ void ktx_div_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -4723,8 +3392,8 @@ void ktx_div_uc_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4733,8 +3402,8 @@ void ktx_div_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4743,8 +3412,8 @@ void ktx_div_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4753,8 +3422,8 @@ void ktx_div_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -4763,8 +3432,8 @@ void ktx_div_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -4773,8 +3442,8 @@ void ktx_div_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -4783,8 +3452,8 @@ void ktx_div_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -4793,8 +3462,8 @@ void ktx_div_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -4803,8 +3472,8 @@ void ktx_div_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -4813,8 +3482,8 @@ void ktx_div_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -4823,8 +3492,8 @@ void ktx_div_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -4833,8 +3502,8 @@ void ktx_div_i_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -4843,8 +3512,8 @@ void ktx_div_i_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -4853,8 +3522,8 @@ void ktx_div_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4863,8 +3532,8 @@ void ktx_div_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -4873,8 +3542,8 @@ void ktx_div_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -4883,8 +3552,8 @@ void ktx_div_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -4893,8 +3562,8 @@ void ktx_div_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -4903,8 +3572,8 @@ void ktx_div_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -4913,8 +3582,8 @@ void ktx_div_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -4923,8 +3592,8 @@ void ktx_div_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -4933,8 +3602,8 @@ void ktx_div_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -4943,8 +3612,8 @@ void ktx_div_ui_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -4953,8 +3622,8 @@ void ktx_div_ui_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -4963,8 +3632,8 @@ void ktx_div_ui_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -4973,8 +3642,8 @@ void ktx_div_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -4983,8 +3652,8 @@ void ktx_div_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -4993,8 +3662,8 @@ void ktx_div_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5003,8 +3672,8 @@ void ktx_div_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5013,8 +3682,8 @@ void ktx_div_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5023,8 +3692,8 @@ void ktx_div_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5033,8 +3702,8 @@ void ktx_div_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5043,8 +3712,8 @@ void ktx_div_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5053,8 +3722,8 @@ void ktx_div_li_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5063,8 +3732,8 @@ void ktx_div_li_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5073,8 +3742,8 @@ void ktx_div_li_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5083,8 +3752,8 @@ void ktx_div_li_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5093,8 +3762,8 @@ void ktx_div_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5103,8 +3772,8 @@ void ktx_div_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5113,8 +3782,8 @@ void ktx_div_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5123,8 +3792,8 @@ void ktx_div_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5133,8 +3802,8 @@ void ktx_div_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5143,8 +3812,8 @@ void ktx_div_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5153,8 +3822,8 @@ void ktx_div_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5163,8 +3832,8 @@ void ktx_div_uli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5173,8 +3842,8 @@ void ktx_div_uli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5183,8 +3852,8 @@ void ktx_div_uli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5193,8 +3862,8 @@ void ktx_div_uli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5203,8 +3872,8 @@ void ktx_div_uli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5213,8 +3882,8 @@ void ktx_div_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5223,8 +3892,8 @@ void ktx_div_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5233,8 +3902,8 @@ void ktx_div_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5243,8 +3912,8 @@ void ktx_div_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5253,8 +3922,8 @@ void ktx_div_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5263,8 +3932,8 @@ void ktx_div_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5273,8 +3942,8 @@ void ktx_div_lli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5283,8 +3952,8 @@ void ktx_div_lli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5293,8 +3962,8 @@ void ktx_div_lli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5303,8 +3972,8 @@ void ktx_div_lli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5313,8 +3982,8 @@ void ktx_div_lli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5323,8 +3992,8 @@ void ktx_div_lli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5333,8 +4002,8 @@ void ktx_div_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5343,8 +4012,8 @@ void ktx_div_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5353,8 +4022,8 @@ void ktx_div_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5363,8 +4032,8 @@ void ktx_div_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5373,8 +4042,8 @@ void ktx_div_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5383,8 +4052,8 @@ void ktx_div_ulli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5393,8 +4062,8 @@ void ktx_div_ulli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5403,8 +4072,8 @@ void ktx_div_ulli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5413,8 +4082,8 @@ void ktx_div_ulli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5423,8 +4092,8 @@ void ktx_div_ulli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5433,8 +4102,8 @@ void ktx_div_ulli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5443,8 +4112,8 @@ void ktx_div_ulli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5453,8 +4122,8 @@ void ktx_div_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5463,8 +4132,8 @@ void ktx_div_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5473,8 +4142,8 @@ void ktx_div_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5483,8 +4152,8 @@ void ktx_div_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5493,8 +4162,8 @@ void ktx_div_f_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5503,8 +4172,8 @@ void ktx_div_f_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5513,8 +4182,8 @@ void ktx_div_f_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5523,8 +4192,8 @@ void ktx_div_f_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5533,8 +4202,8 @@ void ktx_div_f_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5543,8 +4212,8 @@ void ktx_div_f_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5553,8 +4222,8 @@ void ktx_div_f_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5563,8 +4232,8 @@ void ktx_div_f_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5573,8 +4242,8 @@ void ktx_div_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5583,8 +4252,8 @@ void ktx_div_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5593,8 +4262,8 @@ void ktx_div_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5603,8 +4272,8 @@ void ktx_div_d_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5613,8 +4282,8 @@ void ktx_div_d_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5623,8 +4292,8 @@ void ktx_div_d_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5633,8 +4302,8 @@ void ktx_div_d_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5643,8 +4312,8 @@ void ktx_div_d_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5653,8 +4322,8 @@ void ktx_div_d_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5663,8 +4332,8 @@ void ktx_div_d_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5673,8 +4342,8 @@ void ktx_div_d_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5683,8 +4352,8 @@ void ktx_div_d_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5693,8 +4362,8 @@ void ktx_div_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5703,8 +4372,8 @@ void ktx_div_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5713,8 +4382,8 @@ void ktx_div_ld_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 / temp2);	
 }
@@ -5723,8 +4392,8 @@ void ktx_div_ld_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 / temp2);	
 }
@@ -5733,8 +4402,8 @@ void ktx_div_ld_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 / temp2);	
 }
@@ -5743,8 +4412,8 @@ void ktx_div_ld_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 / temp2);	
 }
@@ -5753,8 +4422,8 @@ void ktx_div_ld_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 / temp2);	
 }
@@ -5763,8 +4432,8 @@ void ktx_div_ld_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 / temp2);	
 }
@@ -5773,8 +4442,8 @@ void ktx_div_ld_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 / temp2);	
 }
@@ -5783,8 +4452,8 @@ void ktx_div_ld_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 / temp2);	
 }
@@ -5793,8 +4462,8 @@ void ktx_div_ld_f(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.f =  (temp1 / temp2);	
 }
@@ -5803,8 +4472,8 @@ void ktx_div_ld_d(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.d =  (temp1 / temp2);	
 }
@@ -5813,8 +4482,8 @@ void ktx_div_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.ld =  (temp1 / temp2);	
 }
@@ -5823,8 +4492,8 @@ void ktx_mod_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -5833,8 +4502,8 @@ void ktx_mod_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -5843,8 +4512,8 @@ void ktx_mod_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -5853,8 +4522,8 @@ void ktx_mod_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -5863,8 +4532,8 @@ void ktx_mod_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -5873,8 +4542,8 @@ void ktx_mod_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -5883,8 +4552,8 @@ void ktx_mod_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -5893,8 +4562,8 @@ void ktx_mod_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -5903,8 +4572,8 @@ void ktx_mod_uc_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -5913,8 +4582,8 @@ void ktx_mod_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -5923,8 +4592,8 @@ void ktx_mod_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -5933,8 +4602,8 @@ void ktx_mod_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -5943,8 +4612,8 @@ void ktx_mod_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -5953,8 +4622,8 @@ void ktx_mod_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -5963,8 +4632,8 @@ void ktx_mod_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -5973,8 +4642,8 @@ void ktx_mod_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -5983,8 +4652,8 @@ void ktx_mod_i_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 % temp2);	
 }
@@ -5993,8 +4662,8 @@ void ktx_mod_i_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 % temp2);	
 }
@@ -6003,8 +4672,8 @@ void ktx_mod_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -6013,8 +4682,8 @@ void ktx_mod_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -6023,8 +4692,8 @@ void ktx_mod_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -6033,8 +4702,8 @@ void ktx_mod_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -6043,8 +4712,8 @@ void ktx_mod_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -6053,8 +4722,8 @@ void ktx_mod_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -6063,8 +4732,8 @@ void ktx_mod_ui_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 % temp2);	
 }
@@ -6073,8 +4742,8 @@ void ktx_mod_ui_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 % temp2);	
 }
@@ -6083,8 +4752,8 @@ void ktx_mod_ui_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -6093,8 +4762,8 @@ void ktx_mod_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -6103,8 +4772,8 @@ void ktx_mod_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -6113,8 +4782,8 @@ void ktx_mod_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -6123,8 +4792,8 @@ void ktx_mod_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -6133,8 +4802,8 @@ void ktx_mod_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -6143,8 +4812,8 @@ void ktx_mod_li_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 % temp2);	
 }
@@ -6153,8 +4822,8 @@ void ktx_mod_li_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 % temp2);	
 }
@@ -6163,8 +4832,8 @@ void ktx_mod_li_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -6173,8 +4842,8 @@ void ktx_mod_li_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -6183,8 +4852,8 @@ void ktx_mod_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -6193,8 +4862,8 @@ void ktx_mod_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -6203,8 +4872,8 @@ void ktx_mod_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -6213,8 +4882,8 @@ void ktx_mod_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -6223,8 +4892,8 @@ void ktx_mod_uli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 % temp2);	
 }
@@ -6233,8 +4902,8 @@ void ktx_mod_uli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 % temp2);	
 }
@@ -6243,8 +4912,8 @@ void ktx_mod_uli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -6253,8 +4922,8 @@ void ktx_mod_uli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -6263,8 +4932,8 @@ void ktx_mod_uli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -6273,8 +4942,8 @@ void ktx_mod_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -6283,8 +4952,8 @@ void ktx_mod_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -6293,8 +4962,8 @@ void ktx_mod_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -6303,8 +4972,8 @@ void ktx_mod_lli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 % temp2);	
 }
@@ -6313,8 +4982,8 @@ void ktx_mod_lli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 % temp2);	
 }
@@ -6323,8 +4992,8 @@ void ktx_mod_lli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -6333,8 +5002,8 @@ void ktx_mod_lli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -6343,8 +5012,8 @@ void ktx_mod_lli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -6353,8 +5022,8 @@ void ktx_mod_lli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -6363,8 +5032,8 @@ void ktx_mod_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -6373,8 +5042,8 @@ void ktx_mod_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, b->dt , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -6383,8 +5052,8 @@ void ktx_mod_ulli_c(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.c =  (temp1 % temp2);	
 }
@@ -6393,8 +5062,8 @@ void ktx_mod_ulli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.uc =  (temp1 % temp2);	
 }
@@ -6403,8 +5072,8 @@ void ktx_mod_ulli_i(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 % temp2);	
 }
@@ -6413,8 +5082,8 @@ void ktx_mod_ulli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ui =  (temp1 % temp2);	
 }
@@ -6423,8 +5092,8 @@ void ktx_mod_ulli_li(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.li =  (temp1 % temp2);	
 }
@@ -6433,8 +5102,8 @@ void ktx_mod_ulli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.uli =  (temp1 % temp2);	
 }
@@ -6443,8 +5112,8 @@ void ktx_mod_ulli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.lli =  (temp1 % temp2);	
 }
@@ -6453,8 +5122,8 @@ void ktx_mod_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, a->dt , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.ulli =  (temp1 % temp2);	
 }
@@ -6463,8 +5132,8 @@ void ktx_eq_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6473,8 +5142,8 @@ void ktx_eq_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6483,8 +5152,8 @@ void ktx_eq_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6493,8 +5162,8 @@ void ktx_eq_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6503,8 +5172,8 @@ void ktx_eq_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6513,8 +5182,8 @@ void ktx_eq_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6523,8 +5192,8 @@ void ktx_eq_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6533,8 +5202,8 @@ void ktx_eq_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6543,8 +5212,8 @@ void ktx_eq_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6553,8 +5222,8 @@ void ktx_eq_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6563,8 +5232,8 @@ void ktx_eq_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6573,8 +5242,8 @@ void ktx_eq_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6583,8 +5252,8 @@ void ktx_eq_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6593,8 +5262,8 @@ void ktx_eq_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6603,8 +5272,8 @@ void ktx_eq_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6613,8 +5282,8 @@ void ktx_eq_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6623,8 +5292,8 @@ void ktx_eq_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6633,8 +5302,8 @@ void ktx_eq_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6643,8 +5312,8 @@ void ktx_eq_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6653,8 +5322,8 @@ void ktx_eq_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6663,8 +5332,8 @@ void ktx_eq_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6673,8 +5342,8 @@ void ktx_eq_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6683,8 +5352,8 @@ void ktx_eq_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6693,8 +5362,8 @@ void ktx_eq_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6703,8 +5372,8 @@ void ktx_eq_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6713,8 +5382,8 @@ void ktx_eq_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6723,8 +5392,8 @@ void ktx_eq_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6733,8 +5402,8 @@ void ktx_eq_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6743,8 +5412,8 @@ void ktx_eq_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6753,8 +5422,8 @@ void ktx_eq_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6763,8 +5432,8 @@ void ktx_eq_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6773,8 +5442,8 @@ void ktx_eq_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6783,8 +5452,8 @@ void ktx_eq_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6793,8 +5462,8 @@ void ktx_eq_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6803,8 +5472,8 @@ void ktx_eq_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6813,8 +5482,8 @@ void ktx_eq_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6823,8 +5492,8 @@ void ktx_eq_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6833,8 +5502,8 @@ void ktx_eq_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6843,8 +5512,8 @@ void ktx_eq_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6853,8 +5522,8 @@ void ktx_eq_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6863,8 +5532,8 @@ void ktx_eq_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6873,8 +5542,8 @@ void ktx_eq_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6883,8 +5552,8 @@ void ktx_eq_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6893,8 +5562,8 @@ void ktx_eq_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6903,8 +5572,8 @@ void ktx_eq_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6913,8 +5582,8 @@ void ktx_eq_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6923,8 +5592,8 @@ void ktx_eq_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6933,8 +5602,8 @@ void ktx_eq_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6943,8 +5612,8 @@ void ktx_eq_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6953,8 +5622,8 @@ void ktx_eq_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6963,8 +5632,8 @@ void ktx_eq_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6973,8 +5642,8 @@ void ktx_eq_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6983,8 +5652,8 @@ void ktx_eq_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -6993,8 +5662,8 @@ void ktx_eq_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7003,8 +5672,8 @@ void ktx_eq_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7013,8 +5682,8 @@ void ktx_eq_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7023,8 +5692,8 @@ void ktx_eq_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7033,8 +5702,8 @@ void ktx_eq_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7043,8 +5712,8 @@ void ktx_eq_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7053,8 +5722,8 @@ void ktx_eq_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7063,8 +5732,8 @@ void ktx_eq_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7073,8 +5742,8 @@ void ktx_eq_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7083,8 +5752,8 @@ void ktx_eq_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7093,8 +5762,8 @@ void ktx_eq_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7103,8 +5772,8 @@ void ktx_eq_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7113,8 +5782,8 @@ void ktx_eq_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 == temp2);	
 }
@@ -7123,8 +5792,8 @@ void ktx_lt_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7133,8 +5802,8 @@ void ktx_lt_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7143,8 +5812,8 @@ void ktx_lt_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7153,8 +5822,8 @@ void ktx_lt_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7163,8 +5832,8 @@ void ktx_lt_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7173,8 +5842,8 @@ void ktx_lt_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7183,8 +5852,8 @@ void ktx_lt_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7193,8 +5862,8 @@ void ktx_lt_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7203,8 +5872,8 @@ void ktx_lt_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7213,8 +5882,8 @@ void ktx_lt_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7223,8 +5892,8 @@ void ktx_lt_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7233,8 +5902,8 @@ void ktx_lt_uc_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7243,8 +5912,8 @@ void ktx_lt_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7253,8 +5922,8 @@ void ktx_lt_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7263,8 +5932,8 @@ void ktx_lt_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7273,8 +5942,8 @@ void ktx_lt_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7283,8 +5952,8 @@ void ktx_lt_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7293,8 +5962,8 @@ void ktx_lt_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7303,8 +5972,8 @@ void ktx_lt_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7313,8 +5982,8 @@ void ktx_lt_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7323,8 +5992,8 @@ void ktx_lt_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7333,8 +6002,8 @@ void ktx_lt_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7343,8 +6012,8 @@ void ktx_lt_i_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7353,8 +6022,8 @@ void ktx_lt_i_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7363,8 +6032,8 @@ void ktx_lt_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7373,8 +6042,8 @@ void ktx_lt_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7383,8 +6052,8 @@ void ktx_lt_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7393,8 +6062,8 @@ void ktx_lt_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7403,8 +6072,8 @@ void ktx_lt_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7413,8 +6082,8 @@ void ktx_lt_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7423,8 +6092,8 @@ void ktx_lt_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7433,8 +6102,8 @@ void ktx_lt_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7443,8 +6112,8 @@ void ktx_lt_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7453,8 +6122,8 @@ void ktx_lt_ui_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7463,8 +6132,8 @@ void ktx_lt_ui_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7473,8 +6142,8 @@ void ktx_lt_ui_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7483,8 +6152,8 @@ void ktx_lt_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7493,8 +6162,8 @@ void ktx_lt_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7503,8 +6172,8 @@ void ktx_lt_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7513,8 +6182,8 @@ void ktx_lt_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7523,8 +6192,8 @@ void ktx_lt_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7533,8 +6202,8 @@ void ktx_lt_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7543,8 +6212,8 @@ void ktx_lt_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7553,8 +6222,8 @@ void ktx_lt_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7563,8 +6232,8 @@ void ktx_lt_li_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7573,8 +6242,8 @@ void ktx_lt_li_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7583,8 +6252,8 @@ void ktx_lt_li_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7593,8 +6262,8 @@ void ktx_lt_li_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7603,8 +6272,8 @@ void ktx_lt_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7613,8 +6282,8 @@ void ktx_lt_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7623,8 +6292,8 @@ void ktx_lt_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7633,8 +6302,8 @@ void ktx_lt_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7643,8 +6312,8 @@ void ktx_lt_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7653,8 +6322,8 @@ void ktx_lt_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7663,8 +6332,8 @@ void ktx_lt_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7673,8 +6342,8 @@ void ktx_lt_uli_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7683,8 +6352,8 @@ void ktx_lt_uli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7693,8 +6362,8 @@ void ktx_lt_uli_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7703,8 +6372,8 @@ void ktx_lt_uli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7713,8 +6382,8 @@ void ktx_lt_uli_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7723,8 +6392,8 @@ void ktx_lt_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7733,8 +6402,8 @@ void ktx_lt_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7743,8 +6412,8 @@ void ktx_lt_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7753,8 +6422,8 @@ void ktx_lt_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7763,8 +6432,8 @@ void ktx_lt_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7773,8 +6442,8 @@ void ktx_lt_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7783,8 +6452,8 @@ void ktx_lt_lli_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7793,8 +6462,8 @@ void ktx_lt_lli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7803,8 +6472,8 @@ void ktx_lt_lli_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7813,8 +6482,8 @@ void ktx_lt_lli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7823,8 +6492,8 @@ void ktx_lt_lli_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7833,8 +6502,8 @@ void ktx_lt_lli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7843,8 +6512,8 @@ void ktx_lt_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7853,8 +6522,8 @@ void ktx_lt_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7863,8 +6532,8 @@ void ktx_lt_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7873,8 +6542,8 @@ void ktx_lt_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7883,8 +6552,8 @@ void ktx_lt_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7893,8 +6562,8 @@ void ktx_lt_ulli_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7903,8 +6572,8 @@ void ktx_lt_ulli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7913,8 +6582,8 @@ void ktx_lt_ulli_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7923,8 +6592,8 @@ void ktx_lt_ulli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7933,8 +6602,8 @@ void ktx_lt_ulli_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7943,8 +6612,8 @@ void ktx_lt_ulli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7953,8 +6622,8 @@ void ktx_lt_ulli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7963,8 +6632,8 @@ void ktx_lt_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7973,8 +6642,8 @@ void ktx_lt_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7983,8 +6652,8 @@ void ktx_lt_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -7993,8 +6662,8 @@ void ktx_lt_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8003,8 +6672,8 @@ void ktx_lt_f_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8013,8 +6682,8 @@ void ktx_lt_f_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8023,8 +6692,8 @@ void ktx_lt_f_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8033,8 +6702,8 @@ void ktx_lt_f_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8043,8 +6712,8 @@ void ktx_lt_f_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8053,8 +6722,8 @@ void ktx_lt_f_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8063,8 +6732,8 @@ void ktx_lt_f_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8073,8 +6742,8 @@ void ktx_lt_f_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8083,8 +6752,8 @@ void ktx_lt_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8093,8 +6762,8 @@ void ktx_lt_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8103,8 +6772,8 @@ void ktx_lt_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8113,8 +6782,8 @@ void ktx_lt_d_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8123,8 +6792,8 @@ void ktx_lt_d_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8133,8 +6802,8 @@ void ktx_lt_d_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8143,8 +6812,8 @@ void ktx_lt_d_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8153,8 +6822,8 @@ void ktx_lt_d_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8163,8 +6832,8 @@ void ktx_lt_d_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8173,8 +6842,8 @@ void ktx_lt_d_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8183,8 +6852,8 @@ void ktx_lt_d_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8193,8 +6862,8 @@ void ktx_lt_d_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8203,8 +6872,8 @@ void ktx_lt_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8213,8 +6882,8 @@ void ktx_lt_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8223,8 +6892,8 @@ void ktx_lt_ld_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8233,8 +6902,8 @@ void ktx_lt_ld_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8243,8 +6912,8 @@ void ktx_lt_ld_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8253,8 +6922,8 @@ void ktx_lt_ld_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8263,8 +6932,8 @@ void ktx_lt_ld_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8273,8 +6942,8 @@ void ktx_lt_ld_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8283,8 +6952,8 @@ void ktx_lt_ld_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8293,8 +6962,8 @@ void ktx_lt_ld_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8303,8 +6972,8 @@ void ktx_lt_ld_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8313,8 +6982,8 @@ void ktx_lt_ld_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8323,8 +6992,8 @@ void ktx_lt_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 < temp2);	
 }
@@ -8333,8 +7002,8 @@ void ktx_gt_c_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8343,8 +7012,8 @@ void ktx_gt_c_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8353,8 +7022,8 @@ void ktx_gt_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8363,8 +7032,8 @@ void ktx_gt_c_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8373,8 +7042,8 @@ void ktx_gt_c_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8383,8 +7052,8 @@ void ktx_gt_c_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8393,8 +7062,8 @@ void ktx_gt_c_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8403,8 +7072,8 @@ void ktx_gt_c_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8413,8 +7082,8 @@ void ktx_gt_c_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8423,8 +7092,8 @@ void ktx_gt_c_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8433,8 +7102,8 @@ void ktx_gt_c_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	char temp1=a->data.u.c;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8443,8 +7112,8 @@ void ktx_gt_uc_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8453,8 +7122,8 @@ void ktx_gt_uc_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8463,8 +7132,8 @@ void ktx_gt_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8473,8 +7142,8 @@ void ktx_gt_uc_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8483,8 +7152,8 @@ void ktx_gt_uc_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8493,8 +7162,8 @@ void ktx_gt_uc_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8503,8 +7172,8 @@ void ktx_gt_uc_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8513,8 +7182,8 @@ void ktx_gt_uc_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8523,8 +7192,8 @@ void ktx_gt_uc_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8533,8 +7202,8 @@ void ktx_gt_uc_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8543,8 +7212,8 @@ void ktx_gt_uc_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned char temp1=a->data.u.uc;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned char *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned char *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8553,8 +7222,8 @@ void ktx_gt_i_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8563,8 +7232,8 @@ void ktx_gt_i_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8573,8 +7242,8 @@ void ktx_gt_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8583,8 +7252,8 @@ void ktx_gt_i_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8593,8 +7262,8 @@ void ktx_gt_i_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8603,8 +7272,8 @@ void ktx_gt_i_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8613,8 +7282,8 @@ void ktx_gt_i_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8623,8 +7292,8 @@ void ktx_gt_i_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8633,8 +7302,8 @@ void ktx_gt_i_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8643,8 +7312,8 @@ void ktx_gt_i_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8653,8 +7322,8 @@ void ktx_gt_i_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	int temp1=a->data.u.i;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8663,8 +7332,8 @@ void ktx_gt_ui_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8673,8 +7342,8 @@ void ktx_gt_ui_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8683,8 +7352,8 @@ void ktx_gt_ui_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8693,8 +7362,8 @@ void ktx_gt_ui_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8703,8 +7372,8 @@ void ktx_gt_ui_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8713,8 +7382,8 @@ void ktx_gt_ui_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8723,8 +7392,8 @@ void ktx_gt_ui_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8733,8 +7402,8 @@ void ktx_gt_ui_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8743,8 +7412,8 @@ void ktx_gt_ui_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8753,8 +7422,8 @@ void ktx_gt_ui_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8763,8 +7432,8 @@ void ktx_gt_ui_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned int temp1=a->data.u.ui;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8773,8 +7442,8 @@ void ktx_gt_li_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8783,8 +7452,8 @@ void ktx_gt_li_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8793,8 +7462,8 @@ void ktx_gt_li_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8803,8 +7472,8 @@ void ktx_gt_li_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8813,8 +7482,8 @@ void ktx_gt_li_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8823,8 +7492,8 @@ void ktx_gt_li_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8833,8 +7502,8 @@ void ktx_gt_li_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8843,8 +7512,8 @@ void ktx_gt_li_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8853,8 +7522,8 @@ void ktx_gt_li_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8863,8 +7532,8 @@ void ktx_gt_li_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8873,8 +7542,8 @@ void ktx_gt_li_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long int temp1=a->data.u.li;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8883,8 +7552,8 @@ void ktx_gt_uli_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8893,8 +7562,8 @@ void ktx_gt_uli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8903,8 +7572,8 @@ void ktx_gt_uli_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8913,8 +7582,8 @@ void ktx_gt_uli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8923,8 +7592,8 @@ void ktx_gt_uli_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8933,8 +7602,8 @@ void ktx_gt_uli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8943,8 +7612,8 @@ void ktx_gt_uli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8953,8 +7622,8 @@ void ktx_gt_uli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8963,8 +7632,8 @@ void ktx_gt_uli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8973,8 +7642,8 @@ void ktx_gt_uli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8983,8 +7652,8 @@ void ktx_gt_uli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long int temp1=a->data.u.uli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -8993,8 +7662,8 @@ void ktx_gt_lli_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9003,8 +7672,8 @@ void ktx_gt_lli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9013,8 +7682,8 @@ void ktx_gt_lli_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9023,8 +7692,8 @@ void ktx_gt_lli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9033,8 +7702,8 @@ void ktx_gt_lli_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9043,8 +7712,8 @@ void ktx_gt_lli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9053,8 +7722,8 @@ void ktx_gt_lli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9063,8 +7732,8 @@ void ktx_gt_lli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9073,8 +7742,8 @@ void ktx_gt_lli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9083,8 +7752,8 @@ void ktx_gt_lli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9093,8 +7762,8 @@ void ktx_gt_lli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long long int temp1=a->data.u.lli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9103,8 +7772,8 @@ void ktx_gt_ulli_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9113,8 +7782,8 @@ void ktx_gt_ulli_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9123,8 +7792,8 @@ void ktx_gt_ulli_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9133,8 +7802,8 @@ void ktx_gt_ulli_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9143,8 +7812,8 @@ void ktx_gt_ulli_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9153,8 +7822,8 @@ void ktx_gt_ulli_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9163,8 +7832,8 @@ void ktx_gt_ulli_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9173,8 +7842,8 @@ void ktx_gt_ulli_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9183,8 +7852,8 @@ void ktx_gt_ulli_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9193,8 +7862,8 @@ void ktx_gt_ulli_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9203,8 +7872,8 @@ void ktx_gt_ulli_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	unsigned long long int temp1=a->data.u.ulli;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((unsigned long long int *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9213,8 +7882,8 @@ void ktx_gt_f_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9223,8 +7892,8 @@ void ktx_gt_f_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9233,8 +7902,8 @@ void ktx_gt_f_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9243,8 +7912,8 @@ void ktx_gt_f_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9253,8 +7922,8 @@ void ktx_gt_f_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9263,8 +7932,8 @@ void ktx_gt_f_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9273,8 +7942,8 @@ void ktx_gt_f_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9283,8 +7952,8 @@ void ktx_gt_f_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9293,8 +7962,8 @@ void ktx_gt_f_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9303,8 +7972,8 @@ void ktx_gt_f_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9313,8 +7982,8 @@ void ktx_gt_f_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	float  temp1=a->data.u.f;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((float  *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((float  *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9323,8 +7992,8 @@ void ktx_gt_d_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9333,8 +8002,8 @@ void ktx_gt_d_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9343,8 +8012,8 @@ void ktx_gt_d_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9353,8 +8022,8 @@ void ktx_gt_d_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9363,8 +8032,8 @@ void ktx_gt_d_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9373,8 +8042,8 @@ void ktx_gt_d_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9383,8 +8052,8 @@ void ktx_gt_d_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9393,8 +8062,8 @@ void ktx_gt_d_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9403,8 +8072,8 @@ void ktx_gt_d_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9413,8 +8082,8 @@ void ktx_gt_d_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9423,8 +8092,8 @@ void ktx_gt_d_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	double temp1=a->data.u.d;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9433,8 +8102,8 @@ void ktx_gt_ld_c(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	char temp2=b->data.u.c;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9443,8 +8112,8 @@ void ktx_gt_ld_uc(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned char temp2=b->data.u.uc;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned char *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned char *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9453,8 +8122,8 @@ void ktx_gt_ld_i(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	int temp2=b->data.u.i;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9463,8 +8132,8 @@ void ktx_gt_ld_ui(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned int temp2=b->data.u.ui;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9473,8 +8142,8 @@ void ktx_gt_ld_li(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long int temp2=b->data.u.li;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9483,8 +8152,8 @@ void ktx_gt_ld_uli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long int temp2=b->data.u.uli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9493,8 +8162,8 @@ void ktx_gt_ld_lli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long long int temp2=b->data.u.lli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9503,8 +8172,8 @@ void ktx_gt_ld_ulli(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	unsigned long long int temp2=b->data.u.ulli;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((unsigned long long int *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9513,8 +8182,8 @@ void ktx_gt_ld_f(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	float  temp2=b->data.u.f;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((float  *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((float  *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9523,8 +8192,8 @@ void ktx_gt_ld_d(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	double temp2=b->data.u.d;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
@@ -9533,148 +8202,148 @@ void ktx_gt_ld_ld(variant *a, variant *b, variant *c) {
 	init_var( c, INT , 1);  //	realloc_var( c, 1);	
 	long double temp1=a->data.u.ld;
 	long double temp2=b->data.u.ld;
-	if (a->isArray) temp1= *((long double *)a->ref->data.u.a + a->offset);
-	if (b->isArray) temp2= *((long double *)b->ref->data.u.a + b->offset);
+	if (a->isArray) temp1= *((long double *)a->ref->data.a + a->offset);
+	if (b->isArray) temp2= *((long double *)b->ref->data.a + b->offset);
 	
 	c->data.u.i =  (temp1 > temp2);	
 }
 
 void ktx_inc_c_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((char *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.c ++;	
+	 (a->isArray) 
+		?	((*((char *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.c ++);	
 }
 
 void ktx_inc_uc_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned char *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.uc ++;	
+	 (a->isArray) 
+		?	((*((unsigned char *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.uc ++);	
 }
 
 void ktx_inc_i_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((int *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.i ++;	
+	 (a->isArray) 
+		?	((*((int *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.i ++);	
 }
 
 void ktx_inc_ui_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned int *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.ui ++;	
+	 (a->isArray) 
+		?	((*((unsigned int *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.ui ++);	
 }
 
 void ktx_inc_li_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((long int *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.li ++;	
+	 (a->isArray) 
+		?	((*((long int *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.li ++);	
 }
 
 void ktx_inc_uli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned long int *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.uli ++;	
+	 (a->isArray) 
+		?	((*((unsigned long int *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.uli ++);	
 }
 
 void ktx_inc_lli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((long long int *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.lli ++;	
+	 (a->isArray) 
+		?	((*((long long int *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.lli ++);	
 }
 
 void ktx_inc_ulli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned long long int *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.ulli ++;	
+	 (a->isArray) 
+		?	((*((unsigned long long int *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.ulli ++);	
 }
 
 void ktx_inc_f_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((float  *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.f ++;	
+	 (a->isArray) 
+		?	((*((float  *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.f ++);	
 }
 
 void ktx_inc_d_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((double *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.d ++;	
+	 (a->isArray) 
+		?	((*((double *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.d ++);	
 }
 
 void ktx_inc_ld_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((long double *)a->ref->data.u.a + a->offset)) ++;
-	} else 	a->data.u.ld ++;	
+	 (a->isArray) 
+		?	((*((long double *)a->ref->data.a + a->offset)) ++)
+		:	(a->data.u.ld ++);	
 }
 
 void ktx_dec_c_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((char *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.c --;	
+	 (a->isArray) 
+		?	((*((char *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.c --);	
 }
 
 void ktx_dec_uc_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned char *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.uc --;	
+	 (a->isArray) 
+		?	((*((unsigned char *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.uc --);	
 }
 
 void ktx_dec_i_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((int *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.i --;	
+	 (a->isArray) 
+		?	((*((int *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.i --);	
 }
 
 void ktx_dec_ui_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned int *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.ui --;	
+	 (a->isArray) 
+		?	((*((unsigned int *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.ui --);	
 }
 
 void ktx_dec_li_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((long int *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.li --;	
+	 (a->isArray) 
+		?	((*((long int *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.li --);	
 }
 
 void ktx_dec_uli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned long int *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.uli --;	
+	 (a->isArray) 
+		?	((*((unsigned long int *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.uli --);	
 }
 
 void ktx_dec_lli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((long long int *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.lli --;	
+	 (a->isArray) 
+		?	((*((long long int *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.lli --);	
 }
 
 void ktx_dec_ulli_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((unsigned long long int *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.ulli --;	
+	 (a->isArray) 
+		?	((*((unsigned long long int *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.ulli --);	
 }
 
 void ktx_dec_f_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((float  *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.f --;	
+	 (a->isArray) 
+		?	((*((float  *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.f --);	
 }
 
 void ktx_dec_d_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((double *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.d --;	
+	 (a->isArray) 
+		?	((*((double *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.d --);	
 }
 
 void ktx_dec_ld_i(variant *a, variant *b, variant *c) {
-	if (a->isArray) {
-		(*((long double *)a->ref->data.u.a + a->offset)) --;
-	} else 	a->data.u.ld --;	
+	 (a->isArray) 
+		?	((*((long double *)a->ref->data.a + a->offset)) --)
+		:	(a->data.u.ld --);	
 }
 
 void ktx_sqrt_c_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	char temp=a->data.u.c;
-	if (a->isArray) temp= *((char *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((char *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9683,7 +8352,7 @@ void ktx_sqrt_c_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_uc_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	unsigned char temp=a->data.u.uc;
-	if (a->isArray) temp= *((unsigned char *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((unsigned char *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9692,7 +8361,7 @@ void ktx_sqrt_uc_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_i_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	int temp=a->data.u.i;
-	if (a->isArray) temp= *((int *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((int *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9701,7 +8370,7 @@ void ktx_sqrt_i_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_ui_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	unsigned int temp=a->data.u.ui;
-	if (a->isArray) temp= *((unsigned int *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((unsigned int *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9710,7 +8379,7 @@ void ktx_sqrt_ui_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_li_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	long int temp=a->data.u.li;
-	if (a->isArray) temp= *((long int *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((long int *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9719,7 +8388,7 @@ void ktx_sqrt_li_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_uli_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	unsigned long int temp=a->data.u.uli;
-	if (a->isArray) temp= *((unsigned long int *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((unsigned long int *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9728,7 +8397,7 @@ void ktx_sqrt_uli_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_lli_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	long long int temp=a->data.u.lli;
-	if (a->isArray) temp= *((long long int *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((long long int *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9737,7 +8406,7 @@ void ktx_sqrt_lli_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_ulli_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	unsigned long long int temp=a->data.u.ulli;
-	if (a->isArray) temp= *((unsigned long long int *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((unsigned long long int *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9746,7 +8415,7 @@ void ktx_sqrt_ulli_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_f_i(variant *a, variant *b, variant *c) {
 	init_var( c, FLOAT , 1);	//	realloc_var( c, 1);
 	float  temp=a->data.u.f;
-	if (a->isArray) temp= *((float  *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((float  *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.f=sqrtf(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9755,7 +8424,7 @@ void ktx_sqrt_f_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_d_i(variant *a, variant *b, variant *c) {
 	init_var( c, DOUBLE , 1);	//	realloc_var( c, 1);
 	double temp=a->data.u.d;
-	if (a->isArray) temp= *((double *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((double *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.d=sqrt(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9764,7 +8433,7 @@ void ktx_sqrt_d_i(variant *a, variant *b, variant *c) {
 void ktx_sqrt_ld_i(variant *a, variant *b, variant *c) {
 	init_var( c, LDOUBLE , 1);	//	realloc_var( c, 1);
 	long double temp=a->data.u.ld;
-	if (a->isArray) temp= *((long double *)a->ref->data.u.a + a->offset);
+	if (a->isArray) temp= *((long double *)a->ref->data.a + a->offset);
 	if (temp> 0) {
 	  c->data.u.ld=sqrtl(temp);
 	} else runtime(1 , "جذر روی اعداد منفی جواب ندارد.");
@@ -9773,77 +8442,77 @@ void ktx_sqrt_ld_i(variant *a, variant *b, variant *c) {
 void ktx_not2_c_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((char *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((char *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.c);
 }
 
 void ktx_not2_uc_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((unsigned char *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((unsigned char *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.uc);
 }
 
 void ktx_not2_i_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((int *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((int *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.i);
 }
 
 void ktx_not2_ui_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((unsigned int *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((unsigned int *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.ui);
 }
 
 void ktx_not2_li_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((long int *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((long int *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.li);
 }
 
 void ktx_not2_uli_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((unsigned long int *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((unsigned long int *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.uli);
 }
 
 void ktx_not2_lli_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((long long int *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((long long int *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.lli);
 }
 
 void ktx_not2_ulli_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((unsigned long long int *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((unsigned long long int *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.ulli);
 }
 
 void ktx_not2_f_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((float  *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((float  *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.f);
 }
 
 void ktx_not2_d_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((double *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((double *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.d);
 }
 
 void ktx_not2_ld_i(variant *a, variant *b, variant *c) {
    init_var( c, INT , 1);
    if (a->isArray) {
-  	 	c->data.u.i = !(*((long double *)a->ref->data.u.a + a->offset));
+  	 	c->data.u.i = !(*((long double *)a->ref->data.a + a->offset));
    } else    c->data.u.i = !(a->data.u.ld);
 }
 

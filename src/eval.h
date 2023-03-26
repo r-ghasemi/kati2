@@ -45,59 +45,59 @@ void print_item(variant *si, float format) {
 		return;
 	}*/
 	//printf("A=%d\n", v->isArray);
-	//if (si->ref) v = si->ref ;// si->refvar->data.u.a + si->offset;
+	//if (si->ref) v = si->ref ;// si->refvar->data.a + si->offset;
 	sprintf(fmt, FORMAT[si->dt], format);
 	
 //	printf("data type=%d format=%s offset=%d\n", si->dt, fmt, si->offset);	
 	if (si->dt==CHAR) {
-		printf((format==0)?"%c":fmt, (v->isArray) ? *((char *)v->data.u.a + v->offset ) : v->data.u.c);
+		printf((format==0)?"%c":fmt, (v->isArray) ? *((char *)v->data.a + v->offset ) : v->data.u.c);
 		return ;
 	} 
 		
 	if (si->dt==INT) {
-		printf((format==0)?"%d":fmt, (v->isArray) ? *((int *)v->data.u.a + v->offset ) : v->data.u.i);	
+		printf((format==0)?"%d":fmt, (v->isArray) ? *((int *)v->data.a + v->offset ) : v->data.u.i);	
 		return ;
 	} 
 	
 	if (si->dt==UINT) {
-		printf((format==0)?"%u":fmt, (v->isArray) ? *((unsigned int *)v->data.u.a + v->offset ) : v->data.u.ui);
+		printf((format==0)?"%u":fmt, (v->isArray) ? *((unsigned int *)v->data.a + v->offset ) : v->data.u.ui);
 		return ;
 	} 	
 	
 	if (si->dt==LINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf((format==0)?"%ld":fmt, (v->isArray) ? *((long int *)v->data.u.a + v->offset ) : v->data.u.li);
+		printf((format==0)?"%ld":fmt, (v->isArray) ? *((long int *)v->data.a + v->offset ) : v->data.u.li);
 		return ;
 	} 
 		
 	if (si->dt==ULINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf((format==0)?"%lu":fmt, (v->isArray) ? *((unsigned long int *)v->data.u.a + v->offset ) : v->data.u.uli);	
+		printf((format==0)?"%lu":fmt, (v->isArray) ? *((unsigned long int *)v->data.a + v->offset ) : v->data.u.uli);	
 	} 
 
 	if (si->dt==LLINT) {
-		printf((format==0)?"%lld":fmt, (v->isArray) ? *((long long int *)v->data.u.a + v->offset ) : v->data.u.lli);		
+		printf((format==0)?"%lld":fmt, (v->isArray) ? *((long long int *)v->data.a + v->offset ) : v->data.u.lli);		
 		return ;
 	} 			
 	
 	if (si->dt==ULLINT) {
 	//	printf("i=%d, f=%lf\n", format, _format[format]);
-		printf((format==0)?"%llu":fmt, (v->isArray) ? *((unsigned long long int *)v->data.u.a + v->offset ) : v->data.u.ulli);
+		printf((format==0)?"%llu":fmt, (v->isArray) ? *((unsigned long long int *)v->data.a + v->offset ) : v->data.u.ulli);
 			return ;
 	} 	
 			
 	if (si->dt==FLOAT) {
-		printf((format==0)?"%f":fmt, (v->isArray) ? *((float  *)v->data.u.a + v->offset ) : v->data.u.f);			
+		printf((format==0)?"%f":fmt, (v->isArray) ? *((float  *)v->data.a + v->offset ) : v->data.u.f);			
 		return ;
 	}	
 		
 	if (si->dt==DOUBLE) {
-		printf((format==0)?"%lf":fmt, (v->isArray) ? *((double  *)v->data.u.a + v->offset ) : v->data.u.d);				
+		printf((format==0)?"%lf":fmt, (v->isArray) ? *((double  *)v->data.a + v->offset ) : v->data.u.d);				
 		return ;
 	}	
 		
 	if (si->dt==LDOUBLE) {
-		printf((format==0)?"%Lf":fmt, (v->isArray) ? *((long double  *)v->data.u.a + v->offset ) : v->data.u.ld);				
+		printf((format==0)?"%Lf":fmt, (v->isArray) ? *((long double  *)v->data.a + v->offset ) : v->data.u.ld);				
 		return ;
 	}	
 	//TEXT
@@ -141,37 +141,7 @@ void _push2_vp(variant * var, int offset) {
   stack2[top2].offset = offset;
   stack2[top2].ref = var;     
 }
-/*
-void push2_vp(datatypes dt, void *value) {
-	_push2_vp(dt, value, NULL, 0);
-}
 
-void push2_i(int value) {
-  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته.");    
-  top2++;
-  stack2[top2].u.ld = value;
-  stack2[top2].dt   = INT;
-}
-
-void push2_ld(long double value) {
-  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته");  
-  
-  top2++;
-  stack2[top2].u.ld = value;
-  stack2[top2].dt   = LDOUBLE;
-}
-
-void push2_st(char * value, int isref) {
-  if (top2==STACKSIZE) runtime(1,"خطای سرریز پشته اتفاق افتاده است.");  
-  
-  top2++;
-  stack2[top2].u.st =  value;
-  stack2[top2].dt   = TEXT;
-  
-  //stack2[top2].var= NULL;
-  //if (isref)  stack2[top2].var= (char **) value;
-}
-*/
 variant * pop2() {
   if (top2==-1) runtime(1,"ورودی کامل نیست.");
   variant *temp;
@@ -692,6 +662,7 @@ variant  eval(int _BP) {
 							runtime(1,"اندیس آرایه باید از نوع صحیح باشد");
 						}
 						ix= vx->data.u.i;
+						memcpy( &v->data.u, ((char *)v->data.a + _sizeof[v->dt]*ix) , _sizeof[v->dt] );
 					}									
 					_push2_vp (v , ix);
 		    	} else {  //global variable
@@ -704,8 +675,11 @@ variant  eval(int _BP) {
 							runtime(1,"اندیس آرایه باید از نوع صحیح باشد");
 						}
 						ix= vx->data.u.i;
-						//printf("ix=%d v1-size=%d id=%d\n", ix, v1->size,token->id);
-					}
+//						printf("ix=%d v1-size=%d id=%d  dt=%d, value=%d\n", ix, v1->size,token->id, v1->dt
+	//						,*((int *)v1->data.a+ix) );
+						//if (v1->data.a) 
+						memcpy( &v1->data.u, ((char *)v1->data.a + _sizeof[v1->dt]*ix) , _sizeof[v1->dt] );
+					}					
 					
 					_push2_vp (v1 , ix);
 			   }				
