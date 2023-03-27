@@ -132,6 +132,11 @@ int 		asmm=0;
 #define	ARRAY		264
 #define COMMA		265
 
+#define	ENDIF			266
+#define	ENDLOOP			267
+#define ENDAZ			268
+#define	ENDTEDAD		269
+#define	ENDFUNCTION		270
 
 
 #include "variant.h"
@@ -682,6 +687,7 @@ struct token _getToken(int std, int flag) {
 			//!strcmp(tok.u.tok, "بنویس") ||
 			//!strcmp(tok.u.tok, "بخوان") ||
 			!strcmp(tok.u.tok, "اگر") ||
+			!strcmp(tok.u.tok, "وگرنه") ||			
 			!strcmp(tok.u.tok, "آنگاه") ||
 			!strcmp(tok.u.tok, "شروع") ||
 			!strcmp(tok.u.tok, "پایان") ||
@@ -700,9 +706,21 @@ struct token _getToken(int std, int flag) {
 			) {
 				tok.type=KEYWORD;
 				tok.id=check(tok.u.tok);
+				if (tok.id==K_END) {
+					last_head=head;
+					token=_getToken(std,1);				
+					switch (token.id) {
+						case K_IF: 	 	tok.id= ENDIF;	break;
+						case AZ: 		 tok.id= ENDAZ;	break;
+						case TEKRAR:	 tok.id= ENDLOOP;	break;
+						case K_TEDAD:	 tok.id= ENDTEDAD;	break;
+						case K_FUNC: tok.id= ENDFUNCTION;	break;												
+						case K_END:
+						default: head=last_head;	break;
+					}
+				}
 			//	printf("\nKEYWORD");
-			}  //TODO: check for ARRAY name
-			else {    // identifier (variable or function name)
+			}  	else {    // identifier (variable or function name)
 				// todo: check synonyms				
 				tok.id = check(tok.u.tok);
 				tok.tok_ip=function_ip(tok.u.tok);

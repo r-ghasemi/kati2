@@ -152,7 +152,7 @@ void add_statement(enum command cmd, struct context *c) {
 	add_node(&n);
 }
 
-int parse(int h, int stop) {
+int parse(int h, int stop, int block) {
 	//struct node n;
 	
 	//int saveHead;
@@ -180,8 +180,17 @@ int parse(int h, int stop) {
 	  //  saveHead=head;
 	    token=getToken(0);
 	 	    
-	    if (token.type==EOS) return 0;
-	    if (token.type==OP && token.u.op=='}') 	return 1;	  
+	   if (token.type==EOS) return 0;
+	   if (token.type==OP && token.u.op=='}' && block=='{') 	return 1;
+	   if (token.type==KEYWORD && token.id== ENDIF && block==':') return token.id;
+	   if (token.type==KEYWORD && token.id== ENDLOOP && block==':') return token.id;
+	   if (token.type==KEYWORD && token.id== ENDAZ && block==':') return token.id;	   	   	   
+	   if (token.type==KEYWORD && token.id== ELSE  && block==':') return token.id; 
+	   if (token.type==KEYWORD && token.id== ENDTEDAD && block==':') return token.id;
+	   if (token.type==KEYWORD && token.id== ENDFUNCTION && block==':') return token.id; 		   
+	   
+	   if (token.type==KEYWORD && token.id== ENDIF && block=='@') return token.id;
+	   if (token.type==KEYWORD && token.id== ENDLOOP && block=='@') return token.id;
 
 	
 	   //  if (token.type!=KEYWORD && (token.type==OP && token.u.op!=EVAL)) 		
@@ -629,11 +638,8 @@ int kati2_main(int ac, char **av) {
 
    head=0;
    
-   while ( (ret=parse(head, 0)) ) {
-	 if (ret==1) {
-	 	_error(1,"علامت ناخواسته انتهای بلاک.");
-	 	
-	 }
+   while ( (ret=parse(head, 0, '{')) ) {
+	 if (ret==1) _error(1,"علامت ناخواسته انتهای بلاک.");
    };
 
    if (asmm)   display();

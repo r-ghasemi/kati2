@@ -9,8 +9,8 @@ int _while() {
 	while (code[head]!=0 && code[head]!='.') {
 	//	hb=head;
 		token=getToken(0);
-		 if (token.type==KEYWORD && (token.id==K_THEN1 ||
-						token.id==K_THEN2)) {
+		 if (token.type == KEYWORD && (token.id == K_THEN1 ||
+						token.id == K_THEN2)) {
 				while ( top_op() != 0 ) add_token( &_main, pop_op() );
 				break;
 		}
@@ -54,12 +54,14 @@ int _while() {
 		//hb=head;
 		token=getToken(0); //کن یا ...
 
-		if (token.type==OP && token.u.op=='{') {
+		if (token.type !=ID || token.id!=KON) {
 			error("کلمه تکرار کن فراموش شده است.",1);
 		}
 	}
 
 	add_node(&n1);
+	int ifsyntax=1;
+	if (code[head]==':') ifsyntax=2;	
 
 	while (isspace(code[head])) head++;
 
@@ -69,12 +71,12 @@ int _while() {
 	loop_top++;
 	loop_stack[loop_top]=n1.counter;
 
-	if (code[head]=='{') {  // body of while	
+	if (code[head]=='{' || code[head]==':') {  // body of while	
 		//TODOS: find closing brace position and parse
-		if (parse(head+1,1)==0) 
+		if (parse(head+1,1, code[head])==0) 
 			_error(1,"بدنه بلاک بسته نشده است.");
 	} else {
-		parse(head,0);
+		parse(head,0, '{');
 	}
 	loop_top--;
 
@@ -90,22 +92,33 @@ int _while() {
 	add_node(&n3);
 
 	int hsave=head;
-	token=getToken(0);	
+	if (ifsyntax==1) token=getToken(0);	
 
-  	if (token.type==ID && token.id==ELSE) {
+  	if (token.type==KEYWORD && token.id==ELSE) {
 	    n1.self->cmd=WHILEE;
 	    while (isspace(code[head])) head++;
-	    if (code[head]=='{') {
+	    if (ifsyntax==2) {
+			if (code[head] != ':' ) _error(1,"علامت  :  بعد از وگرنه لازم است.");			
+		}
+	    if (ifsyntax==2 || code[head]=='{' ) {  
+	  		if (ifsyntax==2) code[head]='@';
 			//parse block of code until closing brace
-			if (parse(head+1,1)==0) 
+			if (parse(head+1,1,code[head])==0) 
 				_error(1,"بدنه بلاک بسته نشده است.");
 
 	     } else {
 			//parse only next statement
-			parse(head, 0);
+			parse(head, 0, '{');
 	     }
 	 } else head=hsave; //resore head {if without else}	
 
+
+    if (ifsyntax==2) {
+		token=getToken(0);
+		if (token.type!=OP || token.u.op!='.') {
+			_error(1,"پایان تکرار(اگر) باید علامت . باشد.");
+		}
+	}
 	n4.cmd=NOP, n4.link=0, n4.start=NULL, n4.end=NULL, n4.next=0;		
 	add_node(&n4);
 
@@ -192,11 +205,15 @@ int _while2() {
 	hb=head;
 	token=getToken(0); // counter name for loop
 
-      if (token.type==OP && token.u.op==FMT) {  //  : after repeat
+      if (token.type==OP && token.u.op=='(' ) {  //  : after repeat
 		token=getToken(0);
 		if (token.type!=ID) _error(1,"نیاز به یک نام شمارنده است.");
 		//define custom variable
 		varid= vv->id= token.id;
+		token=getToken(0);
+		 if (token.type!=OP || token.u.op!=')' ) { 
+			 _error(1,"اینجا پرانتز بسته لازم است.");
+		 }
       } else {
 		head=hb;
 		// define شمارنده variable
@@ -232,16 +249,27 @@ int _while2() {
 	loop_top++;
 	loop_stack[loop_top]=n1.counter;
 
-	if (code[head]=='{') {  
+	int ifsyntax=1;
+	if (code[head]==':') ifsyntax=2;
+	
+	if (code[head]=='{' || code[head]==':') { 
 		// body of while								
 		//parse block of code until closing brace
-		if (parse(head+1,1)==0) 
+		if (parse(head+1,1, code[head])==0) 
 			_error(1,"بدنه بلاک بسته نشده است.");
 
 	} else {
 		//parse next statement only
-		parse(head, 0); 
+		parse(head, 0, '{'); 
 	}
+	
+	if (ifsyntax==2) {
+		token=getToken(0);
+		if (token.type!=OP || token.u.op!='.') {
+			_error(1,"پایان تعداد(تکرار) باید علامت . باشد.");
+		}
+	}	
+	
 	loop_top--;
 
 	s2.cmd=LET, s2.link=0, s2.start=_main.end, s2.next=counter+1;	
@@ -371,6 +399,10 @@ int _while3() {	 // from a to b do : x { }
 		hb=head;
 		token=getToken(0); //کن یا ...
 //		printf("---%s", token.u.tok);
+		if (token.type !=ID || token.id!=KON) {
+			error("کلمه تکرار کن فراموش شده است.",1);
+		}
+		
 		if (token.type==OP && token.u.op=='{') head=hb;		
 	} 
 
@@ -380,13 +412,17 @@ int _while3() {	 // from a to b do : x { }
 	hb=head;
 	token=getToken(0); // counter name for loop
 
-      if (token.type==OP && token.u.op==FMT) {  //  : after repeat
+    if (token.type==OP && token.u.op=='(') {  //  : after repeat	
 		token=getToken(0);
 		if (token.type!=ID) _error(1,"نیاز به یک نام شمارنده است.");
 		//define custom variable
 		varid= variable->id = v1->id = token.id;
 		
-      } else {
+		token=getToken(0);
+		if (token.type!=OP || token.u.op!=')' ) { 
+			_error(1,"اینجا پرانتز بسته لازم است.");
+		}			
+    } else {
 		head=hb;
 		// define شمارنده variable
 		variable->id= varid;// check(var);
@@ -412,17 +448,29 @@ int _while3() {	 // from a to b do : x { }
 
 	loop_top++;
 	loop_stack[loop_top]=n1.counter;
-
-	if (code[head]=='{') {  
+	
+	int ifsyntax=1;
+	if (code[head]==':') ifsyntax=2;
+	
+	if (code[head]=='{' || code[head]==':') { 
 		// body of while								
 		//parse block of code until closing brace
-		if (parse(head+1,1)==0) 
+		if (parse(head+1,1, code[head])==0) 
 			_error(1,"بدنه بلاک بسته نشده است.");
 
 	} else {
 		//parse next statement only
-		parse(head, 0); 
+		parse(head, 0, '{'); 
 	}
+	
+	if (ifsyntax==2) {
+		token=getToken(0);
+		if (token.type!=OP || token.u.op!='.') {
+			_error(1,"پایان از باید علامت . باشد.");
+		}
+	}	
+	
+	
 	loop_top--;
 
 	s2.cmd=LET, s2.link=0, s2.start=_main.end, s2.next=counter+1;	

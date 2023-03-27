@@ -1,7 +1,7 @@
 #include "def.h"
 
 int _while();
-int parse(int h, int stop) ;
+int parse(int h, int stop, int block) ;
 
 int _if() {
 	struct node n1,g1,n2,n3;
@@ -67,25 +67,28 @@ int _if() {
 	while (isspace(code[head])) head++;
 
 	add_node(&n1);
-
-	if (code[head]=='{') { 
+	
+	int ifsyntax=1;
+	if (code[head]==':') ifsyntax=2;
+	
+	if (code[head]=='{' || code[head]==':') { 
 		//parse block
-		if (parse(head+1,1)==0) 
+		if (parse(head+1,1, code[head])==0) 
 				_error(1,"بدنه بلاک بسته نشده است.");
-
 	} else {
 		hsave=head;
 		//parse next statement only
-		parse(hsave,0);
+		parse(hsave,0,'{');
 	}
 
 	g1.cmd=GOTO;	g1.link=0;	g1.start=NULL;	g1.end=NULL;
 	add_node(&g1);
 
 	hsave=head;
-	token=getToken(0);
+	
+	if (ifsyntax==1) token=getToken(0);
 		
-	if (token.type==ID && token.id==ELSE) {		
+	if (token.type==KEYWORD && token.id==ELSE) {		
 		// GOTO [n2]
 		n2.cmd=NOP;	n2.link=0;	n2.start= NULL;	n2.end= NULL; n2.next=0;
 		add_node(&n2);
@@ -94,17 +97,29 @@ int _if() {
 
 		while (isspace(code[head])) head++;
 
-		if (code[head]=='{') {  		
-			if (parse(head+1,1)==0) 
+		if (ifsyntax==2) {
+			if (code[head] != ':' ) _error(1,"علامت  :  بعد از وگرنه لازم است.");			
+		}
+		
+		if (ifsyntax==2 || code[head]=='{' ) {  
+			if (ifsyntax==2) code[head]='@';		
+			if (parse(head+1,1, code[head] )==0) 
 				_error(1,"بدنه بلاک بسته نشده است.");
 		} else {
 			hsave=head;
-			parse(hsave, 0);
+			parse(hsave, 0,'{');
 		}		
 	} else {
 		head=hsave; //resore head {if without else}	
 	}
-
+	
+	if (ifsyntax==2) {
+		token=getToken(0);
+		if (token.type!=OP || token.u.op!='.') {
+			_error(1,"پایان اگر باید علامت . باشد.");
+		}
+	}
+	
 	n3.cmd=NOP;	n3.link=0;	n3.start= NULL;	n3.end= NULL; n3.next=0;
 	add_node(&n3);
 	

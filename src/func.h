@@ -1,6 +1,6 @@
 //#include "def.h"
 
-int  parse(int h, int stop) ;
+int  parse(int h, int stop, int block) ;
 void check_kati_keywords();
 /*
 * functions  IP >=0 
@@ -105,9 +105,13 @@ int _func() {
     n2.cmd=NOP;	n2.link=0;	n2.start= NULL; n2.end=NULL;
     add_node(&n2);
     
-	if (token.type==OP && token.u.op== '{') { 
+	int ifsyntax=1;
+   
+	if (token.type==OP && (token.u.op== '{' || token.u.op==FMT) ) {   // { or :
 		//parse block
-		if (parse(head,1)==0) 
+		if (token.u.op == FMT) ifsyntax=2;    
+		
+		if (parse(head,1, (ifsyntax==1) ? '{' : ':')==0) 
 				_error(1,"بدنه تابع بسته نشده است.");
 	} else {
 	    if (token.u.op != '.')
@@ -123,6 +127,13 @@ int _func() {
 			arg0->tok_ip=-2;
         }
 	}
+	
+	if (ifsyntax==2) {
+		token=getToken(0);
+		if (token.type!=OP || token.u.op!='.') {
+			_error(1,"پایان تابع باید علامت . باشد.");
+		}
+	}	
 //todone: count of function arguments and variables = fvar_counter - MAXKEYS-1 in here
     n1.self->var_count= fvar_counter - MAXKEYS -1  ;
     
